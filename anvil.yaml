@@ -9,10 +9,13 @@ services:
 startup: {type: form, module: Main}
 package_name: Simple_Website_Template
 allow_embedding: false
-name: Clone of Simple Website Template
+name: Otto & Associates
 runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox,
   server_spec: null}
-metadata: {logo_img: ''}
+metadata: {logo_img: 'asset:otto_and_associates_logo.png', title: Otto & Associates,
+  description: 'We are a full service insurance agency representing the people of
+    Huber Heights and surrounding areas through partnership with quality insurance
+    carriers. '}
 startup_form: null
 native_deps: {head_html: '<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
     rel="stylesheet" rel="preload" as="font" crossorigin="anonymous">'}
