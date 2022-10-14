@@ -57,11 +57,15 @@ components:
       layout_properties: {grid_position: 'TYEMCK,JJSWQA'}
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: '4760 Fishburg Rd.
+        visible: true, text: '4760 Fishburg Rd., Suite I
 
-          Suite I
+          Huber Heights, OH 45424
 
-          Huber Heights, OH 45424', font_size: null, font: '', spacing_above: none,
+          ph: 937 610-0088
+
+          fax: 937 610-0181
+
+          andi@theottoagency.com', font_size: null, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: label_27
