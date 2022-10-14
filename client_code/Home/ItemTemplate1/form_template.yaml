@@ -1,0 +1,17 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {}
+  name: label_1
+  layout_properties: {grid_position: 'HUGBCR,RJKHXW'}
+- type: Label
+  properties: {}
+  name: label_2
+  layout_properties: {grid_position: 'HUGBCR,LRKFNB'}
+- type: Label
+  properties: {}
+  name: label_3
+  layout_properties: {grid_position: 'HUGBCR,VTVSUA'}
+is_package: true

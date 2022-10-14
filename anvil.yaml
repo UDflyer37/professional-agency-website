@@ -1,0 +1,54 @@
+dependencies: []
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/anvil/email.yml
+  client_config: {}
+  server_config: {}
+startup: {type: form, module: Main}
+package_name: Simple_Website_Template
+allow_embedding: false
+name: Clone of Simple Website Template
+runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox,
+  server_spec: null}
+metadata: {logo_img: ''}
+startup_form: null
+native_deps: {head_html: '<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+    rel="stylesheet" rel="preload" as="font" crossorigin="anonymous">'}
+db_schema:
+  pricing:
+    title: Pricing
+    client: search
+    server: full
+    columns:
+    - name: level
+      admin_ui: {width: 200}
+      type: string
+    - name: half-sesh
+      admin_ui: {width: 200}
+      type: string
+    - name: full-sesh
+      admin_ui: {width: 200}
+      type: string
+  contact:
+    title: Contact
+    client: none
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: topic
+      admin_ui: {width: 200}
+      type: string
+    - name: question
+      admin_ui: {width: 200}
+      type: string
+    - name: time
+      admin_ui: {width: 200}
+      type: datetime
+renamed: true
