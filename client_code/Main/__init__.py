@@ -11,6 +11,7 @@ from ..About import About
 from ..Contact import Contact
 from ..Appointment import Appointment
 from ..FAQ import FAQ
+from ..Agent_Portal import Agent_Portal
 
 
 class Main(MainTemplate):
@@ -52,6 +53,12 @@ class Main(MainTemplate):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
     self.content_panel.add_component(FAQ(), full_width_row=True)
+
+  def agent_login_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.content_panel.clear()
+    self.content_panel.add_component(Agent_Portal(), full_width_row=True)
+
 
 
 
