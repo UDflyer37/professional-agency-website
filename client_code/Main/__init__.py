@@ -1,5 +1,7 @@
 from ._anvil_designer import MainTemplate
 from anvil import *
+import anvil.google.auth, anvil.google.drive
+from anvil.google.drive import app_files
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -7,7 +9,7 @@ from anvil.tables import app_tables
 from ..Home import Home
 from ..About import About
 from ..Contact import Contact
-from ..Pricing import Pricing
+from ..Appointment import Appointment
 from ..FAQ import FAQ
 
 
@@ -41,10 +43,10 @@ class Main(MainTemplate):
     """This method is called when the link is clicked"""
     self.contact_link_click()
 
-  def pricing_link_click(self, **event_args):
+  def appointment_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(Pricing(), full_width_row=True)
+    self.content_panel.add_component(Appointment(), full_width_row=True)
 
   def faq_link_click(self, **event_args):
     """This method is called when the link is clicked"""

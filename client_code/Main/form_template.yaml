@@ -117,7 +117,7 @@ components:
       icon: ''}
     name: pricing_link
     layout_properties: {}
-    event_bindings: {click: pricing_link_click}
+    event_bindings: {click: appointment_link_click}
   - type: Link
     properties: {role: text, url: '', align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: contact us., font_size: null, wrap_on: mobile, font: '',

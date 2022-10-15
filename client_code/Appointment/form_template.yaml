@@ -18,21 +18,21 @@ components:
     layout_properties: {grid_position: 'JTRWDS,VPQBMV'}
   - type: Label
     properties: {role: headline, align: center, tooltip: '', border: '', foreground: 'theme:White',
-      visible: true, text: see what we have to offer., font_size: null, font: '',
-      spacing_above: none, icon_align: left, spacing_below: medium, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
+      visible: true, text: make an appointment., font_size: null, font: '', spacing_above: none,
+      icon_align: left, spacing_below: medium, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
     name: label_37
     layout_properties: {grid_position: 'NJEMSZ,DEWCDU'}
   - type: Label
     properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:White',
-      visible: true, text: 'from group test prep classes to individualized tutoring
-        sessions across a range of subjects, teachme has got you covered.', font_size: 18,
+      visible: true, text: 'We can''t wait to see you! Check to see when we will be
+        in the office and schedule a time to come in. Walk-ins available. ', font_size: 18,
       font: '', spacing_above: none, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     name: label_38
     layout_properties: {grid_position: 'CEHQDB,ZDKAYM'}
 - type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: ''}
   name: card_1
@@ -214,7 +214,7 @@ components:
       name: label_22
       layout_properties: {grid_position: 'ILFUTV,WMNUFJ'}
 - type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: '#ECECEC'}
   name: card_2
