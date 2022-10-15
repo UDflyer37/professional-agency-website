@@ -6,9 +6,6 @@ services:
 - source: /runtime/services/anvil/email.yml
   client_config: {}
   server_config: {}
-- source: /runtime/services/google.yml
-  client_config: {}
-  server_config: {}
 startup: {type: form, module: Main}
 package_name: Simple_Website_Template
 allow_embedding: false
@@ -43,4 +40,46 @@ db_schema:
     - name: time
       admin_ui: {width: 200}
       type: datetime
+  bookings:
+    title: Bookings
+    client: none
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    - name: user
+      admin_ui: {width: 200}
+      type: string
+    - name: datetime
+      admin_ui: {width: 200}
+      type: datetime
+  open_hours:
+    title: Open Hours
+    client: search
+    server: full
+    columns:
+    - name: Column0
+      admin_ui: {width: 200}
+      type: number
+    - name: close_time
+      admin_ui: {width: 200}
+      type: number
+    - name: Column2
+      admin_ui: {width: 200}
+      type: bool
+    - name: day
+      admin_ui: {width: 200}
+      type: string
+  settings:
+    title: Settings
+    client: search
+    server: full
+    columns:
+    - name: key
+      admin_ui: {width: 200}
+      type: string
+    - name: value
+      admin_ui: {width: 200}
+      type: simpleObject
 renamed: true
