@@ -59,13 +59,13 @@ db_schema:
     client: search
     server: full
     columns:
-    - name: Column0
+    - name: open_time
       admin_ui: {width: 200}
       type: number
     - name: close_time
       admin_ui: {width: 200}
       type: number
-    - name: Column2
+    - name: open
       admin_ui: {width: 200}
       type: bool
     - name: day

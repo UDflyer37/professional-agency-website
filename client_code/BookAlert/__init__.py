@@ -6,7 +6,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 class BookAlert(BookAlertTemplate):
-  def __init__(self, **properties):
+  def __init__(self,time, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     

@@ -83,7 +83,7 @@ components:
       layout_properties: {slot: date_label}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: No available slots on this day., font_size: null, font: '',
+      visible: false, text: No available slots on this day., font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: true,
       background: '', bold: false, underline: false, icon: ''}
     name: no_bookings_label

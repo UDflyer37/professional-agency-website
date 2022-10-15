@@ -70,7 +70,7 @@ class Appointment(AppointmentTemplate):
       return
     
 #    anvil.users.login_with_form() #make sure user is logged in
-    admin = anvil.server.call('check_admin')
+#    admin = anvil.server.call('check_admin')
     get_open_form().show_links()
     self.book_button.text = "Book"
       
