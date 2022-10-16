@@ -1,3 +1,4 @@
+import anvil.users
 import anvil.email
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -53,12 +54,9 @@ def get_times(chosen_date, now):
 
 @anvil.server.callable
 def add_booking(name, date, email=None):
-  if anvil.users.get_user()['admin']:
-    app_tables.bookings.add_row(name=name, datetime=date, user=app_tables.users.get(email=email))
-  else:
-    app_tables.bookings.add_row(name=name, datetime=date, user=anvil.users.get_user())
-  anvil.email.send(from_name="Booking App Team", 
-                   to= (anvil.users.get_user()['email'] or email), 
+  app_tables.bookings.add_row(name=name.capitalize().strip(), datetime=date, user=email.lower().strip())
+  anvil.email.send(from_name="Otto & Associates", 
+                   to= email, 
                    subject="Your booking was successful",
                    text=f"Hi {name},\n\nYou have sucessfully made a booking for {date.strftime('%A %d %b %Y at %I:%M %p')}.")
 

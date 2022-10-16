@@ -31,25 +31,26 @@ components:
       background: '', bold: false, underline: false, icon: ''}
     name: label_38
     layout_properties: {grid_position: 'CEHQDB,ZDKAYM'}
-- type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
-  name: card_1
-  layout_properties: {grid_position: 'UIGIXZ,EMROYR', full_width_row: true}
-  components:
+  - type: Spacer
+    properties: {height: 30}
+    name: spacer_3
+    layout_properties: {grid_position: 'TXWEOR,YMISWN'}
   - type: DatePicker
     properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
       placeholder: choose a date, border: '', enabled: true, foreground: '', visible: true,
       font_size: null, font: '', spacing_above: small, spacing_below: small, italic: false,
-      date: '', min_date: '', background: '', bold: false, underline: false, format: ''}
+      date: '', min_date: '', background: 'theme:Gray 100', bold: false, underline: false,
+      format: ''}
     name: date_picker_1
-    layout_properties: {grid_position: 'QAHGCB,YWVWKJ'}
+    layout_properties: {grid_position: 'IPVHSW,MLUNXK'}
     event_bindings: {change: date_picker_1_change}
-  - type: Spacer
-    properties: {height: 19}
-    name: spacer_3
-    layout_properties: {grid_position: 'WWWOCI,RBPFRD'}
+- type: ColumnPanel
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"DXSZSA":5,"CWXFEA":50,"UIKJBF":5}',
+    spacing_below: none, background: ''}
+  name: card_1
+  layout_properties: {grid_position: 'FIHZZD,OMCMCQ', full_width_row: true}
+  components:
   - type: RichText
     properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
       foreground: '', visible: true, font_size: null, content: '{arrow_1} {day_label}
@@ -60,19 +61,20 @@ components:
     components:
     - type: Button
       properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: button_1, font_size: null, font: '',
-        spacing_above: small, icon_align: right, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: 'fa:caret-left'}
+        foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
+        icon_align: right, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:caret-left'}
       name: left_button
       layout_properties: {slot: arrow_1}
-      event_bindings: {click: right_button_click}
+      event_bindings: {click: left_button_click}
     - type: Button
       properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: button_1, font_size: null, font: '',
-        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: 'fa:caret-right'}
+        foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:caret-right'}
       name: right_button
       layout_properties: {slot: arrow_2}
+      event_bindings: {click: right_button_click}
     - type: Label
       properties: {}
       name: day_label
@@ -88,10 +90,18 @@ components:
       background: '', bold: false, underline: false, icon: ''}
     name: no_bookings_label
     layout_properties: {grid_position: 'JKXLLW,DPGLGT'}
+  - type: Spacer
+    properties: {height: 32}
+    name: spacer_1
+    layout_properties: {grid_position: 'KZSKJI,DXSZSA'}
   - type: RepeatingPanel
     properties: {item_template: Appointment.ItemTemplate2}
     name: repeating_panel_1
     layout_properties: {grid_position: 'KZSKJI,CWXFEA'}
+  - type: Spacer
+    properties: {height: 32}
+    name: spacer_2
+    layout_properties: {grid_position: 'KZSKJI,UIKJBF'}
   - type: Button
     properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Schedule, font_size: null, font: '', spacing_above: small,

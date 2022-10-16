@@ -1,5 +1,6 @@
 from ._anvil_designer import ItemTemplate2Template
 from anvil import *
+import anvil.users
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -10,4 +11,6 @@ class ItemTemplate2(ItemTemplate2Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # Any code you write here will run when the form opens.
+  def radio_button_1_clicked(self, **event_args):
+    """This method is called when this radio button is selected"""
+    self.parent.raise_event("x-select-time", time=self.item)

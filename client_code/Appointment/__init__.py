@@ -1,5 +1,6 @@
 from ._anvil_designer import AppointmentTemplate
 from anvil import *
+import anvil.users
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -30,8 +31,6 @@ class Appointment(AppointmentTemplate):
   def date_picker_1_change(self, **event_args):
     """This method is called when the selected date changes"""
     self.card_1.visible = True
-#    if not anvil.users.get_user():
-#      self.book_button.text = "Sign in to Book"
     self.chosen_datetime = self.date_picker_1.date
     self.list_times()
     
@@ -66,26 +65,22 @@ class Appointment(AppointmentTemplate):
   def book_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     if not self.selected_time: 
-      alert("Please select a time")
+      Notification("Please select a time").show()
       return
-    
-#    anvil.users.login_with_form() #make sure user is logged in
-#    admin = anvil.server.call('check_admin')
-    get_open_form().show_links()
-    self.book_button.text = "Book"
+    self.book_button.text = "Schedule"
       
     person = {} #init dict to use as item for BookAlert - data bindings will write back
     while True:
-      if alert(BookAlert(self.selected_time, admin, item=person), large=True, buttons=[("Book", True), ("Cancel", False)]):
+      if alert(BookAlert(self.selected_time, item=person), large=True, buttons=[("Book", True), ("Cancel", False)]):
         if not person.get("name"):
           person['error'] = "Please enter a name."
-        elif admin and not person.get("email"):
+          Notification("Please enter a name.").show()
+        elif not person.get("email"):
           person['error'] = "Please enter an email."
-#        elif admin and not anvil.server.call('check_user_exists', person["email"]):
-#          person['error'] = "There is no registered user with this email"
+          Notification("Please enter an email.").show()
         else:
-          anvil.server.call('add_booking', person['name'], self.selected_time, person.get("email"))
-          Notification("Your booking was successful! An email confirmation has been sent.").show()
+          anvil.server.call('add_booking', person['name'], self.selected_time, person['email'])
+          alert(f"Your booking was successful! \n\nA confirmation email has been sent to {person['email'].lower().strip()}!")
           break
       else: #else if user clicks cancel
         break

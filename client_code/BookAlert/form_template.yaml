@@ -28,7 +28,7 @@ components:
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"SWGIVI":10,"EXBBGJ":50,"HRHFCB":10,"NPBWVE":50}',
-    spacing_below: none, background: 'theme:Neutral'}
+    spacing_below: none, background: ''}
   name: card_1
   layout_properties: {grid_position: 'ZBENMH,RLZWAO', full_width_row: true}
   components:
