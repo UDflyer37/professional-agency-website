@@ -67,17 +67,13 @@ class Appointment(AppointmentTemplate):
     if not self.selected_time: 
       Notification("Please select a time").show()
       return
-    self.book_button.text = "Schedule"
-      
     person = {} #init dict to use as item for BookAlert - data bindings will write back
     while True:
       if alert(BookAlert(self.selected_time, item=person), large=True, buttons=[("Book", True), ("Cancel", False)]):
         if not person.get("name"):
           person['error'] = "Please enter a name."
-          Notification("Please enter a name.").show()
         elif not person.get("email"):
           person['error'] = "Please enter an email."
-          Notification("Please enter an email.").show()
         else:
           anvil.server.call('add_booking', person['name'], self.selected_time, person['email'])
           alert(f"Your booking was successful! \n\nA confirmation email has been sent to {person['email'].lower().strip()}!")
@@ -86,3 +82,4 @@ class Appointment(AppointmentTemplate):
         break
         
     self.list_times()
+

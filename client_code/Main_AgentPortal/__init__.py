@@ -1,4 +1,4 @@
-from ._anvil_designer import MainTemplate
+from ._anvil_designer import Main_AgentPortalTemplate
 from anvil import *
 import anvil.users
 import anvil.server
@@ -11,16 +11,16 @@ from ..Contact import Contact
 from ..Appointment import Appointment
 from ..FAQ import FAQ
 from ..Agent_Portal import Agent_Portal
-from ..Main_AgentPortal import Main_AgentPortal
 
 
-class Main(MainTemplate):
+
+class Main_AgentPortal(Main_AgentPortalTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.content_panel.add_component(Home(), full_width_row=True)
+    self.content_panel.add_component(Agent_Portal(), full_width_row=True)
 
-    
+
   def contact_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
@@ -34,7 +34,7 @@ class Main(MainTemplate):
   def home_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(Home(), full_width_row=True)
+    self.content_panel.add_component(Agent_Portal(), full_width_row=True)
 
   def bottom_about_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -54,13 +54,8 @@ class Main(MainTemplate):
     self.content_panel.clear()
     self.content_panel.add_component(FAQ(), full_width_row=True)
 
-  def agent_login_click(self, **event_args):
+  def customer_portal_click(self, **event_args):
     """This method is called when the link is clicked"""
-    anvil.users.login_with_form()
-    open_form('Main_AgentPortal')
+    anvil.users.logout()
+    open_form('Main')
     return
-
-
-
-
-

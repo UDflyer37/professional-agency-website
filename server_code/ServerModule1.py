@@ -19,7 +19,8 @@ def add_contact_info(name, email, topic, question):
     question=question, 
     time=datetime.now()
   )
-  anvil.email.send(to="andi.otto@yahoo.com",
+  anvil.email.send(from_name="Otto & Associates: Question/Comment",
+                   to="andi.otto@yahoo.com",
                    subject=f"Question from {name}: {topic}",
                    text=f"You've received a new web contact from {name}! \nTopic: {topic} \nEmail address: {email} \nQuestion: {question}")
 
@@ -59,6 +60,11 @@ def add_booking(name, date, email=None):
                    to= email, 
                    subject="Your booking was successful",
                    text=f"Hi {name},\n\nYou have sucessfully made a booking for {date.strftime('%A %d %b %Y at %I:%M %p')}.")
+  anvil.email.send(from_name="Otto & Associates: New Appointment",
+                   to="andi.otto@yahoo.com",
+                   subject=f"New Appointment for {name}: {date}",
+                   text=f"{name} has made an appointment for {date}. The can be reached at {email}.")
+
 
 @anvil.server.callable
 def get_bookings(order_by="datetime"): 
