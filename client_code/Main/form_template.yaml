@@ -123,7 +123,7 @@ components:
       font: '', col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: ''}
-    name: pricing_link
+    name: appointment_link
     layout_properties: {}
     event_bindings: {click: appointment_link_click}
   - type: Link
