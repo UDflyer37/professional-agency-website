@@ -48,30 +48,52 @@ class Contact(ContactTemplate):
     self.topic_drop.items = ['Request a Proof of Insurance Card']
     self.topic_drop.selected_value = "Request a Proof of Insurance Card"
     self.question_area.text = "I would like to Request my Proof of Insurance Card."
+    self.email_template_card.visible = True
 
   def declaration_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.topic_drop.items = ['Request a Declaration']
     self.topic_drop.selected_value = "Request a Declaration"
     self.question_area.text = "I would like to Request a Declaration."
+    self.email_template_card.visible = True
 
   def certificate_of_insurance_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.topic_drop.items = ['Request a Certificate of Insurance']
     self.topic_drop.selected_value = "Request a Certificate of Insurance"
     self.question_area.text = "I would like to Request a Certificate of Insurance."
+    self.email_template_card.visible = True
 
   def insurance_verification_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.topic_drop.items = ['Request Verification of Insurance']
     self.topic_drop.selected_value = "Request Verification of Insurance"
     self.question_area.text = "I would like to Request Verification of Insurance."
+    self.email_template_card.visible = True
 
   def other_click(self, **event_args):
     """This method is called when the button is clicked"""
     self.topic_drop.items = ['Quote', 'Payment', 'Feedback', 'Other']
     self.topic_drop.focus()
     self.question_area.text = ""
+    self.email_template_card.visible = True
+
+  def contact_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    if self.contact_card.visible:
+        self.contact_card.visible = False
+    else:
+        self.contact_card.visible = True
+
+  def email_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    if self.email_card.visible:
+        self.email_card.visible = False
+        self.email_template_card.visible = False
+    else:
+        self.email_card.visible = True
+
+
 
 
 

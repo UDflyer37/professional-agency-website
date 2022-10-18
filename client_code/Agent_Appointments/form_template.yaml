@@ -17,8 +17,15 @@ components:
       col_spacing: medium, spacing_above: small, icon_align: right, col_widths: '',
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: 'fa:caret-down'}
-    name: link_1
+    name: appointments_link
     layout_properties: {grid_position: 'FHTCUI,HVVPMD'}
+    event_bindings: {click: appointments_link_click}
+  - type: ColumnPanel
+    properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '',
+      spacing_below: small, background: ''}
+    name: appointments_card
+    layout_properties: {grid_position: 'OQPAOZ,IFKSLS'}
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
@@ -31,8 +38,15 @@ components:
       visible: true, text: settings, font_size: 24, wrap_on: mobile, font: '', col_spacing: medium,
       spacing_above: small, icon_align: right, col_widths: '', spacing_below: small,
       italic: false, background: '', bold: false, underline: false, icon: 'fa:caret-down'}
-    name: link_2
+    name: settings_link
     layout_properties: {grid_position: 'ETSCDN,VFLKLJ'}
+    event_bindings: {click: settings_link_click}
+  - type: ColumnPanel
+    properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '',
+      spacing_below: small, background: 'theme:Neutral'}
+    name: settings_card
+    layout_properties: {grid_position: 'DLAKTC,PZXPKU'}
 is_package: true
 component:
 - type: ColumnPanel
