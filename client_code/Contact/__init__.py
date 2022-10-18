@@ -25,7 +25,7 @@ class Contact(ContactTemplate):
     map.add_component(marker)
     
     #TODO: put items in designer
-    self.topic_drop.items = ['quote', 'payment', 'feedback', 'other']
+    self.topic_drop.items = ['Quote', 'Payment', 'Feedback', 'Other']
 
   def submit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -42,6 +42,42 @@ class Contact(ContactTemplate):
       self.question_area.text = ""
     else:
       alert("Please fill out the entire form before submitting.")
+
+  def proof_of_insurance_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.topic_drop.items = ['Request a Proof of Insurance Card']
+    self.topic_drop.selected_value = "Request a Proof of Insurance Card"
+    self.question_area.text = "I would like to Request my Proof of Insurance Card."
+
+  def declaration_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.topic_drop.items = ['Request a Declaration']
+    self.topic_drop.selected_value = "Request a Declaration"
+    self.question_area.text = "I would like to Request a Declaration."
+
+  def certificate_of_insurance_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.topic_drop.items = ['Request a Certificate of Insurance']
+    self.topic_drop.selected_value = "Request a Certificate of Insurance"
+    self.question_area.text = "I would like to Request a Certificate of Insurance."
+
+  def insurance_verification_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.topic_drop.items = ['Request Verification of Insurance']
+    self.topic_drop.selected_value = "Request Verification of Insurance"
+    self.question_area.text = "I would like to Request Verification of Insurance."
+
+  def other_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.topic_drop.items = ['Quote', 'Payment', 'Feedback', 'Other']
+    self.topic_drop.focus()
+    self.question_area.text = ""
+
+
+
+
+
+
 
     
 

@@ -62,8 +62,8 @@ def add_booking(name, date, email=None):
                    text=f"Hi {name},\n\nYou have sucessfully made a booking for {date.strftime('%A %d %b %Y at %I:%M %p')}.")
   anvil.email.send(from_name="Otto & Associates: New Appointment",
                    to="andi.otto@yahoo.com",
-                   subject=f"New Appointment for {name}: {date}",
-                   text=f"{name} has made an appointment for {date}. The can be reached at {email}.")
+                   subject=f"New Appointment for {name}: {date.strftime('%A %d %b %Y at %I:%M %p')}",
+                   text=f"{name} has made an appointment for {date.strftime('%A %d %b %Y at %I:%M %p')}. The can be reached at {email}.")
 
 
 @anvil.server.callable

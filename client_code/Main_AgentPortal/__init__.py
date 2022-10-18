@@ -5,11 +5,9 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ..Home import Home
-from ..About import About
-from ..Contact import Contact
-from ..Appointment import Appointment
-from ..FAQ import FAQ
+from ..Agent_Passwords import Agent_Passwords
+from ..Agent_Resources import Agent_Resources
+from ..Agent_Appointments import Agent_Appointments
 from ..Agent_Portal import Agent_Portal
 
 
@@ -21,38 +19,33 @@ class Main_AgentPortal(Main_AgentPortalTemplate):
     self.content_panel.add_component(Agent_Portal(), full_width_row=True)
 
 
-  def contact_link_click(self, **event_args):
+  def resources_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(Contact(), full_width_row=True)
+    self.content_panel.add_component(Agent_Resources(), full_width_row=True)
 
-  def about_link_click(self, **event_args):
+  def passwords_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(About(), full_width_row=True)
+    self.content_panel.add_component(Agent_Passwords(), full_width_row=True)
 
   def home_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
     self.content_panel.add_component(Agent_Portal(), full_width_row=True)
 
-  def bottom_about_link_click(self, **event_args):
+  def bottom_resources_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    self.about_link_click()
+    self.resources_link_click()
 
-  def bottom_contact_link_click(self, **event_args):
+  def bottom_passwords_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    self.contact_link_click()
+    self.passwords_link_click()
 
-  def appointment_link_click(self, **event_args):
+  def appointments_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(Appointment(), full_width_row=True)
-
-  def faq_link_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    self.content_panel.clear()
-    self.content_panel.add_component(FAQ(), full_width_row=True)
+    self.content_panel.add_component(Agent_Appointments(), full_width_row=True)
 
   def customer_portal_click(self, **event_args):
     """This method is called when the link is clicked"""

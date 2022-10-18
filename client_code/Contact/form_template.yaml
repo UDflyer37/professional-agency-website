@@ -68,49 +68,100 @@ components:
   - type: Spacer
     properties: {height: 32}
     name: spacer_2
-    layout_properties: {grid_position: 'XQUDDH,UDXVIW'}
+    layout_properties: {grid_position: 'XQUDDH,UDXVIW', full_width_row: false}
   - type: Label
     properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
       visible: true, text: email us., font_size: null, font: '', spacing_above: large,
       icon_align: left, spacing_below: large, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_8
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV NNUFXR,EVHOIZ'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV NNUFXR,EVHOIZ', full_width_row: false}
+  - type: Button
+    properties: {role: rounded-border, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Request Proof of Insurance Card, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: proof_of_insurance
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV KTWATD,ALDCZH', full_width_row: false}
+    event_bindings: {click: proof_of_insurance_click}
+  - type: Button
+    properties: {role: rounded-border, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Request a Declaration, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: declaration
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV KTWATD,RBDANF', full_width_row: false}
+    event_bindings: {click: declaration_click}
+  - type: Button
+    properties: {role: rounded-border, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Request a Certificate of Insurance, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: certificate_of_insurance
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV KTWATD,YRUHPR', full_width_row: false}
+    event_bindings: {click: certificate_of_insurance_click}
+  - type: Button
+    properties: {role: rounded-border, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Request Verification of Insurance, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: insurance_verification
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV KTWATD,RMYDDI', full_width_row: false}
+    event_bindings: {click: insurance_verification_click}
+  - type: Button
+    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Other, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: other
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV RPWFQQ,XJNKWA', full_width_row: false}
+    event_bindings: {click: other_click}
+  - type: Spacer
+    properties: {height: 21}
+    name: spacer_1
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV WGHPND,DVQIKW'}
+  - type: Label
+    properties: {role: top-border, align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: 1, font: '', spacing_above: small, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: label_10
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV CMKVPS,BBVOWK'}
   - type: Label
     properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: 'name:', font_size: 14, font: '', spacing_above: none,
       icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_2
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV TYTZOX,REMDGY'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV TYTZOX,REMDGY', full_width_row: false}
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Name,
       border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
       font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
       background: '', bold: false, underline: false}
     name: name_box
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV TYTZOX,WOAIYD'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV TYTZOX,WOAIYD', full_width_row: false}
   - type: Label
     properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: 'email address:', font_size: 14, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_3
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV MCMUJA,WRCXKI'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV MCMUJA,WRCXKI', full_width_row: false}
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Email,
       border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
       font: '', spacing_above: small, type: email, spacing_below: small, italic: false,
       background: '', bold: false, underline: false}
     name: email_box
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV MCMUJA,ITYVFH'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV MCMUJA,ITYVFH', full_width_row: false}
   - type: Label
     properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: 'topic:', font_size: 14, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_4
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV TLZTDE,DMTKTB'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV TLZTDE,DMTKTB', full_width_row: false}
   - type: DropDown
     properties:
       role: null
@@ -132,28 +183,28 @@ components:
       underline: false
       include_placeholder: true
     name: topic_drop
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV TLZTDE,XWOOWK'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV TLZTDE,XWOOWK', full_width_row: false}
   - type: Label
     properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: 'question/comment:', font_size: 16, font: '', spacing_above: large,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_5
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV MSDTDZ,CRCPJV'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV MSDTDZ,CRCPJV', full_width_row: false}
   - type: TextArea
     properties: {role: null, align: left, height: 170, tooltip: '', placeholder: 'What
         is your question/comment?', border: '', enabled: true, foreground: '', visible: true,
       text: '', font_size: null, auto_expand: true, font: '', spacing_above: small,
       spacing_below: small, italic: false, background: '', bold: false, underline: false}
     name: question_area
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV HXVNNQ,CVAMVZ'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV HXVNNQ,CVAMVZ', full_width_row: false}
   - type: Button
     properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: submit, font_size: 16, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
       underline: false, icon: ''}
     name: submit_button
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV HZKJUT,RPTOFG'}
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV HZKJUT,RPTOFG', full_width_row: false}
     event_bindings: {click: submit_button_click}
 - type: Spacer
   properties: {height: 32}

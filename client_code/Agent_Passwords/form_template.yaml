@@ -1,0 +1,57 @@
+container:
+  type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
+components:
+- type: ColumnPanel
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
+  name: card_1
+  layout_properties: {grid_position: 'UTXDOJ,EFORFK', full_width_row: true}
+  components:
+  - type: Label
+    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: manage passwords., font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_1
+    layout_properties: {grid_position: 'IXRSPJ,LCKLEE'}
+- type: ColumnPanel
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: 'theme:Neutral'}
+  name: card_2
+  layout_properties: {grid_position: 'RXLMNX,RKIMVN', full_width_row: true}
+  components: []
+is_package: true
+component:
+- type: ColumnPanel
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
+  name: card_1
+  layout_properties: {grid_position: 'UTXDOJ,EFORFK', full_width_row: true}
+  components:
+  - type: Label
+    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: view appointments., font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_1
+    layout_properties: {grid_position: 'IXRSPJ,LCKLEE'}
+- type: ColumnPanel
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: 'theme:Neutral'}
+  name: card_2
+  layout_properties: {grid_position: 'RXLMNX,RKIMVN', full_width_row: true}
+  components:
+  - type: Label
+    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: 'theme:Primary
+        500', visible: true, text: settings., font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_3
+    layout_properties: {grid_position: 'HAMMLC,XTTDOV'}
