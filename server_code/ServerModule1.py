@@ -69,13 +69,9 @@ def add_booking(name, date, email=None):
 @anvil.server.callable
 def get_bookings(order_by="datetime"): 
   now = datetime.datetime.now()
-  user = anvil.users.get_user()
-  if user['admin']:
-    current_bookings = app_tables.bookings.search(tables.order_by(order_by), datetime=q.greater_than_or_equal_to(now))
-    past_bookings = app_tables.bookings.search(tables.order_by(order_by, ascending=False), datetime=q.less_than(now))
-  else:
-    current_bookings = app_tables.bookings.search(tables.order_by("datetime"), datetime=q.greater_than_or_equal_to(now), user=anvil.users.get_user())
-    past_bookings = app_tables.bookings.search(tables.order_by("datetime", ascending=False), datetime=q.less_than(now), user=anvil.users.get_user())
+  current_bookings = app_tables.bookings.search(tables.order_by(order_by), datetime=q.greater_than_or_equal_to(now))
+  past_bookings = app_tables.bookings.search(tables.order_by(order_by, ascending=False), datetime=q.less_than(now))
+
   return current_bookings, past_bookings
 
 @anvil.server.callable
