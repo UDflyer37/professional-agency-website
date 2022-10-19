@@ -21,11 +21,86 @@ components:
     layout_properties: {grid_position: 'FHTCUI,HVVPMD'}
     event_bindings: {click: appointments_link_click}
   - type: ColumnPanel
-    properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '',
+    properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
       spacing_below: small, background: ''}
     name: appointments_card
     layout_properties: {grid_position: 'OQPAOZ,IFKSLS'}
+    components:
+    - type: Label
+      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: Upcoming Appointments, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_1
+      layout_properties: {grid_position: 'NBFOHM,JFGVDE'}
+    - type: DropDown
+      properties: {}
+      name: sort_dro
+      layout_properties: {grid_position: 'SQIZAF,QIPOVM'}
+      event_bindings: {change: sort_drop_change}
+    - type: DataGrid
+      properties:
+        role: null
+        columns:
+        - {id: PCWLLF, title: Name, data_key: '', $$hashKey: 'object:3824'}
+        - {id: LNKQLQ, title: Date, data_key: '', $$hashKey: 'object:3825'}
+        - {id: IOJBZH, title: Contact, data_key: '', $$hashKey: 'object:3826'}
+        - {id: VTGWFH, title: '', data_key: column_1, $$hashKey: 'object:4260', width: '40'}
+        auto_header: true
+        tooltip: ''
+        border: ''
+        foreground: ''
+        rows_per_page: 20
+        visible: true
+        wrap_on: never
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        background: ''
+      name: data_grid_1
+      layout_properties: {grid_position: 'ZLUWEP,XGAORE'}
+      components:
+      - type: RepeatingPanel
+        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate2}
+        name: repeating_panel_1
+        layout_properties: {}
+    - type: Spacer
+      properties: {height: 32}
+      name: spacer_1
+      layout_properties: {grid_position: 'OGYGVL,SXLTWN'}
+    - type: Label
+      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: Past Appointments, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_2
+      layout_properties: {grid_position: 'AHWCXG,UJSPGC'}
+    - type: DataGrid
+      properties:
+        role: null
+        columns:
+        - {id: IBYQZL, title: Name, data_key: column_1, $$hashKey: 'object:8242'}
+        - {id: BGOZTA, title: Date, data_key: column_2, $$hashKey: 'object:8243'}
+        - {id: IOHEFA, title: Contact, data_key: column_3, $$hashKey: 'object:8244'}
+        auto_header: true
+        tooltip: ''
+        border: ''
+        foreground: ''
+        rows_per_page: 20
+        visible: true
+        wrap_on: never
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        background: ''
+      name: data_grid_2
+      layout_properties: {grid_position: 'BXJVGN,OAZRMP'}
+      components:
+      - type: RepeatingPanel
+        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate3}
+        name: repeating_panel_2
+        layout_properties: {}
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
