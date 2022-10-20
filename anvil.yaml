@@ -46,7 +46,7 @@ db_schema:
       type: datetime
   bookings:
     title: Bookings
-    client: none
+    client: search
     server: full
     columns:
     - name: name
