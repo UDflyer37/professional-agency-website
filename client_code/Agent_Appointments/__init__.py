@@ -10,7 +10,7 @@ class Agent_Appointments(Agent_AppointmentsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.sort_drop.items = [("Sort by date", "datetime"), ("Sort by user", "user")]
+    self.sort_drop.items = [("Sort by date", "datetime"), ("Sort by name", "user")]
     current_bookings, past_bookings = anvil.server.call('get_bookings')
     self.repeating_panel_1.items = current_bookings
     self.repeating_panel_2.items = past_bookings

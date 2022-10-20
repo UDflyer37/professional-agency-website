@@ -45,7 +45,7 @@ components:
         columns:
         - {id: VLKRWG, title: Name, data_key: '', $$hashKey: 'object:2668'}
         - {id: SUCLWN, title: Date, data_key: '', $$hashKey: 'object:2669'}
-        - {id: GENXCP, title: Contact, data_key: '', $$hashKey: 'object:2670'}
+        - {id: GENXCP, title: Email, data_key: '', $$hashKey: 'object:2670'}
         - {id: KCFOWJ, title: '', data_key: column_1, $$hashKey: 'object:2674', width: '40'}
         auto_header: true
         tooltip: ''
@@ -62,7 +62,7 @@ components:
       layout_properties: {grid_position: 'ZLUWEP,XGAORE'}
       components:
       - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate2}
+        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate1}
         name: repeating_panel_1
         layout_properties: {}
     - type: Spacer
@@ -82,7 +82,7 @@ components:
         columns:
         - {id: IBYQZL, title: Name, data_key: column_1, $$hashKey: 'object:8242'}
         - {id: BGOZTA, title: Date, data_key: column_2, $$hashKey: 'object:8243'}
-        - {id: IOHEFA, title: Contact, data_key: column_3, $$hashKey: 'object:8244'}
+        - {id: IOHEFA, title: email, data_key: column_3, $$hashKey: 'object:8244'}
         auto_header: true
         tooltip: ''
         border: ''
@@ -98,7 +98,7 @@ components:
       layout_properties: {grid_position: 'BXJVGN,OAZRMP'}
       components:
       - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate3}
+        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate2}
         name: repeating_panel_2
         layout_properties: {}
 - type: ColumnPanel

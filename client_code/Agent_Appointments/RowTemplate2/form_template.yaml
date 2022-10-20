@@ -3,30 +3,21 @@ components:
 - type: Label
   properties: {}
   name: label_1
-  layout_properties: {column: VLKRWG}
+  layout_properties: {column: IBYQZL}
   data_bindings:
   - {property: text, code: 'self.item[''name'']'}
 - type: Label
   properties: {}
   name: label_2
-  layout_properties: {column: SUCLWN}
+  layout_properties: {column: BGOZTA}
   data_bindings:
   - {property: text, code: 'self.item[''datetime''].strftime( "%A %d %b %Y at %I:%M
       %p")'}
 - type: Link
   properties: {}
   name: email_link
-  layout_properties: {column: GENXCP}
+  layout_properties: {column: IOHEFA}
   data_bindings:
-  - {property: text, code: 'self.item[''user''][''email'']'}
-  event_bindings: {click: email_link_click}
-- type: Link
-  properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
-    spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
-    italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
-  name: delete_link
-  layout_properties: {column: KCFOWJ}
-  event_bindings: {click: delete_link_click}
+  - {property: text, code: 'self.item[''user'']'}
 is_package: true
 component: []

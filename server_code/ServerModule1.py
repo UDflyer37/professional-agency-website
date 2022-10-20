@@ -63,7 +63,7 @@ def add_booking(name, date, email=None):
   anvil.email.send(from_name="Otto & Associates: New Appointment",
                    to="andi.otto@yahoo.com",
                    subject=f"New Appointment for {name}: {date.strftime('%A %d %b %Y at %I:%M %p')}",
-                   text=f"{name} has made an appointment for {date.strftime('%A %d %b %Y at %I:%M %p')}. The can be reached at {email}.")
+                   text=f"{name} has made an appointment for {date.strftime('%A %d %b %Y at %I:%M %p')}. They can be reached at {email}.")
 
 
 @anvil.server.callable
@@ -71,32 +71,34 @@ def get_bookings(order_by="datetime"):
   now = datetime.datetime.now()
   current_bookings = app_tables.bookings.search(tables.order_by(order_by), datetime=q.greater_than_or_equal_to(now))
   past_bookings = app_tables.bookings.search(tables.order_by(order_by, ascending=False), datetime=q.less_than(now))
-
   return current_bookings, past_bookings
 
 @anvil.server.callable
 def delete_booking(row):
-  user = anvil.users.get_user()
-  if user == row['user']:
-    date = row['datetime'].strftime("%A %d %b %Y at %I:%M %p")
-    anvil.email.send(from_name="Booking App Team",
-                  to=row['user']['email'],
-                  subject="Your booking has been cancelled",
-                  text=f"Your booking for {date} has been cancelled. Please contact us if you require assistance")
-    row.delete()
+  date = row['datetime'].strftime("%A %d %b %Y at %I:%M %p")
+  anvil.email.send(from_name="Otto & Associates",
+                to=row['user'],
+                subject="Your Booking Has Been Cancelled",
+                text=f"Your booking for {date} has been cancelled. Please contact us if this is an error.")
+  row.delete()
+
+@anvil.server.callable
+def booking_user(row):
+  return row['user']
+  
 
 @anvil.server.callable
 def send_email(email, body, subject):
   if not subject:
     subject = "A Message about your Booking"
-  anvil.email.send(from_name="Booking App Team", 
+  anvil.email.send(from_name="Otto & Associates", 
                    to=email, 
                    subject=subject,
                    text=body)
 
-@anvil.server.callable
-def check_admin():
-  return anvil.users.get_user()['admin']
+#@anvil.server.callable
+#def check_admin():
+#  return anvil.users.get_user()['admin']
 
 @anvil.server.callable
 def update_hours(row, open_time, close_time, isitopen):
@@ -108,9 +110,9 @@ def update_hours(row, open_time, close_time, isitopen):
 def update_settings_table(key, value):
   app_tables.settings.get(key=key)['value'] = value
   
-@anvil.server.callable
-def check_user_exists(email):
-  return bool(app_tables.users.get(email=email))
+#@anvil.server.callable
+#def check_user_exists(email):
+#  return bool(app_tables.users.get(email=email))
 
 @anvil.server.callable
 def get_timezones():
