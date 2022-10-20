@@ -17,11 +17,11 @@ class Agent_Contact(Agent_ContactTemplate):
     """This method is called when the button is clicked"""
     email = self.user_email.text
     body = self.message_area.text
-    subject = "Booking"
+    subject = "A Message About Your Appointment"
     if body:
       anvil.server.call('send_email', email, body, subject)
       alert("Your message has been submitted!")
-      self.body.text = ""
+      self.message_area.text = ""
     else:
       alert("Please enter a message before submitting.")
 

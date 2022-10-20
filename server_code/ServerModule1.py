@@ -83,6 +83,11 @@ def delete_booking(row):
   row.delete()
 
 @anvil.server.callable
+def delete_past_appointments(row):
+  if 
+  row.delete()
+
+@anvil.server.callable
 def booking_user(row):
   return row['user']
   

@@ -76,6 +76,10 @@ components:
         underline: false, icon: ''}
       name: label_2
       layout_properties: {grid_position: 'AHWCXG,UJSPGC'}
+    - type: Button
+      properties: {text: button_1}
+      name: button_1
+      layout_properties: {grid_position: 'AHWCXG,VCQXGW'}
     - type: DataGrid
       properties:
         role: null
