@@ -77,7 +77,7 @@ def get_bookings(order_by="datetime"):
 @anvil.server.callable
 def delete_booking(row):
   user = anvil.users.get_user()
-  if user['admin'] or user == row['user']:
+  if user == row['user']:
     date = row['datetime'].strftime("%A %d %b %Y at %I:%M %p")
     anvil.email.send(from_name="Booking App Team",
                   to=row['user']['email'],
