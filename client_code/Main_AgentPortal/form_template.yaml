@@ -95,13 +95,13 @@ components:
     event_bindings: {click: resources_link_click}
   - type: Link
     properties: {role: text, url: '', align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: passwords., font_size: null, wrap_on: mobile, font: '',
+      visible: true, text: feedback., font_size: null, wrap_on: mobile, font: '',
       col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: passwords_link
     layout_properties: {}
-    event_bindings: {click: passwords_link_click}
+    event_bindings: {click: feedback_link_click}
 - type: Link
   properties: {role: headline, url: '', align: left, tooltip: '', border: '', foreground: '',
     visible: true, text: Agent Portal, font_size: 26, wrap_on: mobile, font: '', col_spacing: medium,

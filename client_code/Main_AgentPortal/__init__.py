@@ -5,7 +5,7 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ..Agent_Passwords import Agent_Passwords
+from ..Agent_Feedback import Agent_Feedback
 from ..Agent_Resources import Agent_Resources
 from ..Agent_Appointments import Agent_Appointments
 from ..Agent_Portal import Agent_Portal
@@ -24,10 +24,10 @@ class Main_AgentPortal(Main_AgentPortalTemplate):
     self.content_panel.clear()
     self.content_panel.add_component(Agent_Resources(), full_width_row=True)
 
-  def passwords_link_click(self, **event_args):
+  def feedback_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
-    self.content_panel.add_component(Agent_Passwords(), full_width_row=True)
+    self.content_panel.add_component(Agent_Feedback(), full_width_row=True)
 
   def home_link_click(self, **event_args):
     """This method is called when the link is clicked"""

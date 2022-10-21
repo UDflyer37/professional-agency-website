@@ -74,6 +74,11 @@ def get_bookings(order_by="datetime"):
   return current_bookings, past_bookings
 
 @anvil.server.callable
+def get_feedback(order_by="datetime"): 
+  feedback = app_tables.contact.search(tables.order_by(order_by))
+  return feedback
+
+@anvil.server.callable
 def delete_booking(row):
   date = row['datetime'].strftime("%A %d %b %Y at %I:%M %p")
   anvil.email.send(from_name="Otto & Associates",
