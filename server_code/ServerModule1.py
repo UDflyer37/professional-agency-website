@@ -83,9 +83,10 @@ def delete_booking(row):
   row.delete()
 
 @anvil.server.callable
-def delete_past_appointments(row):
-  if 
-  row.delete()
+def delete_past_appointments(order_by="datetime"):
+  now = datetime.datetime.now()
+  for rows in app_tables.bookings.search(tables.order_by(order_by, ascending=False), datetime=q.less_than(now)):
+    row.delete()
 
 @anvil.server.callable
 def booking_user(row):

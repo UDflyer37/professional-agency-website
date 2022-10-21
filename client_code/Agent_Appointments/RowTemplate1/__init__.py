@@ -20,7 +20,7 @@ class RowTemplate1(RowTemplate1Template):
     
   def delete_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    save_clicked = alert("Are you sure you want to cancel this booking? The customer will be notified.",
+    save_clicked = alert("Are you sure you want to cancel this appointment? The customer will be notified.",
                    large=True,
                    buttons=[("yes", True), ("Cancel", False)])
     if save_clicked:
