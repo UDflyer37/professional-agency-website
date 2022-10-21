@@ -18,6 +18,8 @@ class ItemTemplate3(ItemTemplate3Template):
       self.flow_panel_1.visible = False
 
       
+
+      
   def convert_time(self, time, textbox, dropdown):
     #method to convert 24 hour time to 12 hour time
     if time > 12:
@@ -69,6 +71,8 @@ class ItemTemplate3(ItemTemplate3Template):
 
   def check_box_1_change(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
-    self.flow_panel_2.visible = True
+#    self.flow_panel_2.visible = self.check_box_1.checked
     self.flow_panel_1.visible = self.check_box_1.checked
+#    self.save_link.visible = self.check_box_1.checked
+#    self.cancel_link.visible = self.check_box_1.checked
 
