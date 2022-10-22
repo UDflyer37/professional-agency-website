@@ -3,58 +3,41 @@ components:
 - type: Label
   properties: {}
   name: label_1
-  layout_properties: {column: VLKRWG}
+  layout_properties: {column: HYCPCP}
   data_bindings:
   - {property: text, code: 'self.item[''name'']'}
 - type: Label
   properties: {}
   name: label_2
-  layout_properties: {column: SUCLWN}
+  layout_properties: {column: GJAUNT}
   data_bindings:
-  - {property: text, code: 'self.item[''datetime''].strftime( "%A %d %b %Y at %I:%M
-      %p")'}
+  - {property: text, code: 'self.item[''time''].strftime( "%A %d %b %Y at %I:%M %p")'}
 - type: Link
   properties: {}
   name: email_link
-  layout_properties: {column: GENXCP}
-  data_bindings:
-  - {property: text, code: 'self.item[''user'']'}
+  layout_properties: {column: MZGDKS}
   event_bindings: {click: email_link_click}
+  data_bindings:
+  - {property: text, code: 'self.item[''email'']'}
+- type: Label
+  properties: {}
+  name: label_3
+  layout_properties: {column: NWGTDT}
+  data_bindings:
+  - {property: text, code: 'self.item[''question'']'}
 - type: Link
   properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
     spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
     italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
   name: delete_link
-  layout_properties: {column: KCFOWJ}
+  layout_properties: {column: UENOEI}
   event_bindings: {click: delete_link_click}
+- type: Label
+  properties: {}
+  name: label_4
+  layout_properties: {column: ZHLLXE}
+  data_bindings:
+  - {property: text, code: 'self.item[''topic'']'}
 is_package: true
-component:
-- type: Label
-  properties: {}
-  name: label_1
-  layout_properties: {column: VLKRWG}
-  data_bindings:
-  - {property: text, code: 'self.item[''name'']'}
-- type: Label
-  properties: {}
-  name: label_2
-  layout_properties: {column: SUCLWN}
-  data_bindings:
-  - {property: text, code: 'self.item[''datetime''].strftime( "%A %d %b %Y at %I:%M
-      %p")'}
-- type: Link
-  properties: {}
-  name: email_link
-  layout_properties: {column: GENXCP}
-  data_bindings:
-  - {property: text, code: 'self.item[''user'']'}
-  event_bindings: {click: email_link_click}
-- type: Link
-  properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
-    spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
-    italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
-  name: delete_link
-  layout_properties: {column: KCFOWJ}
-  event_bindings: {click: delete_link_click}
+component: []
