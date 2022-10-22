@@ -32,7 +32,7 @@ db_schema:
     - name: name
       admin_ui: {width: 200}
       type: string
-    - name: email
+    - name: user
       admin_ui: {width: 200}
       type: string
     - name: topic
@@ -41,7 +41,7 @@ db_schema:
     - name: question
       admin_ui: {width: 200}
       type: string
-    - name: time
+    - name: datetime
       admin_ui: {width: 200}
       type: datetime
   bookings:

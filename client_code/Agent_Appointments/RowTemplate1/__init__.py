@@ -21,8 +21,8 @@ class RowTemplate1(RowTemplate1Template):
   def delete_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     save_clicked = alert("Are you sure you want to cancel this appointment? The customer will be notified.",
-                   large=True,
-                   buttons=[("yes", True), ("Cancel", False)])
+                   large=False,
+                   buttons=[("Yes", True), ("Cancel", False)])
     if save_clicked:
       anvil.server.call('delete_booking', self.item)
       get_open_form().content_panel.clear()

@@ -136,8 +136,8 @@ class Agent_Appointments(Agent_AppointmentsTemplate):
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     save_clicked = alert("Are you sure you want to cancel all your past appointments?",
-                   large=True,
-                   buttons=[("yes", True), ("Cancel", False)])
+                   large=False,
+                   buttons=[("Yes", True), ("Cancel", False)])
     if save_clicked:
       anvil.server.call('delete_past_appointments')
       get_open_form().content_panel.clear()

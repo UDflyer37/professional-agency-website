@@ -5,10 +5,24 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ...Agent_Contact import Agent_Contact
+from .. import Agent_Feedback
 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # Any code you write here will run when the form opens.
+  def email_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    alert(Agent_Contact(item=self.item), large=True)
+    
+  def delete_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    save_clicked = alert("Are you sure you want to delete this? ",
+                   large=False,
+                   buttons=[("Delete", True), ("Cancel", False)])
+    if save_clicked:
+      anvil.server.call('delete_feedback', self.item)
+      get_open_form().content_panel.clear()
+      get_open_form().content_panel.add_component(Agent_Feedback())

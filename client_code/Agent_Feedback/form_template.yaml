@@ -17,23 +17,31 @@ components:
       col_spacing: medium, spacing_above: small, icon_align: right, col_widths: '',
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: 'fa:caret-down'}
-    name: appointments_link
+    name: feedback_link
     layout_properties: {grid_position: 'FHTCUI,HVVPMD'}
-    event_bindings: {click: appointments_link_click}
+    event_bindings: {click: feedback_link_click}
   - type: ColumnPanel
     properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"UJSPGC":35,"VCQXGW":25}',
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
       spacing_below: small, background: ''}
     name: appointments_card
     layout_properties: {grid_position: 'OQPAOZ,IFKSLS'}
     components:
     - type: Label
       properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Upcoming Appointments, font_size: null, font: '', spacing_above: small,
+        visible: true, text: Feedback, font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: label_1
       layout_properties: {grid_position: 'NBFOHM,JFGVDE'}
+    - type: Button
+      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Clear All Feedback, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: clear_button
+      layout_properties: {grid_position: 'NBFOHM,LPWUWF'}
+      event_bindings: {click: clear_button_click}
     - type: DropDown
       properties: {}
       name: sort_drop
@@ -46,8 +54,10 @@ components:
         - {id: ZHLLXE, title: Topic, data_key: '', $$hashKey: 'object:44381'}
         - {id: HYCPCP, title: Name, data_key: '', $$hashKey: 'object:83151'}
         - {id: GJAUNT, title: Date, data_key: '', $$hashKey: 'object:83152'}
-        - {id: MZGDKS, title: Email, data_key: '', $$hashKey: 'object:83153'}
-        - {id: NWGTDT, title: Feedback, data_key: '', $$hashKey: 'object:83453'}
+        - {id: MZGDKS, title: Email, data_key: '', $$hashKey: 'object:83153', width: 116,
+          expand: false}
+        - {id: NWGTDT, title: Feedback, data_key: '', $$hashKey: 'object:83453', width: 204,
+          expand: false}
         - {id: UENOEI, title: '', data_key: column_1, $$hashKey: 'object:1708', width: ''}
         auto_header: true
         tooltip: ''
@@ -61,55 +71,11 @@ components:
         spacing_below: small
         background: ''
       name: data_grid_3
-      layout_properties: {grid_position: 'GRMBFG,IAPTJY'}
+      layout_properties: {grid_position: 'GRMBFG,IAPTJY', full_width_row: true}
       components:
       - type: RepeatingPanel
         properties: {spacing_above: none, spacing_below: none, item_template: Agent_Feedback.RowTemplate1}
         name: repeating_panel_1
-        layout_properties: {}
-    - type: Spacer
-      properties: {height: 32}
-      name: spacer_1
-      layout_properties: {grid_position: 'OGYGVL,SXLTWN'}
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Past Appointments, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_2
-      layout_properties: {grid_position: 'AHWCXG,UJSPGC'}
-    - type: Button
-      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear Past Appointments, font_size: null,
-        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
-      name: clear_button
-      layout_properties: {grid_position: 'AHWCXG,VCQXGW'}
-      event_bindings: {click: clear_button_click}
-    - type: DataGrid
-      properties:
-        role: null
-        columns:
-        - {id: IBYQZL, title: Name, data_key: column_1, $$hashKey: 'object:8242'}
-        - {id: BGOZTA, title: Date, data_key: column_2, $$hashKey: 'object:8243'}
-        - {id: IOHEFA, title: email, data_key: column_3, $$hashKey: 'object:8244'}
-        auto_header: true
-        tooltip: ''
-        border: ''
-        foreground: ''
-        rows_per_page: 20
-        visible: true
-        wrap_on: never
-        show_page_controls: true
-        spacing_above: small
-        spacing_below: small
-        background: ''
-      name: data_grid_2
-      layout_properties: {grid_position: 'BXJVGN,OAZRMP'}
-      components:
-      - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate2}
-        name: repeating_panel_2
         layout_properties: {}
 is_package: true
 component:

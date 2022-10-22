@@ -38,9 +38,9 @@ class Main_AgentPortal(Main_AgentPortalTemplate):
     """This method is called when the link is clicked"""
     self.resources_link_click()
 
-  def bottom_passwords_link_click(self, **event_args):
+  def bottom_feedback_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    self.passwords_link_click()
+    self.feedback_link_click()
 
   def appointments_link_click(self, **event_args):
     """This method is called when the link is clicked"""

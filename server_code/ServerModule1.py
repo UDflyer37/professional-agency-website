@@ -75,7 +75,10 @@ def get_bookings(order_by="datetime"):
 
 @anvil.server.callable
 def get_feedback(order_by="datetime"): 
-  feedback = app_tables.contact.search(tables.order_by(order_by))
+  if order_by == "datetime":
+    feedback = app_tables.contact.search(tables.order_by(order_by, ascending=False))
+  else:
+    feedback = app_tables.contact.search(tables.order_by(order_by))
   return feedback
 
 @anvil.server.callable
@@ -91,12 +94,21 @@ def delete_booking(row):
 def delete_past_appointments(order_by="datetime"):
   now = datetime.datetime.now()
   for rows in app_tables.bookings.search(tables.order_by(order_by, ascending=False), datetime=q.less_than(now)):
-    row.delete()
+    rows.delete()
+
+@anvil.server.callable
+def delete_past_feedback(order_by="datetime"):
+  now = datetime.datetime.now()
+  for rows in app_tables.contact.search(tables.order_by(order_by, ascending=False), datetime=q.less_than(now)):
+    rows.delete()
 
 @anvil.server.callable
 def booking_user(row):
   return row['user']
-  
+
+@anvil.server.callable
+def delete_feedback(row):
+  row.delete()
 
 @anvil.server.callable
 def send_email(email, body, subject):

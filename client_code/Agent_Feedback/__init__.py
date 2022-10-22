@@ -12,21 +12,19 @@ class Agent_Feedback(Agent_FeedbackTemplate):
     
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.sort_drop.items = [("Sort by date", "datetime"), ("Sort by name", "user")]
+    self.sort_drop.items = [("Sort by date", "datetime"), ("Sort by name", "name"),("Sort by topic", "topic")]
     feedback = anvil.server.call('get_feedback')
-
-
-    self.repeating_panel_3.items = app_tables.open_hours.search()
+    self.repeating_panel_1.items = feedback
 
 
 #APPOINTMENTS
   def sort_drop_change(self, **event_args):
     """This method is called when an item is selected"""
-    current_bookings, past_bookings = anvil.server.call('get_bookings', self.sort_drop.selected_value)
+    feedback = anvil.server.call('get_feedback', self.sort_drop.selected_value)
     self.repeating_panel_1.items = feedback
 
 
-  def appointments_link_click(self, **event_args):
+  def feedback_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     if self.appointments_card.visible:
       self.appointments_card.visible = False
@@ -36,10 +34,10 @@ class Agent_Feedback(Agent_FeedbackTemplate):
 
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    save_clicked = alert("Are you sure you want to cancel all your past appointments?",
-                   large=True,
-                   buttons=[("yes", True), ("Cancel", False)])
+    save_clicked = alert("Are you sure you want to delete all your past feedback?",
+                   large=False,
+                   buttons=[("Delete", True), ("Cancel", False)])
     if save_clicked:
-      anvil.server.call('delete_past_appointments')
+      anvil.server.call('delete_past_feedback')
       get_open_form().content_panel.clear()
-      get_open_form().content_panel.add_component(Agent_Appointments())
+      get_open_form().content_panel.add_component(Agent_Feedback())

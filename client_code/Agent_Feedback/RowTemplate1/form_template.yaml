@@ -11,14 +11,15 @@ components:
   name: label_2
   layout_properties: {column: GJAUNT}
   data_bindings:
-  - {property: text, code: 'self.item[''time''].strftime( "%A %d %b %Y at %I:%M %p")'}
+  - {property: text, code: 'self.item[''datetime''].strftime( "%A %d %b %Y at %I:%M
+      %p")'}
 - type: Link
   properties: {}
   name: email_link
   layout_properties: {column: MZGDKS}
   event_bindings: {click: email_link_click}
   data_bindings:
-  - {property: text, code: 'self.item[''email'']'}
+  - {property: text, code: 'self.item[''user'']'}
 - type: Label
   properties: {}
   name: label_3
