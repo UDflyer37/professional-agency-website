@@ -26,7 +26,7 @@ components:
     - type: RepeatingPanel
       properties: {item_template: Agent_Resources.ItemTemplate4}
       name: repeating_panel_1
-      layout_properties: {grid_position: 'HJFZDW,TLNXXK'}
+      layout_properties: {grid_position: 'PQFYFK,KPFVHR'}
   - type: ColumnPanel
     properties: {role: card, col_widths: '{}'}
     name: card_3
@@ -77,32 +77,6 @@ components:
         bold: false, underline: false, icon: ''}
       name: link_3
       layout_properties: {grid_position: 'NZPQKQ,ONVUSU'}
-  - type: ColumnPanel
-    properties: {role: top-border, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-      spacing_below: small, background: ''}
-    name: card_4
-    layout_properties: {grid_position: 'WTAJPH,NQWCOW'}
-    components:
-    - type: Spacer
-      properties: {height: 20}
-      name: spacer_1
-      layout_properties: {grid_position: 'YZPYRF,URBWMY'}
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Commonwealth Insurance, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_5
-      layout_properties: {grid_position: 'OVFOFR,GXKBOS'}
-    - type: Link
-      properties: {role: null, url: 'https://www.commonwealthcasualty.com/contact-us',
-        align: left, tooltip: '', border: '', foreground: '', visible: true, text: Contact Us (commonwealthcasualty.com),
-        font_size: null, wrap_on: mobile, font: '', col_spacing: medium, spacing_above: small,
-        icon_align: left, col_widths: '', spacing_below: small, italic: false, background: '',
-        bold: false, underline: false, icon: ''}
-      name: link_4
-      layout_properties: {grid_position: 'XNNIDQ,ABKWRC'}
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
