@@ -16,7 +16,7 @@ components:
 - type: Link
   properties: {}
   name: email_link
-  layout_properties: {column: MZGDKS}
+  layout_properties: {column: NWGTDT}
   event_bindings: {click: email_link_click}
   data_bindings:
   - {property: text, code: 'self.item[''user'']'}
@@ -29,7 +29,7 @@ components:
 - type: Link
   properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
-    spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+    spacing_above: small, icon_align: left_edge, col_widths: '', spacing_below: small,
     italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
   name: delete_link
   layout_properties: {column: UENOEI}
