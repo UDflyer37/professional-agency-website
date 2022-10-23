@@ -11,18 +11,18 @@ import pytz
 
 #CONTACT
 @anvil.server.callable
-def add_contact_info(name, email, topic, question):
+def add_contact_info(name, user, topic, question):
   app_tables.contact.add_row(
     name=name, 
-    email=email, 
+    user=user, 
     topic=topic,
     question=question, 
-    time=datetime.now()
+    datetime=datetime.datetime.now()
   )
   anvil.email.send(from_name="Otto & Associates: Question/Comment",
                    to="andi.otto@yahoo.com",
                    subject=f"Question from {name}: {topic}",
-                   text=f"You've received a new web contact from {name}! \nTopic: {topic} \nEmail address: {email} \nQuestion: {question}")
+                   text=f"You've received a new web contact from {name}! \nTopic: {topic} \nEmail address: {user} \nQuestion: {question}")
 
 
   

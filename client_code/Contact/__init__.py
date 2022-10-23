@@ -33,7 +33,7 @@ class Contact(ContactTemplate):
     user = self.email_box.text
     topic = self.topic_drop.selected_value
     question = self.question_area.text
-    if name and email and topic and question:
+    if name and user and topic and question:
       anvil.server.call('add_contact_info', name, user, topic, question)
       alert("Your question/comment has been submitted!")
       self.name_box.text = ""
