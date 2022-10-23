@@ -30,7 +30,7 @@ class Contact(ContactTemplate):
   def submit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     name = self.name_box.text
-    email = self.email_box.text
+    user = self.email_box.text
     topic = self.topic_drop.selected_value
     question = self.question_area.text
     if name and email and topic and question:

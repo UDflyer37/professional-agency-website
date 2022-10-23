@@ -24,14 +24,6 @@ class Agent_Feedback(Agent_FeedbackTemplate):
     self.repeating_panel_1.items = feedback
 
 
-  def feedback_link_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    if self.appointments_card.visible:
-      self.appointments_card.visible = False
-    else:
-      self.appointments_card.visible = True
-
-
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     save_clicked = alert("Are you sure you want to delete all your past feedback?",

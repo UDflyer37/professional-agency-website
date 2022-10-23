@@ -11,15 +11,13 @@ components:
   name: card_1
   layout_properties: {grid_position: 'UTXDOJ,EFORFK', full_width_row: true}
   components:
-  - type: Link
-    properties: {role: text, url: '', align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: client feedback, font_size: 24, wrap_on: mobile, font: '',
-      col_spacing: medium, spacing_above: small, icon_align: right, col_widths: '',
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: 'fa:caret-down'}
-    name: feedback_link
-    layout_properties: {grid_position: 'FHTCUI,HVVPMD'}
-    event_bindings: {click: feedback_link_click}
+  - type: Label
+    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: client feedback., font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_2
+    layout_properties: {grid_position: 'CCDTZL,XYZHWT'}
   - type: ColumnPanel
     properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
@@ -51,14 +49,15 @@ components:
       properties:
         role: null
         columns:
-        - {id: ZHLLXE, title: Topic, data_key: '', $$hashKey: 'object:44381'}
-        - {id: HYCPCP, title: Name, data_key: '', $$hashKey: 'object:83151'}
-        - {id: GJAUNT, title: Date, data_key: '', $$hashKey: 'object:83152'}
-        - {id: MZGDKS, title: Email, data_key: '', $$hashKey: 'object:83153', width: 116,
-          expand: false}
-        - {id: NWGTDT, title: Feedback, data_key: '', $$hashKey: 'object:83453', width: 204,
-          expand: false}
-        - {id: UENOEI, title: '', data_key: column_1, $$hashKey: 'object:1708', width: ''}
+        - {id: ZHLLXE, title: Topic, data_key: '', $$hashKey: 'object:44381', expand: true}
+        - {id: HYCPCP, title: Name, data_key: '', $$hashKey: 'object:83151', expand: true}
+        - {id: GJAUNT, title: Date, data_key: '', $$hashKey: 'object:83152', expand: true}
+        - {id: MZGDKS, title: Email, data_key: '', $$hashKey: 'object:83153', width: '',
+          expand: true}
+        - {id: NWGTDT, title: Feedback, data_key: '', $$hashKey: 'object:83453', width: '',
+          expand: true}
+        - {id: UENOEI, title: '', data_key: column_1, $$hashKey: 'object:1708', width: '',
+          expand: true}
         auto_header: true
         tooltip: ''
         border: ''
