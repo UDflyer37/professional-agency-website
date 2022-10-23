@@ -18,8 +18,9 @@ class Agent_Contact(Agent_ContactTemplate):
     email = self.user_email.text
     body = self.message_area.text
     subject = "A Message About Your Appointment"
+    attachments = self.file_loader_1.files
     if body:
-      anvil.server.call('send_email', email, body, subject)
+      anvil.server.call('send_email', email, body, subject, attachments)
       alert("Your message has been submitted!")
       self.message_area.text = ""
     else:
