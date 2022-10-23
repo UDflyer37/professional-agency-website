@@ -111,13 +111,14 @@ def delete_feedback(row):
   row.delete()
 
 @anvil.server.callable
-def send_email(email, body, subject):
+def send_email(email, body, subject, attachments):
   if not subject:
     subject = "A Message about your Booking"
   anvil.email.send(from_name="Otto & Associates", 
                    to=email, 
                    subject=subject,
-                   text=body)
+                   text=body,
+                   attachments=attachments)
 
 #@anvil.server.callable
 #def check_admin():

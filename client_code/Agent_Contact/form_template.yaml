@@ -47,6 +47,33 @@ components:
         underline: false}
       name: message_area
       layout_properties: {grid_position: 'DQBXRJ,EKYLDB', full_width_row: false}
+    - type: FileLoader
+      properties:
+        role: null
+        show_state: true
+        align: left
+        tooltip: ''
+        border: ''
+        file_types: null
+        enabled: true
+        files: []
+        foreground: ''
+        visible: true
+        text: Upload
+        font_size: null
+        font: ''
+        spacing_above: small
+        icon_align: left
+        spacing_below: small
+        italic: false
+        file: null
+        background: ''
+        bold: false
+        underline: false
+        multiple: true
+        icon: fa:upload
+      name: file_loader_1
+      layout_properties: {grid_position: 'COKAWG,HVANYY'}
     - type: Button
       properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: send, font_size: 16, font: '', spacing_above: small,
