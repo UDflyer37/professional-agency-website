@@ -49,15 +49,16 @@ components:
       properties:
         role: null
         columns:
-        - {id: ZHLLXE, title: Topic, data_key: '', $$hashKey: 'object:44381', expand: true}
-        - {id: HYCPCP, title: Name, data_key: '', $$hashKey: 'object:83151', expand: true}
-        - {id: GJAUNT, title: Date, data_key: '', $$hashKey: 'object:83152', expand: true}
-        - {id: MZGDKS, title: Email, data_key: '', $$hashKey: 'object:83153', width: '',
-          expand: true}
-        - {id: NWGTDT, title: Feedback, data_key: '', $$hashKey: 'object:83453', width: '',
-          expand: true}
-        - {id: UENOEI, title: '', data_key: column_1, $$hashKey: 'object:1708', width: '',
-          expand: true}
+        - {id: ZHLLXE, title: Topic, data_key: '', $$hashKey: 'object:44381', expand: false,
+          width: ''}
+        - {id: HYCPCP, title: Name, data_key: '', $$hashKey: 'object:83151', expand: false,
+          width: ''}
+        - {id: GJAUNT, title: Date, data_key: '', $$hashKey: 'object:83152', expand: false,
+          width: ''}
+        - {id: NWGTDT, title: Email/Feedback, data_key: '', $$hashKey: 'object:83453',
+          width: '400', expand: false}
+        - {id: UENOEI, title: '', data_key: column_1, $$hashKey: 'object:1708', width: '25',
+          expand: false}
         auto_header: true
         tooltip: ''
         border: ''
