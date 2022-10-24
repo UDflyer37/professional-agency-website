@@ -11,4 +11,6 @@ class Agent_Resources(Agent_ResourcesTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.repeating_panel_1=app_tables.web_resources
+    self.repeating_panel_1=app_tables.web_resources.get(title=title,URL=URL)
+
+#    app_tables.bookings.add_row(name=name.capitalize().strip(), datetime=date, user=email.lower().strip())
