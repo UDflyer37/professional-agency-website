@@ -343,7 +343,7 @@ components:
         bold: false, underline: false, icon: ''}
       name: link_1
       layout_properties: {grid_position: 'JNOSPQ,MOQGVZ LDYDWG,XLHTND'}
-      event_bindings: {click: link_1_click}
+      event_bindings: {}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Primary
           500', visible: true, text: Progressive, font_size: null, font: '', spacing_above: small,

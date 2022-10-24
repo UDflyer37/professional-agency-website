@@ -112,12 +112,15 @@ db_schema:
     - name: signed_up
       admin_ui: {width: 200}
       type: datetime
-  table_6:
-    title: Table 6
+  web_resources:
+    title: Web Resources
     client: none
     server: full
     columns:
-    - name: Web Resources
+    - name: title
+      admin_ui: {width: 200}
+      type: string
+    - name: URL
       admin_ui: {width: 200}
       type: string
 renamed: true
