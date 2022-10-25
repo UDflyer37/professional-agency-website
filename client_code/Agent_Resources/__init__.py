@@ -35,3 +35,9 @@ class Agent_Resources(Agent_ResourcesTemplate):
       self.agent_resources_card.visible=False
 
 
+
+
+
+
+
+
