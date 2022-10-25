@@ -7,7 +7,7 @@ components:
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"BYYCQN":55,"UPFLDA":5,"XFOIQT":33,"VEJDQL":27,"UBKNYP":55,"TIIRDC":5}',
-    spacing_below: none, background: ''}
+    spacing_below: none, background: 'theme:Gray 50'}
   name: card_1
   layout_properties: {grid_position: 'UTXDOJ,JQGHKS', full_width_row: true}
   components:
@@ -128,20 +128,31 @@ components:
       layout_properties: {grid_position: 'QWPEDT,XAMPYW'}
       event_bindings: {click: add_client_resources_button_click}
     - type: ColumnPanel
-      properties: {role: card, col_widths: '{}'}
+      properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
+        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+        spacing_below: small, background: ''}
       name: add_client_resource_card
       layout_properties: {grid_position: 'TAEHSW,KLOPSM'}
       components:
       - type: TextBox
-        properties: {}
+        properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Title of Resource,
+          border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+          font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+          background: '', bold: false, underline: false}
         name: client_main_title_text_box
         layout_properties: {grid_position: 'SMHAOP,YSZDFT'}
       - type: TextBox
-        properties: {}
+        properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Link Display Title,
+          border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+          font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+          background: '', bold: false, underline: false}
         name: client_link_title_text_box
         layout_properties: {grid_position: 'XLHSOI,VHGCRC'}
       - type: TextArea
-        properties: {}
+        properties: {role: null, align: left, height: '', tooltip: '', placeholder: Link URL,
+          border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+          auto_expand: true, font: '', spacing_above: small, spacing_below: small,
+          italic: false, background: '', bold: false, underline: false}
         name: client_URL_text_area
         layout_properties: {grid_position: 'PCXCSJ,GHJACD'}
       - type: RichText

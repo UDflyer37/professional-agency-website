@@ -48,6 +48,9 @@ class Agent_Resources(Agent_ResourcesTemplate):
 
   def agent_resource_cancel_link_click(self, **event_args):
     """This method is called when the link is clicked"""
+    self.agent_main_title_text_box.text = ""
+    self.agent_link_title_text_box.text = ""
+    self.agent_URL_text_area.text = ""
     self.add_agent_resource_card.visible=False
 
   def add_client_resources_button_click(self, **event_args):
@@ -56,8 +59,8 @@ class Agent_Resources(Agent_ResourcesTemplate):
 
   def client_resource_confirm_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    app_tables.agent_resources.client_writable()
-    app_tables.agent_resources.add_row(URL=self.client_URL_text_area.text, 
+    app_tables.client_resources.client_writable()
+    app_tables.client_resources.add_row(URL=self.client_URL_text_area.text, 
                                         main_title=self.client_main_title_text_box.text,
                                         link_title=self.client_link_title_text_box.text)
   
@@ -66,6 +69,9 @@ class Agent_Resources(Agent_ResourcesTemplate):
 
   def client_resource_cancel_link_click(self, **event_args):
     """This method is called when the link is clicked"""
+    self.client_main_title_text_box.text = ""
+    self.client_link_title_text_box.text = ""
+    self.client_URL_text_area.text = ""
     self.add_client_resource_card.visible=False
 
 
