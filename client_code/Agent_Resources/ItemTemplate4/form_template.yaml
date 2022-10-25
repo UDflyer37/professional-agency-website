@@ -1,22 +1,98 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"SOVFBV":55}',
+    spacing_below: small, background: ''}
+  data_bindings:
+  - {property: tag, code: 'self.item[''main title'']'}
 components:
-- type: Label
-  properties: {role: text, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: title
-  layout_properties: {grid_position: 'FHZGPX,SBVUAN'}
-  data_bindings:
-  - {property: text, code: 'self.item[''main title'']'}
-- type: Link
-  properties: {}
-  name: link_1
-  layout_properties: {grid_position: 'NOGIZR,ZTXEHZ'}
-  event_bindings: {}
-  data_bindings:
-  - {property: text, code: 'self.item[''link title'']'}
-  - {property: url, code: 'self.item[''URL'']'}
+- type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"QHBEAM":45,"WBQGUQ":15}',
+    spacing_below: small, background: ''}
+  name: label_card
+  layout_properties: {grid_position: 'TKLSMW,SOVFBV'}
+  components:
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: title
+    layout_properties: {grid_position: 'AQQKUU,QHBEAM FDNDND,DFHNHC'}
+    data_bindings:
+    - {property: text, code: 'self.item[''main title'']'}
+  - type: Link
+    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+      italic: false, background: '', bold: false, underline: false, icon: ''}
+    name: link_1
+    layout_properties: {grid_position: 'AQQKUU,QHBEAM YBUMMJ,KSFDPJ'}
+    event_bindings: {}
+    data_bindings:
+    - {property: text, code: 'self.item[''link title'']'}
+    - {property: url, code: 'self.item[''URL'']'}
+  - type: Link
+    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: edit, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+      italic: false, background: '', bold: false, underline: false, icon: 'fa:pencil-square'}
+    name: edit_link
+    layout_properties: {grid_position: 'AQQKUU,WBQGUQ'}
+    event_bindings: {click: edit_link_click}
+- type: ColumnPanel
+  properties: {role: top-border, tooltip: '', border: '', foreground: '', visible: false,
+    wrap_on: mobile, col_spacing: medium, spacing_above: medium, col_widths: '{}',
+    spacing_below: small, background: ''}
+  name: text_card
+  layout_properties: {grid_position: 'RUJMNW,DWLDLB'}
+  components:
+  - type: TextBox
+    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+      font: '', spacing_above: large, type: text, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false}
+    name: main_title_text_box
+    layout_properties: {grid_position: 'TMSNOO,TDPTKS'}
+    data_bindings:
+    - {property: text, code: 'self.item[''main title'']', writeback: false}
+  - type: TextBox
+    properties: {}
+    name: link_title_text_box
+    layout_properties: {grid_position: 'PRICVM,IXISXJ'}
+    data_bindings:
+    - {property: text, code: 'self.item[''link title'']', writeback: false}
+  - type: TextBox
+    properties: {}
+    name: URL_text_box
+    layout_properties: {grid_position: 'YIGVJP,KSIIQS'}
+    data_bindings:
+    - {property: text, code: 'self.item[''URL'']', writeback: false}
+  - type: RichText
+    properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
+      foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}',
+      font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+      format: markdown}
+    name: rich_text_1
+    layout_properties: {grid_position: 'ZCNYMG,VBERZX'}
+    components:
+    - type: Link
+      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: confirm change, font_size: null, wrap_on: mobile, font: '',
+        col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
+        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:check'}
+      name: confirm_link
+      layout_properties: {slot: confirm}
+      event_bindings: {click: confirm_link_click}
+    - type: Link
+      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: reset, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+        spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+        italic: false, background: '', bold: false, underline: false, icon: 'fa:times'}
+      name: reset_link
+      layout_properties: {slot: reset}
+      event_bindings: {click: reset_link_click}
 is_package: true
 component: []
