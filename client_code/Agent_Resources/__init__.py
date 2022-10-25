@@ -39,16 +39,37 @@ class Agent_Resources(Agent_ResourcesTemplate):
   def agent_resource_confirm_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     app_tables.agent_resources.client_writable()
-    app_tables.agent_resources.add_row(URL=self.URL_text_area.text, 
-                                       main_title=self.main_title_text_box.text,
-                                       link_title=self.link_title_text_box.text)
+    app_tables.agent_resources.add_row(URL=self.agent_URL_text_area.text, 
+                                       main_title=self.agent_main_title_text_box.text,
+                                       link_title=self.agent_link_title_text_box.text)
 
     get_open_form().content_panel.clear()
     get_open_form().content_panel.add_component(Agent_Resources())
 
   def agent_resource_cancel_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    self.text_card.visible=False
+    self.add_agent_resource_card.visible=False
+
+  def add_client_resources_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.add_client_resource_card.visible=True
+
+  def client_resource_confirm_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    app_tables.agent_resources.client_writable()
+    app_tables.agent_resources.add_row(URL=self.client_URL_text_area.text, 
+                                        main_title=self.client_main_title_text_box.text,
+                                        link_title=self.client_link_title_text_box.text)
+  
+    get_open_form().content_panel.clear()
+    get_open_form().content_panel.add_component(Agent_Resources())
+
+  def client_resource_cancel_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.add_client_resource_card.visible=False
+
+
+
 
 
 

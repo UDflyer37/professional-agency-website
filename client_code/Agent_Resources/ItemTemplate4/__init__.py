@@ -15,10 +15,13 @@ class ItemTemplate4(ItemTemplate4Template):
 
   def edit_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    self.text_card.visible=True
-    self.main_title_text_box.text = self.item['main_title']
-    self.link_title_text_box.text = self.item['link_title']
-    self.URL_text_box.text = self.item['URL']
+    if self.text_card.visible==True:
+      self.text_card.visible=False
+    else:
+      self.text_card.visible=True
+      self.main_title_text_box.text = self.item['main_title']
+      self.link_title_text_box.text = self.item['link_title']
+      self.URL_text_box.text = self.item['URL']
 
   def confirm_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -32,6 +35,17 @@ class ItemTemplate4(ItemTemplate4Template):
   def reset_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.text_card.visible=False
+
+  def delete_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    save_clicked = alert("Are you sure you want to delete this resource?",
+                                     large=False,
+                                     buttons=[("Delete", True), ("Cancel", False)])
+    if save_clicked:
+        self.item.delete()
+        get_open_form().content_panel.clear()
+        get_open_form().content_panel.add_component(Agent_Resources())
+
     
 
 

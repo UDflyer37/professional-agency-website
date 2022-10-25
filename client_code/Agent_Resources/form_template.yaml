@@ -51,21 +51,21 @@ components:
           border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
           font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
           background: '', bold: false, underline: false}
-        name: main_title_text_box
+        name: agent_main_title_text_box
         layout_properties: {grid_position: 'KQVLNZ,YJCFUM'}
       - type: TextBox
         properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Link Display Title,
           border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
           font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
           background: '', bold: false, underline: false}
-        name: link_title_text_box
+        name: agent_link_title_text_box
         layout_properties: {grid_position: 'BOOTHG,VUUYNH'}
       - type: TextArea
         properties: {role: null, align: left, height: 59, tooltip: '', placeholder: Link URL,
           border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
           auto_expand: true, font: '', spacing_above: small, spacing_below: small,
           italic: false, background: '', bold: false, underline: false}
-        name: URL_text_area
+        name: agent_URL_text_area
         layout_properties: {grid_position: 'REOYLI,WUMDKV'}
       - type: RichText
         properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
@@ -119,6 +119,57 @@ components:
     name: client_resources_card
     layout_properties: {grid_position: 'VDCTHJ,VEJDQL RMROHH,SHGHFH'}
     components:
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Add Client Resource, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: large, italic: false,
+        background: '', bold: false, underline: false, icon: 'fa:plus'}
+      name: add_client_resources_button
+      layout_properties: {grid_position: 'QWPEDT,XAMPYW'}
+      event_bindings: {click: add_client_resources_button_click}
+    - type: ColumnPanel
+      properties: {role: card, col_widths: '{}'}
+      name: add_client_resource_card
+      layout_properties: {grid_position: 'TAEHSW,KLOPSM'}
+      components:
+      - type: TextBox
+        properties: {}
+        name: client_main_title_text_box
+        layout_properties: {grid_position: 'SMHAOP,YSZDFT'}
+      - type: TextBox
+        properties: {}
+        name: client_link_title_text_box
+        layout_properties: {grid_position: 'XLHSOI,VHGCRC'}
+      - type: TextArea
+        properties: {}
+        name: client_URL_text_area
+        layout_properties: {grid_position: 'PCXCSJ,GHJACD'}
+      - type: RichText
+        properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
+          foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}',
+          font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+          format: markdown}
+        name: rich_text_2
+        layout_properties: {grid_position: 'WWINDU,SZAUZI'}
+        components:
+        - type: Link
+          properties: {role: null, url: '', align: left, tooltip: '', border: '',
+            foreground: '', visible: true, text: Confirm, font_size: null, wrap_on: mobile,
+            font: '', col_spacing: medium, spacing_above: small, icon_align: left,
+            col_widths: '', spacing_below: small, italic: false, background: '', bold: false,
+            underline: false, icon: 'fa:check'}
+          name: client_resource_confirm_link
+          layout_properties: {slot: confirm}
+          event_bindings: {click: client_resource_confirm_link_click}
+        - type: Link
+          properties: {role: null, url: '', align: left, tooltip: '', border: '',
+            foreground: '', visible: true, text: Cancel, font_size: null, wrap_on: mobile,
+            font: '', col_spacing: medium, spacing_above: small, icon_align: left,
+            col_widths: '', spacing_below: small, italic: false, background: '', bold: false,
+            underline: false, icon: 'fa:times'}
+          name: client_resource_cancel_link
+          layout_properties: {slot: reset}
+          event_bindings: {click: client_resource_cancel_link_click}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
         visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate4,

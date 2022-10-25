@@ -71,9 +71,10 @@ components:
     - {property: text, code: 'self.item[''URL'']', writeback: false}
   - type: RichText
     properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
-      foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}',
-      font: '', spacing_above: small, spacing_below: small, data: null, background: '',
-      format: markdown}
+      foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}
+
+        {delete}', font: '', spacing_above: small, spacing_below: small, data: null,
+      background: '', format: markdown}
     name: rich_text_1
     layout_properties: {grid_position: 'ZCNYMG,VBERZX'}
     components:
@@ -94,5 +95,13 @@ components:
       name: reset_link
       layout_properties: {slot: reset}
       event_bindings: {click: reset_link_click}
+    - type: Button
+      properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: delete, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:trash'}
+      name: delete_link
+      layout_properties: {slot: delete}
+      event_bindings: {click: delete_link_click}
 is_package: true
 component: []
