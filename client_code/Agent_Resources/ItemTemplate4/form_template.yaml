@@ -4,7 +4,7 @@ container:
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"SOVFBV":55}',
     spacing_below: small, background: ''}
   data_bindings:
-  - {property: tag, code: 'self.item[''main title'']'}
+  - {property: tag, code: 'self.item[''main_title'']'}
 components:
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
@@ -21,7 +21,7 @@ components:
     name: title
     layout_properties: {grid_position: 'AQQKUU,QHBEAM FDNDND,DFHNHC'}
     data_bindings:
-    - {property: text, code: 'self.item[''main title'']'}
+    - {property: text, code: 'self.item[''main_title'']'}
   - type: Link
     properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
@@ -31,7 +31,7 @@ components:
     layout_properties: {grid_position: 'AQQKUU,QHBEAM YBUMMJ,KSFDPJ'}
     event_bindings: {}
     data_bindings:
-    - {property: text, code: 'self.item[''link title'']'}
+    - {property: text, code: 'self.item[''link_title'']'}
     - {property: url, code: 'self.item[''URL'']'}
   - type: Link
     properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
@@ -56,13 +56,13 @@ components:
     name: main_title_text_box
     layout_properties: {grid_position: 'TMSNOO,TDPTKS'}
     data_bindings:
-    - {property: text, code: 'self.item[''main title'']', writeback: false}
+    - {property: text, code: 'self.item[''main_title'']', writeback: false}
   - type: TextBox
     properties: {}
     name: link_title_text_box
     layout_properties: {grid_position: 'PRICVM,IXISXJ'}
     data_bindings:
-    - {property: text, code: 'self.item[''link title'']', writeback: false}
+    - {property: text, code: 'self.item[''link_title'']', writeback: false}
   - type: TextBox
     properties: {}
     name: URL_text_box

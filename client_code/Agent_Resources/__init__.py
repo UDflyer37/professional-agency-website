@@ -12,13 +12,11 @@ class Agent_Resources(Agent_ResourcesTemplate):
     self.init_components(**properties)
 
     app_tables.client_resources.client_readable()
-    self.repeating_panel_client_resources.items=app_tables.client_resources.search(tables.order_by("main title"))
+    self.repeating_panel_client_resources.items=app_tables.client_resources.search(tables.order_by("main_title"))
     
     app_tables.agent_resources.client_readable()
-    self.repeating_panel_agent_resources.items=app_tables.agent_resources.search(tables.order_by("main title"))
-
-    
-#    app_tables.bookings.add_row(name=name.capitalize().strip(), datetime=date, user=email.lower().strip())
+    self.repeating_panel_agent_resources.items=app_tables.agent_resources.search(tables.order_by("main_title"))
+ 
 
   def client_resources_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -33,6 +31,27 @@ class Agent_Resources(Agent_ResourcesTemplate):
       self.agent_resources_card.visible=True
     else:
       self.agent_resources_card.visible=False
+
+  def add_agent_resources_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.add_agent_resource_card.visible=True
+
+  def agent_resource_confirm_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    app_tables.agent_resources.client_writable()
+    app_tables.agent_resources.add_row(URL=self.URL_text_area.text, 
+                                       main_title=self.main_title_text_box.text,
+                                       link_title=self.link_title_text_box.text)
+
+    get_open_form().content_panel.clear()
+    get_open_form().content_panel.add_component(Agent_Resources())
+
+  def agent_resource_cancel_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.text_card.visible=False
+
+
+
 
 
 
