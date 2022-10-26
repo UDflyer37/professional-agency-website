@@ -16,6 +16,9 @@ class Agent_Resources(Agent_ResourcesTemplate):
     
     app_tables.agent_resources.client_readable()
     self.repeating_panel_agent_resources.items=app_tables.agent_resources.search(tables.order_by("main_title"))
+
+    app_tables.phone_numbers.client_readable()
+    self.repeating_panel_phone_numbers.items=app_tables.phone_numbers.search(tables.order_by("user"))
  
 
   def client_resources_link_click(self, **event_args):
@@ -73,6 +76,14 @@ class Agent_Resources(Agent_ResourcesTemplate):
     self.client_link_title_text_box.text = ""
     self.client_URL_text_area.text = ""
     self.add_client_resource_card.visible=False
+
+  def phone_numbers_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    if self.phone_numbers_card.visible==False:
+      self.phone_numbers_card.visible=True
+    else:
+      self.phone_numbers_card.visible=False
+
 
 
 

@@ -95,7 +95,7 @@ components:
           event_bindings: {click: agent_resource_cancel_link_click}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate4,
+        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate_web_resources,
         background: ''}
       name: repeating_panel_agent_resources
       layout_properties: {grid_position: 'UKCVNG,BCXSYC'}
@@ -183,7 +183,7 @@ components:
           event_bindings: {click: client_resource_cancel_link_click}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate4,
+        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate_web_resources,
         background: ''}
       name: repeating_panel_client_resources
       layout_properties: {grid_position: 'EBWRVO,YDGNFZ'}
@@ -194,13 +194,38 @@ components:
   name: card_2
   layout_properties: {grid_position: 'LHJQJU,HRAFFA', full_width_row: true}
   components:
-  - type: Label
-    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: phone numbers., font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: label_6
-    layout_properties: {grid_position: 'ISNAJX,JZBRIP'}
+  - type: Link
+    properties: {role: text, url: '', align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: phone numbers, font_size: 22, wrap_on: mobile, font: '',
+      col_spacing: medium, spacing_above: small, icon_align: right, col_widths: '',
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: 'fa:caret-down'}
+    name: phone_numbers_link
+    layout_properties: {grid_position: 'NXRLRL,VWMTKH YEKKCR,VKYTLO'}
+    event_bindings: {click: phone_numbers_link_click}
+  - type: ColumnPanel
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      spacing_below: small, background: 'theme:Neutral'}
+    name: phone_numbers_card
+    layout_properties: {grid_position: 'NXRLRL,VWMTKH IRBGWH,SLVLEQ'}
+    components:
+    - type: ColumnPanel
+      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '',
+        spacing_below: small, background: 'theme:Neutral'}
+      name: card_3
+      layout_properties: {grid_position: 'YPAUOB,IJPSWK'}
+    - type: RepeatingPanel
+      properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
+        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate_phone_numbers,
+        background: ''}
+      name: repeating_panel_phone_numbers
+      layout_properties: {grid_position: 'BNTIBZ,OOFMWN'}
+  - type: Spacer
+    properties: {height: 32}
+    name: spacer_3
+    layout_properties: {grid_position: 'NXRLRL,CGASYT'}
 is_package: true
 component:
 - type: ColumnPanel

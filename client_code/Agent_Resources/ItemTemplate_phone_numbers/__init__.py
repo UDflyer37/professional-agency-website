@@ -1,4 +1,4 @@
-from ._anvil_designer import ItemTemplate4Template
+from ._anvil_designer import ItemTemplate_phone_numbersTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -7,11 +7,11 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import Agent_Resources
 
-class ItemTemplate4(ItemTemplate4Template):
+class ItemTemplate_phone_numbers(ItemTemplate_phone_numbersTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    
+
 
   def edit_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -19,16 +19,14 @@ class ItemTemplate4(ItemTemplate4Template):
       self.text_card.visible=False
     else:
       self.text_card.visible=True
-      self.main_title_text_box.text = self.item['main_title']
-      self.link_title_text_box.text = self.item['link_title']
-      self.URL_text_box.text = self.item['URL']
+      self.user_text_box.text = self.item['user']
+      self.phone_text_box.text = self.item['phone']
 
   def confirm_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    app_tables.agent_resources.client_writable()
-    self.item['main_title'] = self.main_title_text_box.text
-    self.item['link_title'] = self.link_title_text_box.text
-    self.item['URL'] = self.URL_text_box.text
+    app_tables.phone_numbers.client_writable()
+    self.item['user'] = self.user_text_box.text
+    self.item['phone'] = self.phone_text_box.text
     get_open_form().content_panel.clear()
     get_open_form().content_panel.add_component(Agent_Resources())
 
@@ -42,15 +40,6 @@ class ItemTemplate4(ItemTemplate4Template):
                                      large=False,
                                      buttons=[("Delete", True), ("Cancel", False)])
     if save_clicked:
-        self.item.delete()
-        get_open_form().content_panel.clear()
-        get_open_form().content_panel.add_component(Agent_Resources())
-
-    
-
-
-
-
-
-    
-
+      self.item.delete()
+      get_open_form().content_panel.clear()
+      get_open_form().content_panel.add_component(Agent_Resources())
