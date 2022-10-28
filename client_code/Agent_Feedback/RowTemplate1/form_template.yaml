@@ -1,5 +1,16 @@
-container: {type: DataRowPanel}
+container:
+  type: DataRowPanel
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true,
+    visible: true, font_size: null, font: '', spacing_above: none, spacing_below: large,
+    italic: false, background: '', bold: false, underline: false}
 components:
+- type: Label
+  properties: {role: text, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Info:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_5
+  layout_properties: {column: HYCPCP}
 - type: Label
   properties: {}
   name: label_1
@@ -7,12 +18,21 @@ components:
   data_bindings:
   - {property: text, code: 'self.item[''name'']'}
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: true, background: '', bold: false, underline: false, icon: ''}
   name: label_2
-  layout_properties: {column: GJAUNT}
+  layout_properties: {column: HYCPCP, slot: date}
   data_bindings:
-  - {property: text, code: 'self.item[''datetime''].strftime( "%A %d %b %Y at %I:%M
-      %p")'}
+  - {property: text, code: '"("+self.item[''datetime''].strftime( "%A %d %b %Y at
+      %I:%M %p")+")"'}
+- type: Label
+  properties: {role: text, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: 'Email/Feedback:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_8
+  layout_properties: {column: NWGTDT}
 - type: Link
   properties: {}
   name: email_link
@@ -21,33 +41,45 @@ components:
   data_bindings:
   - {property: text, code: 'self.item[''user'']'}
 - type: Label
-  properties: {}
+  properties: {role: top-border, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: label_3
   layout_properties: {column: NWGTDT}
   data_bindings:
   - {property: text, code: 'self.item[''question'']'}
 - type: RichText
   properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: null, content: '{delete} {text}
-
-      ', font: '', spacing_above: small, spacing_below: small, data: null, background: '',
-    format: markdown}
+    foreground: '', visible: true, font_size: null, content: '{delete}{text}', font: '',
+    spacing_above: none, spacing_below: none, data: null, background: '', format: markdown}
   name: rich_text_1
   layout_properties: {column: ZHLLXE}
   components:
-  - type: Label
-    properties: {}
-    name: label_4
-    layout_properties: {column: ZHLLXE, slot: text}
-    data_bindings:
-    - {property: text, code: 'self.item[''topic'']'}
   - type: Link
     properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
       spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
       italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
     name: delete_link
-    layout_properties: {column: ZHLLXE, slot: delete}
+    layout_properties: {column: GJAUNT, slot: delete}
     event_bindings: {click: delete_link_click}
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'Topic:', font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_7
+    layout_properties: {column: ZHLLXE, slot: text}
+- type: Spacer
+  properties: {height: 32}
+  name: spacer_1
+  layout_properties: {column: GJAUNT}
+- type: Label
+  properties: {}
+  name: label_4
+  layout_properties: {column: ZHLLXE, slot: text}
+  data_bindings:
+  - {property: text, code: 'self.item[''topic'']'}
 is_package: true
 component: []
