@@ -90,7 +90,7 @@ components:
         columns:
         - {id: IBYQZL, title: Name, data_key: column_1, $$hashKey: 'object:8242'}
         - {id: BGOZTA, title: Date, data_key: column_2, $$hashKey: 'object:8243'}
-        - {id: IOHEFA, title: email, data_key: column_3, $$hashKey: 'object:8244'}
+        - {id: IOHEFA, title: Email, data_key: column_3, $$hashKey: 'object:8244'}
         auto_header: true
         tooltip: ''
         border: ''

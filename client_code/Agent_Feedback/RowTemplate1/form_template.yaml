@@ -4,13 +4,22 @@ container:
     visible: true, font_size: null, font: '', spacing_above: none, spacing_below: large,
     italic: false, background: '', bold: false, underline: false}
 components:
-- type: Label
-  properties: {role: text, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: 'Info:', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
-  name: label_5
+- type: RichText
+  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    foreground: '', visible: true, font_size: null, content: '{text}
+
+      ', font: '', spacing_above: none, spacing_below: none, data: null, background: '',
+    format: markdown}
+  name: rich_text_2
   layout_properties: {column: HYCPCP}
+  components:
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'Info:', font_size: null, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_5
+    layout_properties: {column: HYCPCP, slot: text}
 - type: Label
   properties: {}
   name: label_1
@@ -24,15 +33,22 @@ components:
   name: label_2
   layout_properties: {column: HYCPCP, slot: date}
   data_bindings:
-  - {property: text, code: '"("+self.item[''datetime''].strftime( "%A %d %b %Y at
-      %I:%M %p")+")"'}
-- type: Label
-  properties: {role: text, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: 'Email/Feedback:', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
-  name: label_8
+  - {property: text, code: '"(" + self.item[''datetime''].strftime( "%A %d %b %Y at
+      %I:%M %p") + ")"'}
+- type: RichText
+  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    foreground: '', visible: true, font_size: null, content: '{text}', font: '', spacing_above: none,
+    spacing_below: none, data: null, background: '', format: markdown}
+  name: rich_text_3
   layout_properties: {column: NWGTDT}
+  components:
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'Email/Feedback:', font_size: null, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_8
+    layout_properties: {column: NWGTDT, slot: text}
 - type: Link
   properties: {}
   name: email_link
@@ -56,21 +72,21 @@ components:
   name: rich_text_1
   layout_properties: {column: ZHLLXE}
   components:
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'Topic:', font_size: null, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_7
+    layout_properties: {column: ZHLLXE, slot: text}
   - type: Link
     properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
-      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+      spacing_above: none, icon_align: left, col_widths: '', spacing_below: none,
       italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
     name: delete_link
     layout_properties: {column: GJAUNT, slot: delete}
     event_bindings: {click: delete_link_click}
-  - type: Label
-    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Topic:', font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: label_7
-    layout_properties: {column: ZHLLXE, slot: text}
 - type: Spacer
   properties: {height: 32}
   name: spacer_1

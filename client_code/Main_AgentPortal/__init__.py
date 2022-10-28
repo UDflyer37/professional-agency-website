@@ -49,6 +49,15 @@ class Main_AgentPortal(Main_AgentPortalTemplate):
 
   def customer_portal_click(self, **event_args):
     """This method is called when the link is clicked"""
-    anvil.users.logout()
-    open_form('Main')
-    return
+    save_clicked = alert("Are you sure you want to return to the customer portal? You will be logged out.",
+                   large=False,
+                   buttons=[("Yes", True), ("Cancel", False)])
+    if save_clicked:
+      anvil.users.logout()
+      open_form('Main')
+      return
+
+  def bottom_appointments_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.appointments_link_click()
+

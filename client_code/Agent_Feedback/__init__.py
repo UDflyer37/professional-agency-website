@@ -13,11 +13,13 @@ class Agent_Feedback(Agent_FeedbackTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.sort_drop.items = [("Sort by date", "datetime"), ("Sort by name", "name"),("Sort by topic", "topic")]
-    feedback = anvil.server.call('get_feedback')
-    self.repeating_panel_1.items = feedback
+    self.repeating_panel_1.items = anvil.server.call('get_feedback')
 
 
-#APPOINTMENTS
+  def refresh(self, **event_args):
+    self.repeating_panel_1.items = anvil.server.call('get_feedback')
+
+  
   def sort_drop_change(self, **event_args):
     """This method is called when an item is selected"""
     feedback = anvil.server.call('get_feedback', self.sort_drop.selected_value)
@@ -31,5 +33,4 @@ class Agent_Feedback(Agent_FeedbackTemplate):
                    buttons=[("Delete", True), ("Cancel", False)])
     if save_clicked:
       anvil.server.call('delete_past_feedback')
-      get_open_form().content_panel.clear()
-      get_open_form().content_panel.add_component(Agent_Feedback())
+      self.refresh()

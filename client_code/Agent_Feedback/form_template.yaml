@@ -49,8 +49,6 @@ components:
       properties:
         role: null
         columns:
-        - {id: GJAUNT, title: '', data_key: '', $$hashKey: 'object:83152', expand: false,
-          width: '45'}
         - {id: ZHLLXE, title: '', data_key: '', $$hashKey: 'object:44381', expand: true,
           width: ''}
         - {id: HYCPCP, title: '', data_key: '', $$hashKey: 'object:83151', expand: false,

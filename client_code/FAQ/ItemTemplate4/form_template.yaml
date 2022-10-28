@@ -1,0 +1,23 @@
+container:
+  type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: large, col_widths: '{"PRQEQW":55}',
+    spacing_below: large, background: ''}
+  data_bindings: []
+components:
+- type: Label
+  properties: {role: text, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_1
+  layout_properties: {grid_position: 'IFUQAJ,PRQEQW'}
+  data_bindings:
+  - {property: text, code: 'self.item[''question'']'}
+- type: Label
+  properties: {}
+  name: label_2
+  layout_properties: {grid_position: 'CYPROO,YLUXVC'}
+  data_bindings:
+  - {property: text, code: 'self.item[''answer'']'}
+is_package: true
+component: []

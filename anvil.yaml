@@ -24,57 +24,6 @@ startup_form: null
 native_deps: {head_html: '<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
     rel="stylesheet" rel="preload" as="font" crossorigin="anonymous">'}
 db_schema:
-  contact:
-    title: Contact
-    client: none
-    server: full
-    columns:
-    - name: name
-      admin_ui: {width: 200}
-      type: string
-    - name: user
-      admin_ui: {width: 200}
-      type: string
-    - name: topic
-      admin_ui: {width: 200}
-      type: string
-    - name: question
-      admin_ui: {width: 200}
-      type: string
-    - name: datetime
-      admin_ui: {width: 200}
-      type: datetime
-  bookings:
-    title: Bookings
-    client: none
-    server: full
-    columns:
-    - name: name
-      admin_ui: {width: 200}
-      type: string
-    - name: user
-      admin_ui: {width: 200}
-      type: string
-    - name: datetime
-      admin_ui: {width: 200}
-      type: datetime
-  open_hours:
-    title: Open Hours
-    client: search
-    server: full
-    columns:
-    - name: open_time
-      admin_ui: {width: 200}
-      type: number
-    - name: close_time
-      admin_ui: {width: 200}
-      type: number
-    - name: open
-      admin_ui: {width: 200}
-      type: bool
-    - name: day
-      admin_ui: {width: 200}
-      type: string
   settings:
     title: Settings
     client: search
@@ -86,6 +35,20 @@ db_schema:
     - name: value
       admin_ui: {width: 200}
       type: simpleObject
+  client_resources:
+    title: Client Resources
+    client: full
+    server: full
+    columns:
+    - name: main_title
+      admin_ui: {width: 200}
+      type: string
+    - name: link_title
+      admin_ui: {width: 200}
+      type: string
+    - name: URL
+      admin_ui: {width: 200}
+      type: string
   users:
     title: Users
     client: none
@@ -112,15 +75,91 @@ db_schema:
     - name: signed_up
       admin_ui: {width: 200}
       type: datetime
-  web_resources:
-    title: Web Resources
-    client: none
+  phone_numbers:
+    title: Phone Numbers
+    client: full
     server: full
     columns:
-    - name: title
+    - name: user
+      admin_ui: {width: 200}
+      type: string
+    - name: phone
+      admin_ui: {width: 200}
+      type: string
+  open_hours:
+    title: Open Hours
+    client: search
+    server: full
+    columns:
+    - name: open_time
+      admin_ui: {width: 200}
+      type: number
+    - name: close_time
+      admin_ui: {width: 200}
+      type: number
+    - name: open
+      admin_ui: {width: 200}
+      type: bool
+    - name: day
+      admin_ui: {width: 200}
+      type: string
+  agent_resources:
+    title: Agent Resources
+    client: full
+    server: full
+    columns:
+    - name: main_title
+      admin_ui: {width: 309}
+      type: string
+    - name: link_title
       admin_ui: {width: 200}
       type: string
     - name: URL
       admin_ui: {width: 200}
       type: string
+  bookings:
+    title: Bookings
+    client: none
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    - name: user
+      admin_ui: {width: 200}
+      type: string
+    - name: datetime
+      admin_ui: {width: 200}
+      type: datetime
+  faqs:
+    title: FAQs
+    client: full
+    server: full
+    columns:
+    - name: question
+      admin_ui: {width: 200}
+      type: string
+    - name: answer
+      admin_ui: {width: 200}
+      type: string
+  contact:
+    title: Contact
+    client: none
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    - name: user
+      admin_ui: {width: 200}
+      type: string
+    - name: topic
+      admin_ui: {width: 200}
+      type: string
+    - name: question
+      admin_ui: {width: 200}
+      type: string
+    - name: datetime
+      admin_ui: {width: 200}
+      type: datetime
 renamed: true

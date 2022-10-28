@@ -13,6 +13,9 @@ class RowTemplate1(RowTemplate1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+  def refresh(self, **event_args):
+    self.parent.items = anvil.server.call('get_feedback')
+    
   def email_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     alert(Agent_Contact(item=self.item), large=True)
@@ -24,5 +27,4 @@ class RowTemplate1(RowTemplate1Template):
                    buttons=[("Delete", True), ("Cancel", False)])
     if save_clicked:
       anvil.server.call('delete_feedback', self.item)
-      get_open_form().content_panel.clear()
-      get_open_form().content_panel.add_component(Agent_Feedback())
+      self.refresh()

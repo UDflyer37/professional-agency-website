@@ -13,6 +13,7 @@ class Agent_Resources(Agent_ResourcesTemplate):
     self.client_resources()
     self.agent_resources()
     self.phone_numbers()
+    self.faqs()
 
   def client_resources(self, **event_args):
     app_tables.client_resources.client_readable()
@@ -25,6 +26,10 @@ class Agent_Resources(Agent_ResourcesTemplate):
   def phone_numbers(self, **event_args):
     app_tables.phone_numbers.client_readable()
     self.repeating_panel_phone_numbers.items=app_tables.phone_numbers.search(tables.order_by("user"))
+
+  def faqs(self, **event_args):
+      app_tables.faqs.client_readable()
+      self.repeating_panel_FAQ.items=app_tables.faqs.search(tables.order_by("question"))
  
 
   def client_resources_link_click(self, **event_args):
@@ -117,6 +122,38 @@ class Agent_Resources(Agent_ResourcesTemplate):
     self.add_phone_number_card.visible=False
     self.contact_name_text_box.text = ""
     self.phone_number_text_box.text = "" 
+
+  def FAQ_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    if self.FAQ_card.visible==False:
+      self.FAQ_card.visible=True
+    else:
+      self.FAQ_card.visible=False
+
+  def add_faq_button_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.add_faq_card.visible=True
+
+  def add_faq_confirm_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    app_tables.faqs.client_writable()
+    app_tables.faqs.add_row(question = self.question_text_box.text,
+                            answer = self.answer_text_box.text)
+    self.faqs()
+    self.repeating_panel_FAQ.scroll_into_view(smooth=True)
+    self.add_faq_card.visible=False
+    self.question_text_box.text = ""
+    self.answer_text_box.text = "" 
+
+  def add_faq_cancel_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.add_faq_card.visible=False
+    self.question_text_box.text = ""
+    self.answer_text_box.text = "" 
+
+
+
+
     
 
 

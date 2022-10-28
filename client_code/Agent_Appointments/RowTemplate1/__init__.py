@@ -25,6 +25,7 @@ class RowTemplate1(RowTemplate1Template):
                    buttons=[("Yes", True), ("Cancel", False)])
     if save_clicked:
       anvil.server.call('delete_booking', self.item)
-      get_open_form().content_panel.clear()
-      get_open_form().content_panel.add_component(Agent_Appointments())
+      current_bookings, past_bookings = anvil.server.call('get_bookings')
+      self.parent.items=current_bookings
+
       

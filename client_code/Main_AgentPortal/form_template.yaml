@@ -25,7 +25,7 @@ components:
     layout_properties: {grid_position: 'JQXBUF,MXBGRM', full_width_row: true}
     components:
     - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+      properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
         wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}',
         spacing_below: small, background: ''}
       name: card_1
@@ -48,7 +48,7 @@ components:
         layout_properties: {expand: false, width: null, grid_position: 'KTHTJQ,VATCGV'}
         event_bindings: {click: customer_portal_click}
     - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+      properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
         wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}',
         spacing_below: small, background: ''}
       name: card_2
@@ -63,13 +63,23 @@ components:
         layout_properties: {grid_position: 'TBGCNR,XNFAHV'}
       - type: Link
         properties: {role: null, url: '', align: center, tooltip: '', border: '',
-          foreground: '', visible: true, text: resources., font_size: null, wrap_on: mobile,
+          foreground: '', visible: true, text: appointments., font_size: null, wrap_on: mobile,
           font: '', col_spacing: medium, spacing_above: none, icon_align: left, col_widths: '',
+          spacing_below: none, italic: false, background: '', bold: false, underline: false,
+          icon: ''}
+        name: bottom_appointments_link
+        layout_properties: {grid_position: 'MWVIXC,KOWPWH'}
+        event_bindings: {click: bottom_appointments_link_click}
+      - type: Link
+        properties: {role: null, url: '', align: center, tooltip: '', border: '',
+          foreground: '', visible: true, text: resources., font_size: null, wrap_on: mobile,
+          font: '', col_spacing: medium, spacing_above: none, icon_align: left, col_widths: '{}',
           spacing_below: none, italic: false, background: '', bold: false, underline: false,
           icon: ''}
         name: bottom_resources_link
         layout_properties: {grid_position: 'JDBWQH,QLOAKB'}
         event_bindings: {click: bottom_resources_link_click}
+        components: []
       - type: Link
         properties: {role: null, url: '', align: center, tooltip: '', border: '',
           foreground: '', visible: true, text: feedback., font_size: null, wrap_on: mobile,

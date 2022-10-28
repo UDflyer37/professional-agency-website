@@ -140,8 +140,8 @@ class Agent_Appointments(Agent_AppointmentsTemplate):
                    buttons=[("Yes", True), ("Cancel", False)])
     if save_clicked:
       anvil.server.call('delete_past_appointments')
-      get_open_form().content_panel.clear()
-      get_open_form().content_panel.add_component(Agent_Appointments())
+      current_bookings, past_bookings = anvil.server.call('get_bookings')
+      self.repeating_panel_2.items = past_bookings
 
       
       
