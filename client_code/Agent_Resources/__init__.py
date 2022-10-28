@@ -10,13 +10,19 @@ class Agent_Resources(Agent_ResourcesTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.client_resources()
+    self.agent_resources()
+    self.phone_numbers()
 
+  def client_resources(self, **event_args):
     app_tables.client_resources.client_readable()
     self.repeating_panel_client_resources.items=app_tables.client_resources.search(tables.order_by("main_title"))
-    
+
+  def agent_resources(self, **event_args):
     app_tables.agent_resources.client_readable()
     self.repeating_panel_agent_resources.items=app_tables.agent_resources.search(tables.order_by("main_title"))
 
+  def phone_numbers(self, **event_args):
     app_tables.phone_numbers.client_readable()
     self.repeating_panel_phone_numbers.items=app_tables.phone_numbers.search(tables.order_by("user"))
  
@@ -45,9 +51,12 @@ class Agent_Resources(Agent_ResourcesTemplate):
     app_tables.agent_resources.add_row(URL=self.agent_URL_text_area.text, 
                                        main_title=self.agent_main_title_text_box.text,
                                        link_title=self.agent_link_title_text_box.text)
-
-    get_open_form().content_panel.clear()
-    get_open_form().content_panel.add_component(Agent_Resources())
+    self.agent_resources()
+    self.repeating_panel_agent_resources.scroll_into_view(smooth=True)
+    self.add_agent_resource_card.visible=False
+    self.agent_URL_text_area.text = ""
+    self.agent_main_title_text_box.text = "" 
+    self.agent_link_title_text_box.text = ""
 
   def agent_resource_cancel_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -66,9 +75,12 @@ class Agent_Resources(Agent_ResourcesTemplate):
     app_tables.client_resources.add_row(URL=self.client_URL_text_area.text, 
                                         main_title=self.client_main_title_text_box.text,
                                         link_title=self.client_link_title_text_box.text)
-  
-    get_open_form().content_panel.clear()
-    get_open_form().content_panel.add_component(Agent_Resources())
+    self.client_resources()
+    self.repeating_panel_client_resources.scroll_into_view(smooth=True)
+    self.add_client_resource_card.visible=False
+    self.client_URL_text_area.text = ""
+    self.client_main_title_text_box.text = "" 
+    self.client_link_title_text_box.text = ""
 
   def client_resource_cancel_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -100,9 +112,12 @@ class Agent_Resources(Agent_ResourcesTemplate):
     app_tables.phone_numbers.client_writable()
     app_tables.phone_numbers.add_row(user=self.contact_name_text_box.text, 
                                        phone= format(int(n[:-1]), ",").replace(",", "-") + n[-1])                        
-
-    get_open_form().content_panel.clear()
-    get_open_form().content_panel.add_component(Agent_Resources())
+    self.phone_numbers()
+    self.repeating_panel_phone_numbers.scroll_into_view(smooth=True)
+    self.add_phone_number_card.visible=False
+    self.contact_name_text_box.text = ""
+    self.phone_number_text_box.text = "" 
+    
 
 
 

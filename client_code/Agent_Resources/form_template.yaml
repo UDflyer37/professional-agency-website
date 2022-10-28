@@ -25,7 +25,7 @@ components:
     name: spacer_2
     layout_properties: {grid_position: 'VDCTHJ,XFOIQT VVTMIY,TIIRDC'}
   - type: ColumnPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: false,
       wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
       spacing_below: small, background: ''}
     name: agent_resources_card
@@ -95,7 +95,7 @@ components:
           event_bindings: {click: agent_resource_cancel_link_click}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate_web_resources,
+        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate_agent_resources,
         background: ''}
       name: repeating_panel_agent_resources
       layout_properties: {grid_position: 'UKCVNG,BCXSYC'}
@@ -113,7 +113,7 @@ components:
     layout_properties: {grid_position: 'VDCTHJ,VEJDQL SCHUQN,YKCUSN'}
     event_bindings: {click: client_resources_link_click}
   - type: ColumnPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: false,
       wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
       spacing_below: small, background: ''}
     name: client_resources_card
@@ -183,7 +183,7 @@ components:
           event_bindings: {click: client_resource_cancel_link_click}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate_web_resources,
+        visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate_client_resources,
         background: ''}
       name: repeating_panel_client_resources
       layout_properties: {grid_position: 'EBWRVO,YDGNFZ'}
@@ -204,14 +204,14 @@ components:
     layout_properties: {grid_position: 'NXRLRL,VWMTKH YEKKCR,VKYTLO'}
     event_bindings: {click: phone_numbers_link_click}
   - type: ColumnPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    properties: {role: null, tooltip: '', border: '', foreground: '', visible: false,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
       spacing_below: small, background: 'theme:Neutral'}
     name: phone_numbers_card
     layout_properties: {grid_position: 'NXRLRL,VWMTKH IRBGWH,SLVLEQ'}
     components:
     - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+      properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
         wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
         spacing_below: small, background: 'theme:Neutral'}
       name: card_3
@@ -226,7 +226,7 @@ components:
         layout_properties: {grid_position: 'HGKSFJ,YABWBY'}
         event_bindings: {click: add_phone_number_button_click}
       - type: ColumnPanel
-        properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+        properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
           wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
           spacing_below: small, background: 'theme:Neutral'}
         name: add_phone_number_card

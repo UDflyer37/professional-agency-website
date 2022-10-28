@@ -1,4 +1,4 @@
-from ._anvil_designer import ItemTemplate_phone_numbersTemplate
+from ._anvil_designer import ItemTemplate_agent_resourcesTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -7,15 +7,16 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import Agent_Resources
 
-class ItemTemplate_phone_numbers(ItemTemplate_phone_numbersTemplate):
+class ItemTemplate_agent_resources(ItemTemplate_agent_resourcesTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+
   def refresh(self, **event_args):
-    app_tables.phone_numbers.client_readable()
-    self.parent.items=app_tables.phone_numbers.search(tables.order_by("user"))
- 
+    app_tables.client_resources.client_readable()
+    self.parent.items=app_tables.agent_resources.search(tables.order_by("main_title"))
+
 
   def edit_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -23,14 +24,16 @@ class ItemTemplate_phone_numbers(ItemTemplate_phone_numbersTemplate):
       self.text_card.visible=False
     else:
       self.text_card.visible=True
-      self.user_text_box.text = self.item['user']
-      self.phone_text_box.text = self.item['phone']
+      self.main_title_text_box.text = self.item['main_title']
+      self.link_title_text_box.text = self.item['link_title']
+      self.URL_text_box.text = self.item['URL']
 
   def confirm_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    app_tables.phone_numbers.client_writable()
-    self.item['user'] = self.user_text_box.text
-    self.item['phone'] = self.phone_text_box.text
+    app_tables.agent_resources.client_writable()
+    self.item['main_title'] = self.main_title_text_box.text
+    self.item['link_title'] = self.link_title_text_box.text
+    self.item['URL'] = self.URL_text_box.text
     self.refresh()
 
   def reset_link_click(self, **event_args):
