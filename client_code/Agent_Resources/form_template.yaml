@@ -60,13 +60,13 @@ components:
           background: '', bold: false, underline: false}
         name: agent_link_title_text_box
         layout_properties: {grid_position: 'BOOTHG,VUUYNH'}
-      - type: TextArea
-        properties: {role: null, align: left, height: 59, tooltip: '', placeholder: Link URL,
+      - type: TextBox
+        properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Link URL,
           border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-          auto_expand: true, font: '', spacing_above: small, spacing_below: small,
-          italic: false, background: '', bold: false, underline: false}
+          font: '', spacing_above: small, type: url, spacing_below: small, italic: false,
+          background: '', bold: false, underline: false}
         name: agent_URL_text_area
-        layout_properties: {grid_position: 'REOYLI,WUMDKV'}
+        layout_properties: {grid_position: 'CSOFJZ,EVBCIK'}
       - type: RichText
         properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
           foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}',
@@ -148,13 +148,13 @@ components:
           background: '', bold: false, underline: false}
         name: client_link_title_text_box
         layout_properties: {grid_position: 'XLHSOI,VHGCRC'}
-      - type: TextArea
-        properties: {role: null, align: left, height: '', tooltip: '', placeholder: Link URL,
+      - type: TextBox
+        properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Link URL,
           border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-          auto_expand: true, font: '', spacing_above: small, spacing_below: small,
-          italic: false, background: '', bold: false, underline: false}
+          font: '', spacing_above: small, type: url, spacing_below: small, italic: false,
+          background: '', bold: false, underline: false}
         name: client_URL_text_area
-        layout_properties: {grid_position: 'PCXCSJ,GHJACD'}
+        layout_properties: {grid_position: 'UXKDGG,VOLQRM'}
       - type: RichText
         properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
           foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}',
@@ -189,8 +189,8 @@ components:
       layout_properties: {grid_position: 'EBWRVO,YDGNFZ'}
 - type: ColumnPanel
   properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: 'theme:Neutral'}
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"VWMTKH":30,"CGASYT":3,"DMNOBX":27}',
+    spacing_below: none, background: 'theme:Neutral'}
   name: card_2
   layout_properties: {grid_position: 'LHJQJU,HRAFFA', full_width_row: true}
   components:
@@ -212,10 +212,67 @@ components:
     components:
     - type: ColumnPanel
       properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '',
+        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
         spacing_below: small, background: 'theme:Neutral'}
       name: card_3
       layout_properties: {grid_position: 'YPAUOB,IJPSWK'}
+      components:
+      - type: Button
+        properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+          foreground: '', visible: true, text: Add Phone Number, font_size: null,
+          font: '', spacing_above: small, icon_align: left, spacing_below: small,
+          italic: false, background: '', bold: false, underline: false, icon: 'fa:plus'}
+        name: add_phone_number_button
+        layout_properties: {grid_position: 'HGKSFJ,YABWBY'}
+        event_bindings: {click: add_phone_number_button_click}
+      - type: ColumnPanel
+        properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+          wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+          spacing_below: small, background: 'theme:Neutral'}
+        name: add_phone_number_card
+        layout_properties: {grid_position: 'RMTDBE,NDWIDS'}
+        components:
+        - type: TextBox
+          properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Contact Name,
+            border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+            font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+            background: '', bold: false, underline: false}
+          name: contact_name_text_box
+          layout_properties: {grid_position: 'SVCUYD,JLFBLI'}
+        - type: TextBox
+          properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: 'Phone
+              #', border: '', enabled: true, foreground: '', visible: true, text: '',
+            font_size: null, font: '', spacing_above: small, type: tel, spacing_below: small,
+            italic: false, background: '', bold: false, underline: false}
+          name: phone_number_text_box
+          layout_properties: {grid_position: 'RUAEIY,SZUPXR'}
+        - type: RichText
+          properties: {role: null, align: right, tooltip: '', enable_slots: true,
+            border: '', foreground: '', visible: true, font_size: null, content: '{confirm}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}',
+            font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+            format: markdown}
+          name: rich_text_3
+          layout_properties: {grid_position: 'RENEHB,SUURKW'}
+          components:
+          - type: Link
+            properties: {role: null, url: '', align: left, tooltip: '', border: '',
+              foreground: '', visible: true, text: Confirm, font_size: null, wrap_on: mobile,
+              font: '', col_spacing: medium, spacing_above: small, icon_align: left,
+              col_widths: '', spacing_below: small, italic: false, background: '',
+              bold: false, underline: false, icon: 'fa:check'}
+            name: add_phone_number_confirm_link
+            layout_properties: {slot: confirm}
+            event_bindings: {click: add_phone_number_confirm_link_click}
+          - type: Link
+            properties: {role: null, url: '', align: left, tooltip: '', border: '',
+              foreground: '', visible: true, text: Cancel, font_size: null, wrap_on: mobile,
+              font: '', col_spacing: medium, spacing_above: small, icon_align: left,
+              col_widths: '', spacing_below: small, italic: false, background: '',
+              bold: false, underline: false, icon: 'fa:times'}
+            name: add_phone_number_cancel_link
+            layout_properties: {slot: reset}
+            event_bindings: {click: add_phone_number_cancel_link_click}
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
         visible: true, spacing_above: small, spacing_below: small, item_template: Agent_Resources.ItemTemplate_phone_numbers,
@@ -226,6 +283,13 @@ components:
     properties: {height: 32}
     name: spacer_3
     layout_properties: {grid_position: 'NXRLRL,CGASYT'}
+  - type: Link
+    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: FAQs, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+      italic: false, background: '', bold: false, underline: false, icon: ''}
+    name: link_1
+    layout_properties: {grid_position: 'NXRLRL,DMNOBX'}
 is_package: true
 component:
 - type: ColumnPanel

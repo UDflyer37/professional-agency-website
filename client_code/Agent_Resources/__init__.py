@@ -84,6 +84,29 @@ class Agent_Resources(Agent_ResourcesTemplate):
     else:
       self.phone_numbers_card.visible=False
 
+  def add_phone_number_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.add_phone_number_card.visible=True
+
+  def add_phone_number_cancel_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    self.contact_name_text_box.text = ""
+    self.phone_number_text_box.text = ""
+    self.add_phone_number_card.visible=False
+
+  def add_phone_number_confirm_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    n = self.phone_number_text_box.text
+    app_tables.phone_numbers.client_writable()
+    app_tables.phone_numbers.add_row(user=self.contact_name_text_box.text, 
+                                       phone= format(int(n[:-1]), ",").replace(",", "-") + n[-1])                        
+
+    get_open_form().content_panel.clear()
+    get_open_form().content_panel.add_component(Agent_Resources())
+
+
+
+
 
 
 
