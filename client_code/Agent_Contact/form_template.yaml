@@ -13,7 +13,7 @@ components:
   components:
   - type: ColumnPanel
     properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"GXDPIC":10}',
+      wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"GXDPIC":10}',
       spacing_below: small, background: 'theme:Gray 50'}
     name: email_template_card
     layout_properties: {grid_position: 'XQUDDH,MWMUFV'}

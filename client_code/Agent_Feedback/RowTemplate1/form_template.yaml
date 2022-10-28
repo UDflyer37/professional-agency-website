@@ -26,19 +26,28 @@ components:
   layout_properties: {column: NWGTDT}
   data_bindings:
   - {property: text, code: 'self.item[''question'']'}
-- type: Link
-  properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
-    spacing_above: small, icon_align: left_edge, col_widths: '', spacing_below: small,
-    italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
-  name: delete_link
-  layout_properties: {column: UENOEI}
-  event_bindings: {click: delete_link_click}
-- type: Label
-  properties: {}
-  name: label_4
+- type: RichText
+  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    foreground: '', visible: true, font_size: null, content: '{delete} {text}
+
+      ', font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+    format: markdown}
+  name: rich_text_1
   layout_properties: {column: ZHLLXE}
-  data_bindings:
-  - {property: text, code: 'self.item[''topic'']'}
+  components:
+  - type: Label
+    properties: {}
+    name: label_4
+    layout_properties: {column: ZHLLXE, slot: text}
+    data_bindings:
+    - {property: text, code: 'self.item[''topic'']'}
+  - type: Link
+    properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
+      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+      italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
+    name: delete_link
+    layout_properties: {column: ZHLLXE, slot: delete}
+    event_bindings: {click: delete_link_click}
 is_package: true
 component: []

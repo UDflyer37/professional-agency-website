@@ -25,6 +25,7 @@ class Appointment(AppointmentTemplate):
     self.repeating_panel_1.set_event_handler("x-select-time", self.select_time)
     self.selected_time = None
 
+  
   def select_time(self, time, **event_args):
     self.selected_time = time
   

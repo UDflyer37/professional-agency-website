@@ -1,13 +1,13 @@
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
+    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{"ZVQDBS":15,"CFMBQZ":30,"AKMHKX":15}',
+    spacing_below: none, background: ''}
 components:
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{"GXEFLF":25,"KOYXUM":50,"YHMDCH":25,"RBKYGC":50,"TXZFYB":15,"ICHVFP":15,"ZRIURE":5,"YECLKD":5}',
-    spacing_below: none, background: ''}
+    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
   name: card_2
   layout_properties: {grid_position: 'IKAXUA,OMFAYI', full_width_row: true}
   components:
@@ -25,55 +25,50 @@ components:
       underline: false, icon: ''}
     name: datetime_label
     layout_properties: {grid_position: 'FPXOAA,NHNNPQ'}
-  - type: Spacer
-    properties: {height: 17}
-    name: spacer_3
-    layout_properties: {grid_position: 'JNGUKB,JKMFXK'}
+- type: Spacer
+  properties: {height: 32}
+  name: spacer_2
+  layout_properties: {grid_position: 'PZBAUI,ZVQDBS'}
+- type: ColumnPanel
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"OZMAGJ":15,"BWSHYU":45,"XHSHMD":15,"CFRLBM":45}',
+    spacing_below: small, background: ''}
+  name: card_1
+  layout_properties: {grid_position: 'PZBAUI,CFMBQZ'}
+  components:
   - type: Label
-    properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: 'Name:', font_size: 16, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: true, background: '', bold: true,
       underline: false, icon: ''}
     name: label_3
-    layout_properties: {grid_position: 'HGAVHT,GXEFLF'}
-  - type: Spacer
-    properties: {height: 32}
-    name: spacer_4
-    layout_properties: {grid_position: 'HGAVHT,ZRIURE'}
+    layout_properties: {grid_position: 'UFUYWW,XHSHMD'}
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
       border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
       font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
       background: '', bold: false, underline: false}
     name: name_box
-    layout_properties: {grid_position: 'HGAVHT,KOYXUM'}
+    layout_properties: {grid_position: 'UFUYWW,CFRLBM'}
     data_bindings:
     - {property: text, code: 'self.item[''name'']', writeback: true}
-  - type: Spacer
-    properties: {height: 32}
-    name: spacer_1
-    layout_properties: {grid_position: 'HGAVHT,TXZFYB'}
   - type: Label
-    properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: 'Email:', font_size: 16, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: true, background: '', bold: true,
       underline: false, icon: ''}
     name: label_10
-    layout_properties: {grid_position: 'NFURDQ,YHMDCH'}
-  - type: Spacer
-    properties: {height: 32}
-    name: spacer_5
-    layout_properties: {grid_position: 'NFURDQ,YECLKD'}
+    layout_properties: {grid_position: 'TDWPVL,OZMAGJ'}
   - type: TextBox
     properties: {}
     name: email_box
-    layout_properties: {grid_position: 'NFURDQ,RBKYGC'}
+    layout_properties: {grid_position: 'TDWPVL,BWSHYU'}
     data_bindings:
     - {property: text, code: 'self.item[''email'']', writeback: true}
-  - type: Spacer
-    properties: {height: 32}
-    name: spacer_2
-    layout_properties: {grid_position: 'NFURDQ,ICHVFP'}
+- type: Spacer
+  properties: {height: 32}
+  name: spacer_1
+  layout_properties: {grid_position: 'PZBAUI,AKMHKX'}
 is_package: true
 component:
 - type: ColumnPanel
