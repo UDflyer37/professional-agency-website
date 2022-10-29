@@ -126,7 +126,7 @@ components:
     event_bindings: {click: settings_link_click}
   - type: ColumnPanel
     properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"WJRUOO":5,"GNICBY":55,"OHMERL":6,"UFNROA":54}',
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"WJRUOO":3,"GNICBY":57,"OHMERL":6,"UFNROA":54}',
       spacing_below: small, background: 'theme:Neutral'}
     name: settings_card
     layout_properties: {grid_position: 'DLAKTC,PZXPKU'}
@@ -144,7 +144,7 @@ components:
       layout_properties: {grid_position: 'JWLJMX,WJRUOO'}
     - type: ColumnPanel
       properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+        wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}',
         spacing_below: small, background: 'theme:Neutral'}
       name: card_3
       layout_properties: {grid_position: 'JWLJMX,GNICBY'}
@@ -305,7 +305,7 @@ components:
           event_bindings: {change: booking_num_box_change}
     - type: ColumnPanel
       properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"AAEWSP":5,"TOXHAD":55}',
+        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"AAEWSP":3,"TOXHAD":57}',
         spacing_below: small, background: 'theme:Neutral'}
       name: card_4
       layout_properties: {grid_position: 'FKFUWO,ILCZZT'}

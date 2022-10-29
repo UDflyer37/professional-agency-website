@@ -184,3 +184,4 @@ color_scheme:
   - {name: Gray 900, color: '#212121'}
   - {name: Black, color: '#000000'}
   - {name: Neutral, color: '#ECECEC'}
+  - {name: Gray 400, color: '#3333339e'}

@@ -648,8 +648,8 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
 input.anvil-component, textarea.anvil-component, .anvil-component select, .anvil-datepicker input {
   font-size: 16px;
   line-height: 1.5;
-  border: 2px solid %color:Primary 500% !important;
-  border-radius: 10px;
+  border-bottom: 1px solid %color:Gray 400% !important; 
+  border-radius: 3px;
   background-color: transparent;
   color: rgba(0,0,0,0.87);
   
