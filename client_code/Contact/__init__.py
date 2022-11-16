@@ -96,22 +96,3 @@ class Contact(ContactTemplate):
 
 
 
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
