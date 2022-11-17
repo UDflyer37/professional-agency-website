@@ -49,22 +49,36 @@ components:
       underline: false, icon: ''}
     name: label_8
     layout_properties: {column: NWGTDT, slot: text}
-- type: Link
-  properties: {}
-  name: email_link
+- type: RichText
+  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    foreground: '', visible: true, font_size: null, content: '{email}
+
+      ***
+
+      {label}', font: '', spacing_above: small, spacing_below: none, data: null, background: '',
+    format: markdown}
+  name: rich_text_4
   layout_properties: {column: NWGTDT}
-  event_bindings: {click: email_link_click}
-  data_bindings:
-  - {property: text, code: 'self.item[''user'']'}
-- type: Label
-  properties: {role: top-border, align: left, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
-  name: label_3
-  layout_properties: {column: NWGTDT}
-  data_bindings:
-  - {property: text, code: 'self.item[''question'']'}
+  components:
+  - type: Link
+    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+      spacing_above: small, icon_align: left, col_widths: '', spacing_below: none,
+      italic: false, background: '', bold: false, underline: false, icon: ''}
+    name: email_link
+    layout_properties: {column: NWGTDT, slot: email}
+    event_bindings: {click: email_link_click}
+    data_bindings:
+    - {property: text, code: 'self.item[''user'']'}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: label_3
+    layout_properties: {column: NWGTDT, slot: label}
+    data_bindings:
+    - {property: text, code: 'self.item[''question'']'}
 - type: RichText
   properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
     foreground: '', visible: true, font_size: null, content: '{delete}{text}', font: '',
