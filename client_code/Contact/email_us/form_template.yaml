@@ -1,0 +1,120 @@
+container:
+  type: HtmlTemplate
+  properties: {tooltip: '', background: '', foreground: '', border: '', visible: true,
+    role: null, html: ''}
+components:
+- type: ColumnPanel
+  properties: {role: card, col_widths: '{}'}
+  name: email_options_card
+  layout_properties: {slot: default}
+  components:
+  - type: Button
+    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Request Proof of Insurance Card, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: proof_of_insurance
+    layout_properties: {grid_position: 'DRJSWP,SNBPGR'}
+    event_bindings: {click: proof_of_insurance_click}
+  - type: Button
+    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: 'Request a Declaration
+
+        ', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+      italic: false, background: '', bold: false, underline: false, icon: ''}
+    name: declaration
+    layout_properties: {grid_position: 'DRJSWP,WCVYBU'}
+    event_bindings: {click: declaration_click}
+  - type: Button
+    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Request a Certificate of Insurance, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: certificate_of_insurance
+    layout_properties: {grid_position: 'DRJSWP,KWQBCF'}
+    event_bindings: {click: certificate_of_insurance_click}
+  - type: Button
+    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Request Verification of Insurance, font_size: null,
+      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: insurance_verification
+    layout_properties: {grid_position: 'DRJSWP,XXIXSK'}
+    event_bindings: {click: insurance_verification_click}
+  - type: Button
+    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Other, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: other
+    layout_properties: {grid_position: 'MYPKVJ,YCEEKB'}
+    event_bindings: {click: other_click}
+- type: ColumnPanel
+  properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
+  name: email_template_card
+  layout_properties: {slot: default}
+  components:
+  - type: RichText
+    properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+      foreground: '', visible: true, font_size: null, content: '#### **name:** {name}
+
+
+        #### **email address:** {email}
+
+
+        #### **topic:** {topic}
+
+
+        ### **Question / Comment:**
+
+        {question}', font: '', spacing_above: small, spacing_below: small, data: null,
+      background: '', format: markdown}
+    name: rich_text_1
+    layout_properties: {grid_position: 'NOIJUW,KFGEEA', full_width_row: false}
+    components:
+    - type: TextBox
+      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Name,
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false}
+      name: name_box
+      layout_properties: {slot: name, width: 872}
+    - type: TextBox
+      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Email,
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: small, type: email, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false}
+      name: email_box
+      layout_properties: {slot: email, width: 799}
+    - type: TextArea
+      properties: {role: null, align: left, height: '', tooltip: '', placeholder: 'What
+          is your question / comment?', border: '', enabled: true, foreground: '',
+        visible: true, text: '', font_size: null, auto_expand: true, font: '', spacing_above: small,
+        spacing_below: small, italic: false, background: '', bold: false, underline: false}
+      name: question_area
+      layout_properties: {slot: question, width: 950}
+    - type: DropDown
+      properties:
+        role: null
+        align: full
+        tooltip: ''
+        placeholder: select
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: null
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      name: topic_drop
+      layout_properties: {slot: topic}
+is_package: true

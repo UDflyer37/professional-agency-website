@@ -5,6 +5,7 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from . import 
 
 
 class Contact(ContactTemplate):
@@ -80,6 +81,7 @@ class Contact(ContactTemplate):
 
   def contact_link_click(self, **event_args):
     """This method is called when the link is clicked"""
+    alert(self.contact_us(item=self.item), large=True, buttons=[("Submit", True), ("Close", False)])
     if self.contact_card.visible:
         self.contact_card.visible = False
     else:
@@ -87,6 +89,7 @@ class Contact(ContactTemplate):
 
   def email_link_click(self, **event_args):
     """This method is called when the link is clicked"""
+    
     if self.email_card.visible:
         self.email_card.visible = False
         self.email_template_card.visible = False
