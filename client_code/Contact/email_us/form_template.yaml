@@ -4,19 +4,26 @@ container:
     role: null, html: ''}
 components:
 - type: ColumnPanel
-  properties: {role: card, col_widths: '{"SNBPGR":15,"WCVYBU":15,"KWQBCF":15,"XXIXSK":15}'}
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"SNBPGR":15,"WCVYBU":15,"KWQBCF":15,"XXIXSK":15}',
+    spacing_below: none, background: ''}
   name: email_options_card
   layout_properties: {slot: default}
   components:
-  - type: Image
-    properties: {role: null, vertical_align: top, height: 262, tooltip: '', border: '',
-      foreground: '', visible: true, display_mode: zoom_to_fill, spacing_above: small,
-      source: 'https://i0.wp.com/windowscustomization.com/wp-content/uploads/2018/09/paper-plane-animations.gif?fit=750%2C341&quality=80&strip=all&ssl=1',
-      spacing_below: large, background: '', horizontal_align: center}
-    name: image_1
-    layout_properties: {grid_position: 'WOBCFW,CSFAEU', full_width_row: true}
+  - type: RichText
+    properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
+      foreground: '', visible: true, font_size: null, content: '### How may we help
+        you today?', font: '', spacing_above: none, spacing_below: large, data: null,
+      background: '', format: markdown}
+    name: rich_text_1
+    layout_properties: {grid_position: 'UARQHE,YTUABX'}
+    components:
+    - type: Spacer
+      properties: {height: 32}
+      name: spacer_3
+      layout_properties: {}
   - type: Button
-    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+    properties: {role: primary-color, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Request Proof of Insurance Card, font_size: null,
       font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
@@ -24,7 +31,7 @@ components:
     layout_properties: {grid_position: 'DRJSWP,SNBPGR'}
     event_bindings: {click: proof_of_insurance_click}
   - type: Button
-    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+    properties: {role: primary-color, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: 'Request a Declaration
 
         ', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
@@ -33,7 +40,7 @@ components:
     layout_properties: {grid_position: 'DRJSWP,WCVYBU'}
     event_bindings: {click: declaration_click}
   - type: Button
-    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+    properties: {role: primary-color, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Request a Certificate of Insurance, font_size: null,
       font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
@@ -41,7 +48,7 @@ components:
     layout_properties: {grid_position: 'DRJSWP,KWQBCF'}
     event_bindings: {click: certificate_of_insurance_click}
   - type: Button
-    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+    properties: {role: primary-color, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Request Verification of Insurance, font_size: null,
       font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
@@ -49,19 +56,23 @@ components:
     layout_properties: {grid_position: 'DRJSWP,XXIXSK'}
     event_bindings: {click: insurance_verification_click}
   - type: Button
-    properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
+    properties: {role: primary-color, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Other, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: other
     layout_properties: {grid_position: 'MYPKVJ,YCEEKB'}
     event_bindings: {click: other_click}
+  - type: Spacer
+    properties: {height: 32}
+    name: spacer_4
+    layout_properties: {grid_position: 'SHUBLY,ISNWDC'}
 - type: ColumnPanel
   properties: {role: top-border, tooltip: '', border: '', foreground: '', visible: false,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"KUIKID":5,"OPYQXW":55,"ZAJAEO":10,"JSDVII":50,"DHOMJU":5,"ZXSERD":55}',
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"KUIKID":5,"OPYQXW":55,"ZAJAEO":5,"JSDVII":55,"DHOMJU":5,"ZXSERD":55}',
     spacing_below: small, background: ''}
   name: email_template_card
-  layout_properties: {slot: default}
+  layout_properties: {slot: default, grid_position: 'VYGUIV,AUFHKN'}
   components:
   - type: Spacer
     properties: {height: 46}
@@ -77,13 +88,13 @@ components:
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Name,
       border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-      font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+      font: '', spacing_above: small, type: text, spacing_below: large, italic: false,
       background: '', bold: false, underline: false}
     name: name_box
     layout_properties: {slot: name, width: 872, grid_position: 'FKRKXZ,OPYQXW'}
   - type: Label
     properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'email address:', font_size: 16, font: '', spacing_above: small,
+      visible: true, text: 'email:', font_size: 16, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_2
@@ -91,7 +102,7 @@ components:
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Email,
       border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-      font: '', spacing_above: small, type: email, spacing_below: small, italic: false,
+      font: '', spacing_above: small, type: email, spacing_below: large, italic: false,
       background: '', bold: false, underline: false}
     name: email_box
     layout_properties: {slot: email, width: 799, grid_position: 'CQILWV,JSDVII'}
@@ -116,7 +127,7 @@ components:
       font_size: null
       font: ''
       spacing_above: small
-      spacing_below: small
+      spacing_below: large
       italic: false
       background: ''
       bold: false
@@ -126,7 +137,7 @@ components:
     layout_properties: {slot: topic, grid_position: 'FERLUG,ZXSERD'}
   - type: Label
     properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Question / Comment:', font_size: 22, font: '', spacing_above: small,
+      visible: true, text: 'Question / Comment:', font_size: 22, font: '', spacing_above: large,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_4
@@ -138,4 +149,16 @@ components:
       spacing_below: small, italic: false, background: '', bold: false, underline: false}
     name: question_area
     layout_properties: {slot: question, width: 950, grid_position: 'QHOTKT,DQIWDH'}
+  - type: Spacer
+    properties: {height: 32}
+    name: spacer_2
+    layout_properties: {grid_position: 'RXMVLN,DXXURT'}
+  - type: Button
+    properties: {role: primary-color, align: full, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: ' Submit', font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: 'fa:paper-plane'}
+    name: submit_button
+    layout_properties: {grid_position: 'THXDNL,JZDMEG'}
+    event_bindings: {click: submit_button_click}
 is_package: true

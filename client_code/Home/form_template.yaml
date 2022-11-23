@@ -109,7 +109,7 @@ components:
             - Landlords Package (rental properties)
 
             - Vacant Property Insurance', font_size: null, font: '', spacing_above: small,
-          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          icon_align: left, spacing_below: large, italic: false, background: '', bold: false,
           underline: false, icon: ''}
         name: label_25
         layout_properties: {grid_position: 'LYXZAS,RAHHAV OZTUAK,ANDDTX'}
@@ -117,7 +117,7 @@ components:
       properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Auto Insurance
 
-          ', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+          ', font_size: null, font: '', spacing_above: large, icon_align: left, spacing_below: small,
         italic: false, background: '', bold: false, underline: false, icon: ''}
       name: label_7
       layout_properties: {grid_position: 'JQQNVE,QLEJUC'}
@@ -139,13 +139,13 @@ components:
       properties: {role: top-border, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: "We will be there when you need us. . . \n\n- Preferred\n\
           - Standard\n- Non-Standard / High Risk / SR22 Bonds", font_size: null, font: '',
-        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        spacing_above: small, icon_align: left, spacing_below: large, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: label_26
       layout_properties: {grid_position: 'UIYOVJ,JWJIJV'}
     - type: Label
       properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'Toys, Toys, Toys. . .', font_size: null, font: '', spacing_above: small,
+        visible: true, text: 'Toys, Toys, Toys. . .', font_size: null, font: '', spacing_above: large,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: label_13
@@ -166,14 +166,14 @@ components:
         visible: true, text: 'That new boat sure is nice!  Can I borrow it this weekend?
 
 
-          ', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+          ', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: large,
         italic: false, background: '', bold: false, underline: false, icon: ''}
       name: label_27
       layout_properties: {grid_position: 'OLKTFA,ALZFJW'}
     - type: Label
       properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: Umbrella (excess liability) Insurance, font_size: null,
-        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        font: '', spacing_above: large, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: label_28
       layout_properties: {grid_position: 'KFRDUN,AQODBB'}
@@ -197,7 +197,7 @@ components:
       properties: {role: top-border, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Don''t get soaked in court over an accident, use your
           Umbrella.', font_size: null, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        spacing_below: large, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: label_30
       layout_properties: {grid_position: 'XDZRFW,UWZPTF'}
@@ -205,7 +205,7 @@ components:
       properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Business Insurance
 
-          ', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+          ', font_size: null, font: '', spacing_above: large, icon_align: left, spacing_below: small,
         italic: false, background: '', bold: false, underline: false, icon: ''}
       name: label_34
       layout_properties: {grid_position: 'XRDVLZ,WEYLVA'}
