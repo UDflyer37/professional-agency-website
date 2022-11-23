@@ -44,7 +44,7 @@ components:
       layout_properties: {slot: link}
   - type: GoogleMap
     properties: {scale_control: true, draggable_cursor: auto, heading: 0, fullscreen_control: true,
-      dragging_cursor: auto, disable_double_click_zoom: false, height: 341, zoom: 2,
+      dragging_cursor: auto, disable_double_click_zoom: false, height: 440, zoom: 2,
       map_type_control: true, gesture_handling: auto, street_view_control: true, visible: true,
       scroll_wheel: true, max_zoom: 18, draggable: true, min_zoom: 0, spacing_above: small,
       keyboard_shortcuts: true, spacing_below: small, background_color: '', rotate_control: true,

@@ -4,10 +4,17 @@ container:
     role: null, html: ''}
 components:
 - type: ColumnPanel
-  properties: {role: card, col_widths: '{}'}
+  properties: {role: card, col_widths: '{"SNBPGR":15,"WCVYBU":15,"KWQBCF":15,"XXIXSK":15}'}
   name: email_options_card
   layout_properties: {slot: default}
   components:
+  - type: Image
+    properties: {role: null, vertical_align: top, height: 262, tooltip: '', border: '',
+      foreground: '', visible: true, display_mode: zoom_to_fill, spacing_above: small,
+      source: 'https://i0.wp.com/windowscustomization.com/wp-content/uploads/2018/09/paper-plane-animations.gif?fit=750%2C341&quality=80&strip=all&ssl=1',
+      spacing_below: large, background: '', horizontal_align: center}
+    name: image_1
+    layout_properties: {grid_position: 'WOBCFW,CSFAEU', full_width_row: true}
   - type: Button
     properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Request Proof of Insurance Card, font_size: null,
@@ -50,71 +57,85 @@ components:
     layout_properties: {grid_position: 'MYPKVJ,YCEEKB'}
     event_bindings: {click: other_click}
 - type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+  properties: {role: top-border, tooltip: '', border: '', foreground: '', visible: false,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"KUIKID":5,"OPYQXW":55,"ZAJAEO":10,"JSDVII":50,"DHOMJU":5,"ZXSERD":55}',
     spacing_below: small, background: ''}
   name: email_template_card
   layout_properties: {slot: default}
   components:
-  - type: RichText
-    properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-      foreground: '', visible: true, font_size: null, content: '#### **name:** {name}
-
-
-        #### **email address:** {email}
-
-
-        #### **topic:** {topic}
-
-
-        ### **Question / Comment:**
-
-        {question}', font: '', spacing_above: small, spacing_below: small, data: null,
-      background: '', format: markdown}
-    name: rich_text_1
-    layout_properties: {grid_position: 'NOIJUW,KFGEEA', full_width_row: false}
-    components:
-    - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Name,
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false}
-      name: name_box
-      layout_properties: {slot: name, width: 872}
-    - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Email,
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: small, type: email, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false}
-      name: email_box
-      layout_properties: {slot: email, width: 799}
-    - type: TextArea
-      properties: {role: null, align: left, height: '', tooltip: '', placeholder: 'What
-          is your question / comment?', border: '', enabled: true, foreground: '',
-        visible: true, text: '', font_size: null, auto_expand: true, font: '', spacing_above: small,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false}
-      name: question_area
-      layout_properties: {slot: question, width: 950}
-    - type: DropDown
-      properties:
-        role: null
-        align: full
-        tooltip: ''
-        placeholder: select
-        border: ''
-        enabled: true
-        foreground: ''
-        items: []
-        visible: true
-        font_size: null
-        font: ''
-        spacing_above: small
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: true
-      name: topic_drop
-      layout_properties: {slot: topic}
+  - type: Spacer
+    properties: {height: 46}
+    name: spacer_1
+    layout_properties: {grid_position: 'LEZFXG,EEGKJS'}
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'name:', font_size: 16, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_1
+    layout_properties: {grid_position: 'FKRKXZ,KUIKID'}
+  - type: TextBox
+    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Name,
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+      font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false}
+    name: name_box
+    layout_properties: {slot: name, width: 872, grid_position: 'FKRKXZ,OPYQXW'}
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'email address:', font_size: 16, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_2
+    layout_properties: {grid_position: 'CQILWV,ZAJAEO'}
+  - type: TextBox
+    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Email,
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+      font: '', spacing_above: small, type: email, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false}
+    name: email_box
+    layout_properties: {slot: email, width: 799, grid_position: 'CQILWV,JSDVII'}
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'topic:', font_size: 16, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_3
+    layout_properties: {grid_position: 'FERLUG,DHOMJU'}
+  - type: DropDown
+    properties:
+      role: null
+      align: full
+      tooltip: ''
+      placeholder: select
+      border: ''
+      enabled: true
+      foreground: ''
+      items: []
+      visible: true
+      font_size: null
+      font: ''
+      spacing_above: small
+      spacing_below: small
+      italic: false
+      background: ''
+      bold: false
+      underline: false
+      include_placeholder: true
+    name: topic_drop
+    layout_properties: {slot: topic, grid_position: 'FERLUG,ZXSERD'}
+  - type: Label
+    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: 'Question / Comment:', font_size: 22, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_4
+    layout_properties: {grid_position: 'ZKVJQS,LQTFJY'}
+  - type: TextArea
+    properties: {role: null, align: left, height: '', tooltip: '', placeholder: 'What
+        is your question / comment?', border: '', enabled: true, foreground: '', visible: true,
+      text: '', font_size: null, auto_expand: true, font: '', spacing_above: small,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false}
+    name: question_area
+    layout_properties: {slot: question, width: 950, grid_position: 'QHOTKT,DQIWDH'}
 is_package: true
