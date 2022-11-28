@@ -5,14 +5,14 @@ container:
     background: ''}
 components:
 - type: ColumnPanel
-  properties: {role: start-header, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: home-header, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: ''}
   name: card_9
   layout_properties: {grid_position: 'HPVAWB,DTDLEA', full_width_row: true}
   components:
   - type: Spacer
-    properties: {visible: true, spacing_above: small, spacing_below: small, height: '190',
+    properties: {visible: true, spacing_above: small, spacing_below: small, height: 514,
       tooltip: ''}
     name: spacer_7
     layout_properties: {grid_position: 'JTRWDS,VPQBMV'}

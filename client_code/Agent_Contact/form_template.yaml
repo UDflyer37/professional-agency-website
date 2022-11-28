@@ -7,14 +7,14 @@ components:
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"MWMUFV":70}',
-    spacing_below: small, background: 'theme:Gray 50'}
+    spacing_below: small, background: ''}
   name: email_card
   layout_properties: {grid_position: 'KKQDFN,PGRVHT', full_width_row: true}
   components:
   - type: ColumnPanel
     properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"GXDPIC":10}',
-      spacing_below: small, background: 'theme:Gray 50'}
+      spacing_below: small, background: ''}
     name: email_template_card
     layout_properties: {grid_position: 'XQUDDH,MWMUFV'}
     components:

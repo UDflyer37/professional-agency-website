@@ -64,12 +64,12 @@ components:
   layout_properties: {grid_position: 'FIHZZD,OMCMCQ', full_width_row: true}
   components:
   - type: RichText
-    properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+    properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
       foreground: '', visible: true, font_size: 18, content: '{arrow_1} {day_label}
         , {date_label} {arrow_2}', font: '', spacing_above: small, spacing_below: small,
       data: null, background: '', format: markdown}
     name: rich_text_1
-    layout_properties: {grid_position: 'VDHQMO,VQKQLH'}
+    layout_properties: {grid_position: 'IUHDVF,LMDJLO'}
     components:
     - type: Button
       properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
@@ -102,7 +102,7 @@ components:
       name: date_label
       layout_properties: {slot: date_label}
   - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
       visible: false, text: No available slots on this day., font_size: null, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: true,
       background: '', bold: false, underline: false, icon: ''}
@@ -113,7 +113,9 @@ components:
     name: spacer_1
     layout_properties: {grid_position: 'KZSKJI,DXSZSA'}
   - type: RepeatingPanel
-    properties: {item_template: Appointment.ItemTemplate2}
+    properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
+      visible: true, spacing_above: small, spacing_below: large, item_template: Appointment.ItemTemplate2,
+      background: ''}
     name: repeating_panel_1
     layout_properties: {grid_position: 'KZSKJI,CWXFEA'}
   - type: Spacer
@@ -122,7 +124,7 @@ components:
     layout_properties: {grid_position: 'KZSKJI,UIKJBF'}
   - type: Button
     properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Schedule, font_size: 16, font: '', spacing_above: small,
+      foreground: '', visible: true, text: Schedule, font_size: 16, font: '', spacing_above: large,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: 'fa:calendar-plus-o'}
     name: book_button
