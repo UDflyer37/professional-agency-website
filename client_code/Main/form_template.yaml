@@ -146,3 +146,7 @@ components:
     name: about_link
     layout_properties: {}
     event_bindings: {click: about_link_click}
+- type: Timer
+  properties: {interval: 15}
+  name: timer_1
+  event_bindings: {tick: timer_1_tick}

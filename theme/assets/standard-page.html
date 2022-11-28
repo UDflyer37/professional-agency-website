@@ -12,6 +12,9 @@
       <div class="placeholder anvil-designer-only" anvil-if-slot-empty="nav-right" anvil-drop-here>Drop a FlowPanel here</div>
     </div>
     <div style="clear:both"></div>
+    <div class="scroll-left" anvil-slot="scroll-left">     
+      <p id="scroll-text">It's about Trust, Service, and You!</p>
+    </div>
   </div>
 
   <div class="nav-holder">
@@ -24,11 +27,6 @@
     <div class="content">
       <div anvil-slot-repeat="default" class="anvil-measure-this"></div>
       <div class="placeholder drop-here" anvil-if-slot-empty="default" anvil-drop-slot="default">Drop a ColumnPanel here.</div>
-      
-      <div class="scroll-left">
-        <p>Scroll left... </p>
-      </div>
-
     </div>
   </div>
   <div class="nav-shield"></div>
@@ -65,4 +63,8 @@
       $('.nav-shield').trigger('click');
     }
   });
+
+  function change_text(message){
+    document.getElementById("scroll-text").innerHTML = message;
+  }
 </script>

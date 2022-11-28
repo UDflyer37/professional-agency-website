@@ -60,6 +60,11 @@ class Main(MainTemplate):
     open_form('Main_AgentPortal')
     return
 
+  def timer_1_tick(self, **event_args):
+    """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
+    self.call_js('change_text',"test")
+
+
 
 
 
