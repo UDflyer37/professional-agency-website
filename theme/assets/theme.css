@@ -2,9 +2,6 @@
  This CSS implements the Material Design look and feel for Anvil apps.
  **/
 
-.mobileHide
-{ display: none;}
-
 /* Stop panel-cols cutting off drop shadows */
 .anvil-panel-col {
   padding-bottom: 10px;
@@ -844,3 +841,13 @@ https://stackoverflow.com/questions/30533055/calculating-shadow-values-for-all-m
  transform: translateX(-100%); 
  }
 }
+
+
+@media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 480px){  .app-bar { display: none;}}
+
+.nav-shield { display: none;}
+@media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 480px){ .nav-shield { display: inline;}}

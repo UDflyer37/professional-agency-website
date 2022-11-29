@@ -1,13 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" rel="preload" as="font" crossorigin="anonymous">
-<head>
-<style type="text/css">
-   .mobileHide { display: inline;}
-   /* Smartphone Portrait and Landscape */
-   @media only screen
-   and (min-device-width : 320px)
-   and (max-device-width : 480px){  .mobileHide { display: none;}}
-</style>
-</head>
+
+
 <div class="structure">
   <div class="app-bar" anvil-drop-container=".anvil-container" anvil-drop-redirect=".placeholder">
     <a class="sidebar-toggle" anvil-if-slot-empty="top-left-btn" anvil-hide-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
@@ -20,7 +13,7 @@
       <div class="placeholder anvil-designer-only" anvil-if-slot-empty="nav-right" anvil-drop-here>Drop a FlowPanel here</div>
     </div>
     <div style="clear:both"></div>
-    <div class="mobileHide" class="scroll-left" anvil-slot="scroll-left">     
+    <div class="scroll-left" anvil-slot="scroll-left">     
       <p id="scroll-text">It's about Trust, Service, and You!</p>
     </div>
   </div>
