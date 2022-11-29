@@ -49,6 +49,14 @@ db_schema:
     - name: URL
       admin_ui: {width: 200}
       type: string
+  table_10:
+    title: Table 10
+    client: none
+    server: full
+    columns:
+    - name: quotes
+      admin_ui: {width: 200}
+      type: string
   users:
     title: Users
     client: none
