@@ -2,6 +2,9 @@
  This CSS implements the Material Design look and feel for Anvil apps.
  **/
 
+.mobileHide
+{ display: none;}
+
 /* Stop panel-cols cutting off drop shadows */
 .anvil-panel-col {
   padding-bottom: 10px;
@@ -361,7 +364,7 @@ a:hover, a:active {
 .app-bar {
   min-height: 56px;
   line-height: 40px;
-  padding: 0 16px 0 72px;
+  padding: 0 0px 0 0px;
 
   font-size: 20px;
   font-weight: 500;

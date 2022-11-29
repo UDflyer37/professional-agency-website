@@ -4,6 +4,7 @@ import anvil.users
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
+import random
 from anvil.tables import app_tables
 from ..Home import Home
 from ..About import About
@@ -19,6 +20,10 @@ class Main(MainTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.content_panel.add_component(Home(), full_width_row=True)
+
+    app_tables.quotes.client_readable()
+    global quotes
+    quotes = [r['quotes'] for r in app_tables.quotes.search()]
 
     
   def contact_link_click(self, **event_args):
@@ -62,7 +67,8 @@ class Main(MainTemplate):
 
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
-    self.call_js('change_text',"test")
+    quote = random.choice(quotes)
+    self.call_js('change_text', quote)
 
 
 
