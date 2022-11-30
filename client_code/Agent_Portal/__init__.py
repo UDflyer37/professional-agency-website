@@ -10,5 +10,10 @@ class Agent_Portal(Agent_PortalTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    
+
+    self.quotes()
+
+  def quotes(self, **event_args):
+      app_tables.quotes.client_readable()
+      self.repeating_panel_1.items=app_tables.quotes.search(tables.order_by("quotes"))
     

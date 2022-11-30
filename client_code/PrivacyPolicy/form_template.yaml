@@ -1,0 +1,6 @@
+container:
+  type: HtmlTemplate
+  properties: {tooltip: '', background: '', foreground: '', border: '', visible: true,
+    role: null, html: '@theme:Privacy Policy.html'}
+components: []
+is_package: true

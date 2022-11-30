@@ -4,6 +4,7 @@ unique_ids:
     Appointment: '1610992921484944725109324.6411'
     Contact.email_us: '166921957877327225114636.11732'
     FAQ: '1611343600345104639233622.2579'
+    PrivacyPolicy: '1669842143983996090049607.7549'
     Main: 25QM4X7IQAMZX3NT2QG6YF4H765RS6LJ
     Agent_Contact: '1666295216189476290246654.4505'
     Home.RowTemplate1: '1609972276240545035633700.08923'
@@ -27,10 +28,12 @@ unique_ids:
     Agent_Resources.ItemTemplate_FAQ: '1666982068167887685331981.0203'
     Agent_Appointments.RowTemplate1: '1666193121689831349778558.0852'
     Home: '1610054963105726956313784.9717'
+    Agent_Portal.ItemTemplate5: '1669844046825878553395273.1768'
   modules: {}
   server_modules:
     ServerModule1: '1610986101378701548628049.5767'
   assets:
+    Privacy Policy.html: '1669842694972992826884453.4431'
     home-img.jpg: '1611168218704131373918969.87527'
     otto_and_associates_backgrond_logo_white_background.png: '1667010167077788243680784.2043'
     otto_and_associates_logo.png: '1665776464332119405509888.48209'

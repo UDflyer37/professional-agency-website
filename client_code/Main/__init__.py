@@ -13,6 +13,7 @@ from ..Appointment import Appointment
 from ..FAQ import FAQ
 from ..Agent_Portal import Agent_Portal
 from ..Main_AgentPortal import Main_AgentPortal
+from ..PrivacyPolicy import PrivacyPolicy
 
 
 class Main(MainTemplate):
@@ -64,6 +65,10 @@ class Main(MainTemplate):
     anvil.users.login_with_form()
     open_form('Main_AgentPortal')
     return
+
+  def privacy_policy_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    alert(PrivacyPolicy(), large=True, title="")
 
   def timer_1_tick(self, **event_args):
     """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""

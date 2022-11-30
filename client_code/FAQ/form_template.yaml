@@ -19,12 +19,18 @@ components:
     name: label_2
     layout_properties: {grid_position: 'CLQKUW,ZCLXJL'}
   - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Primary
-        500', visible: true, text: find answers to frequently asked questions, font_size: 18,
+    properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Black',
+      visible: true, text: find answers to frequently asked questions, font_size: 18,
       font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true,
       background: '', bold: false, underline: false, icon: ''}
     name: label_1
     layout_properties: {grid_position: 'FPXOAA,NHNNPQ'}
+  - type: RichText
+    properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
+      foreground: '', visible: true, font_size: null, content: '***', font: '', spacing_above: small,
+      spacing_below: small, data: null, background: '', format: markdown}
+    name: rich_text_1
+    layout_properties: {grid_position: 'DQFELN,QXRTLK'}
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
       visible: true, spacing_above: large, spacing_below: small, item_template: FAQ.ItemTemplate4,
