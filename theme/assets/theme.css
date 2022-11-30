@@ -359,14 +359,31 @@ a:hover, a:active {
 
 /* Components: App Bar */
 .app-bar {
-  min-height: 56px;
+  min-height: 40px;
+  line-height: 40px;
+  padding: 0 100px 0 100px;
+
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  background-color: %color:Primary 500%;
+  
+  z-index: 1;
+  /* 4dp  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);  */
+}
+
+.scroll-left{
+  min-height: 40px;
   line-height: 40px;
   padding: 0 0px 0 0px;
 
   font-size: 20px;
   font-weight: 500;
   color: white;
-  background-color: %color:Primary 500%;
+  background-color:  %color:Primary 500%; 
+  vertical-align: text-top;
+  /*background: rgb(2,0,36);
+  background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(83,150,188,0.4542191876750701) 55%, rgba(83,150,188,1) 100%);*/
   
   z-index: 1;
   /* 4dp  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);  */
@@ -845,9 +862,9 @@ https://stackoverflow.com/questions/30533055/calculating-shadow-values-for-all-m
 
 @media only screen
   and (min-device-width : 320px)
-  and (max-device-width : 480px){  .app-bar { display: none;}}
+  and (max-device-width : 480px){ .app-bar { display: none;}}
 
 .nav-shield { display: none;}
 @media only screen
   and (min-device-width : 320px)
-  and (max-device-width : 480px){ .nav-shield { display: inline;}}
+  and (max-device-width : 480px){ .left-nav { display: inline;}}
