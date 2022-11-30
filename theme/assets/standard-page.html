@@ -3,9 +3,9 @@
 
 <div class="structure">
   <div class="app-bar" anvil-drop-container=".anvil-container" anvil-drop-redirect=".placeholder">
-    <a class="sidebar-toggle" anvil-if-slot-empty="top-left-btn" anvil-hide-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
     <a class="sidebar-toggle anvil-designer-only" anvil-if-slot-empty="top-left-btn" anvil-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn"><i class="fa fa-blank"></i></a>
     <div class="top-left-btn" anvil-slot="top-left-btn"></div>
+    
     <div class="title" anvil-slot="title">
       <div class="placeholder anvil-designer-only" anvil-if-slot-empty="title" anvil-drop-here>Drop title here</div>
     </div>
@@ -15,9 +15,12 @@
     <div style="clear:both"></div>
   </div>
   
+  
+  <a class="sidebar-toggle" anvil-if-slot-empty="top-left-btn" anvil-hide-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
   <div class="scroll-left" anvil-slot="scroll-left">     
     <p id="scroll-text">It's about Trust, Service, and You!</p>
   </div>
+ 
   
   <div class="nav-holder">
     <div class="left-nav anvil-measure-this" anvil-slot-repeat="left-nav" anvil-drop-container=">.anvil-container">
@@ -30,7 +33,7 @@
       <div class="placeholder drop-here" anvil-if-slot-empty="default" anvil-drop-slot="default">Drop a ColumnPanel here.</div>
     </div>
   </div>
-  <div class="nav-shield"></div>
+  <div class="nav-shield"></div> 
 </div>
 <div anvil-drop-default anvil-drop-redirect=".placeholder" anvil-drop-container=".anvil-container"></div>
  
