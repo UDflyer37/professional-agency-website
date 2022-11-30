@@ -17,7 +17,7 @@ components:
     layout_properties: {grid_position: 'RKUUQE,QTWHXZ'}
   - type: Label
     properties: {role: headline, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Let US Help YOU. ', font_size: null, font: '', spacing_above: small,
+      visible: true, text: Let US Help YOU., font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: label_1

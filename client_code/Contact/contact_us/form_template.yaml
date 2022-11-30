@@ -31,7 +31,7 @@ components:
     components:
     - type: Link
       properties: {role: null, url: 'https://www.google.com/maps/place/Otto+%26+Associates/@39.8403228,-84.1403978,17z/data=!3m1!4b1!4m5!3m4!1s0x883f7d7bc54fefab:0xb2db77e5b8f31d3a!8m2!3d39.8403268!4d-84.1382979',
-        align: left, tooltip: '', border: '', foreground: '', visible: true, text: '4760I
+        align: center, tooltip: '', border: '', foreground: '', visible: true, text: '4760I
           Fishburg Rd.  Huber Heights, OH.  45424', font_size: 18, wrap_on: mobile,
         font: '', col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
         spacing_below: small, italic: false, background: '', bold: false, underline: false,
