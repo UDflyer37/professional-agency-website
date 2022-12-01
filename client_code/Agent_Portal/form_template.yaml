@@ -12,7 +12,7 @@ components:
   layout_properties: {grid_position: 'HPVAWB,DTDLEA', full_width_row: true}
   components:
   - type: Spacer
-    properties: {visible: true, spacing_above: small, spacing_below: small, height: 514,
+    properties: {visible: true, spacing_above: small, spacing_below: small, height: 354,
       tooltip: ''}
     name: spacer_7
     layout_properties: {grid_position: 'JTRWDS,VPQBMV'}
@@ -30,6 +30,10 @@ components:
       background: '', bold: false, underline: false, icon: ''}
     name: label_38
     layout_properties: {grid_position: 'CEHQDB,ZDKAYM'}
+  - type: Spacer
+    properties: {height: 42}
+    name: spacer_2
+    layout_properties: {grid_position: 'HIVUZO,EXMTLF'}
 - type: Spacer
   properties: {height: 32}
   name: spacer_1
@@ -46,12 +50,56 @@ components:
       foreground: '', visible: true, text: Add New Quote, font_size: 22, font: '',
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: 'fa:plus'}
-    name: new_quote_button
+    name: add_button
     layout_properties: {grid_position: 'VGQSSS,NXXYZR'}
+    event_bindings: {click: add_button_click}
+- type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: false,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
+  name: add_card
+  layout_properties: {grid_position: 'ESGMRQ,ITHPPQ'}
+  components:
+  - type: TextBox
+    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Enter New Quote for Scrolling Banner,
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+      font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false}
+    name: title_text_box
+    layout_properties: {grid_position: 'JGAHRK,TUHHFJ'}
+  - type: RichText
+    properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
+      foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}',
+      font: '', spacing_above: small, spacing_below: small, data: null, background: '',
+      format: markdown}
+    name: rich_text_1
+    layout_properties: {grid_position: 'GDBGYN,FSESAS'}
+    components:
+    - type: Link
+      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: confirm, font_size: null, wrap_on: mobile, font: '',
+        col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
+        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:check'}
+      name: confirm_link
+      layout_properties: {slot: confirm}
+      event_bindings: {click: confirm_link_click}
+    - type: Link
+      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: cancel, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+        spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
+        italic: false, background: '', bold: false, underline: false, icon: 'fa:times'}
+      name: cancel_link
+      layout_properties: {slot: reset}
+      event_bindings: {click: cancel_link_click}
 - type: RepeatingPanel
   properties: {item_template: Agent_Portal.ItemTemplate5}
   name: repeating_panel_1
   layout_properties: {grid_position: 'VLDTUE,VBJGAU'}
+- type: Spacer
+  properties: {height: 32}
+  name: spacer_3
+  layout_properties: {grid_position: 'KBFRLW,YQIOSQ'}
 is_package: true
 component:
 - type: ColumnPanel

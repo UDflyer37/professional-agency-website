@@ -13,23 +13,24 @@ class ItemTemplate5(ItemTemplate5Template):
     self.init_components(**properties)
 
   def refresh(self, **event_args):
-    app_tables.client_resources.client_readable()
+    app_tables.quotes.client_readable()
     self.parent.items=app_tables.quotes.search(tables.order_by("quotes"))
 
 
   def edit_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     if self.text_card.visible==True:
-        self.text_card.visible=False
+      self.text_card.visible=False
     else:
-        self.text_card.visible=True
-        self.main_title_text_box.text = self.item['quotes']
+      self.text_card.visible=True
+      self.refresh_data_bindings()
 
   def confirm_link_click(self, **event_args):
     """This method is called when the link is clicked"""
-    app_tables.agent_resources.client_writable()
+    app_tables.quotes.client_writable()
     self.item['quotes'] = self.main_title_text_box.text
     self.refresh()
+    get_open_form().refresh()
 
   def reset_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -38,8 +39,9 @@ class ItemTemplate5(ItemTemplate5Template):
   def delete_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     save_clicked = alert("Are you sure you want to delete this resource?",
-                                                                        large=False,
-                                                                        buttons=[("Delete", True), ("Cancel", False)])
+                        large=False,
+                        buttons=[("Delete", True), ("Cancel", False)])
     if save_clicked:
-        self.item.delete()
-        self.refresh()
+      self.item.delete()
+      self.refresh()
+      get_open_form().refresh()

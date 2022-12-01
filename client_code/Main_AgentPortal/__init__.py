@@ -4,6 +4,7 @@ import anvil.users
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
+import random
 from anvil.tables import app_tables
 from ..Agent_Feedback import Agent_Feedback
 from ..Agent_Resources import Agent_Resources
@@ -18,6 +19,12 @@ class Main_AgentPortal(Main_AgentPortalTemplate):
     self.init_components(**properties)
     self.content_panel.add_component(Agent_Portal(), full_width_row=True)
 
+    self.refresh()
+
+  def refresh(self, **event_args):
+    app_tables.quotes.client_readable()
+    global quotes
+    quotes = [r['quotes'] for r in app_tables.quotes.search()]
 
   def resources_link_click(self, **event_args):
     """This method is called when the link is clicked"""
@@ -61,3 +68,7 @@ class Main_AgentPortal(Main_AgentPortalTemplate):
     """This method is called when the link is clicked"""
     self.appointments_link_click()
 
+  def timer_1_tick(self, **event_args):
+    """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
+    quote = random.choice(quotes)
+    self.call_js('change_text', quote)

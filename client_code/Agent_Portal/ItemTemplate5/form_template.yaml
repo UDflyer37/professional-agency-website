@@ -1,8 +1,8 @@
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: small, background: ''}
+    wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}', spacing_below: small,
+    background: ''}
 components:
 - type: RichText
   properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
@@ -12,13 +12,13 @@ components:
   layout_properties: {grid_position: 'QHSIIC,DXCBJR'}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"RAQDWE":45,"HTEXQI":15}',
     spacing_below: small, background: ''}
   name: label_card
-  layout_properties: {grid_position: 'WSQUPN,RQLGTJ'}
+  layout_properties: {grid_position: 'KXAJKC,YDHAKD'}
   components:
   - type: Label
-    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
+    properties: {role: text, align: center, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: ''}
@@ -36,8 +36,8 @@ components:
     event_bindings: {click: edit_link_click}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: false,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: small, background: ''}
+    wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}', spacing_below: small,
+    background: ''}
   name: text_card
   layout_properties: {grid_position: 'YBBEMF,ALSDYF'}
   components:
