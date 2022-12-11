@@ -881,7 +881,7 @@ https://stackoverflow.com/questions/30533055/calculating-shadow-values-for-all-m
   and (min-device-width : 320px)
   and (max-device-width : 480px){ .app-bar { display: none;}}
 
-.structure .nav-holder .left-nav { display: inline;}
+.structure .nav-holder .left-nav { display: none;}
 .sidebar-toggle { display: none;}
 @media only screen
   and (min-device-width : 320px)
