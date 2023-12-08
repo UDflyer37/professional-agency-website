@@ -1,5 +1,6 @@
 from ._anvil_designer import AppointmentTemplate
 from anvil import *
+import stripe.checkout
 import anvil.users
 import anvil.server
 import anvil.tables as tables

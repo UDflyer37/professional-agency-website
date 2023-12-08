@@ -10,6 +10,9 @@ services:
   client_config: {allow_signup: false, enable_automatically: false, use_email: true,
     confirm_email: false, use_token: false, require_secure_passwords: false}
   server_config: {user_table: users}
+- source: /runtime/services/stripe.yml
+  client_config: {}
+  server_config: {}
 startup: {type: form, module: Main}
 package_name: Simple_Website_Template
 allow_embedding: false

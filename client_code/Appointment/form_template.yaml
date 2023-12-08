@@ -46,8 +46,10 @@ components:
       date: '', min_date: '', background: 'theme:Gray 100', bold: false, underline: false,
       format: ''}
     name: date_picker_1
-    layout_properties: {grid_position: 'IPVHSW,MLUNXK'}
+    layout_properties: {grid_position: 'IPVHSW,MLUNXK', full_width_row: false}
     event_bindings: {change: date_picker_1_change}
+    data_bindings:
+    - {property: date, code: '', writeback: false}
   - type: Spacer
     properties: {height: 32}
     name: spacer_4

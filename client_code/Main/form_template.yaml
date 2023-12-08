@@ -225,7 +225,7 @@ components:
     layout_properties: {grid_position: 'RNWMWJ,VFRXBI'}
     event_bindings: {click: agent_login_click}
 - type: FlowPanel
-  properties: {role: null, vertical_align: top, spacing: none, align: center, tooltip: '',
+  properties: {role: null, vertical_align: bottom, spacing: tiny, align: center, tooltip: '',
     border: '', foreground: '', visible: true, spacing_above: none, spacing_below: none,
     background: ''}
   name: navbar_links

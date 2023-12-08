@@ -1,5 +1,6 @@
 from ._anvil_designer import RowTemplate1Template
 from anvil import *
+import stripe.checkout
 import anvil.server
 import anvil.users
 import anvil.tables as tables
