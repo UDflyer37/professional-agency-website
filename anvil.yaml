@@ -1,176 +1,173 @@
-dependencies: []
-services:
-- source: /runtime/services/tables.yml
-  client_config: {}
-  server_config: {}
-- source: /runtime/services/anvil/email.yml
-  client_config: {}
-  server_config: {}
-- source: /runtime/services/anvil/users.yml
-  client_config: {allow_signup: false, enable_automatically: false, use_email: true,
-    confirm_email: false, use_token: false, require_secure_passwords: false}
-  server_config: {user_table: users}
-- source: /runtime/services/stripe.yml
-  client_config: {}
-  server_config: {}
-startup: {type: form, module: Main}
-package_name: Simple_Website_Template
 allow_embedding: false
-name: Otto & Associates
-runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox,
-  server_spec: null}
-metadata: {logo_img: 'asset:otto_and_associates_logo.png', title: Otto & Associates,
-  description: 'We are a full service insurance agency representing the people of
-    Huber Heights and surrounding areas through partnership with quality insurance
-    carriers. '}
-startup_form: null
-native_deps: {head_html: '<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
-    rel="stylesheet" rel="preload" as="font" crossorigin="anonymous">'}
 db_schema:
-  settings:
-    title: Settings
-    client: search
-    server: full
-    columns:
-    - name: key
-      admin_ui: {width: 200}
-      type: string
-    - name: value
-      admin_ui: {width: 200}
-      type: simpleObject
-  client_resources:
-    title: Client Resources
-    client: full
-    server: full
-    columns:
-    - name: main_title
-      admin_ui: {width: 200}
-      type: string
-    - name: link_title
-      admin_ui: {width: 200}
-      type: string
-    - name: URL
-      admin_ui: {width: 200}
-      type: string
-  table_10:
-    title: Table 10
-    client: none
-    server: full
-    columns:
-    - name: quotes
-      admin_ui: {width: 200}
-      type: string
-  users:
-    title: Users
-    client: none
-    server: full
-    columns:
-    - name: email
-      admin_ui: {width: 200}
-      type: string
-    - name: enabled
-      admin_ui: {width: 200}
-      type: bool
-    - name: last_login
-      admin_ui: {width: 200}
-      type: datetime
-    - name: password_hash
-      admin_ui: {width: 200}
-      type: string
-    - name: n_password_failures
-      admin_ui: {width: 200}
-      type: number
-    - name: confirmed_email
-      admin_ui: {width: 200}
-      type: bool
-    - name: signed_up
-      admin_ui: {width: 200}
-      type: datetime
-  phone_numbers:
-    title: Phone Numbers
-    client: full
-    server: full
-    columns:
-    - name: user
-      admin_ui: {width: 200}
-      type: string
-    - name: phone
-      admin_ui: {width: 200}
-      type: string
-  open_hours:
-    title: Open Hours
-    client: search
-    server: full
-    columns:
-    - name: open_time
-      admin_ui: {width: 200}
-      type: number
-    - name: close_time
-      admin_ui: {width: 200}
-      type: number
-    - name: open
-      admin_ui: {width: 200}
-      type: bool
-    - name: day
-      admin_ui: {width: 200}
-      type: string
   agent_resources:
+    client: full
+    columns:
+    - admin_ui: {width: 309}
+      name: main_title
+      type: string
+    - admin_ui: {width: 200}
+      name: link_title
+      type: string
+    - admin_ui: {width: 200}
+      name: URL
+      type: string
+    server: full
     title: Agent Resources
-    client: full
-    server: full
-    columns:
-    - name: main_title
-      admin_ui: {width: 309}
-      type: string
-    - name: link_title
-      admin_ui: {width: 200}
-      type: string
-    - name: URL
-      admin_ui: {width: 200}
-      type: string
   bookings:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: name
+      type: string
+    - admin_ui: {width: 200}
+      name: user
+      type: string
+    - admin_ui: {width: 200}
+      name: datetime
+      type: datetime
+    server: full
     title: Bookings
-    client: none
-    server: full
-    columns:
-    - name: name
-      admin_ui: {width: 200}
-      type: string
-    - name: user
-      admin_ui: {width: 200}
-      type: string
-    - name: datetime
-      admin_ui: {width: 200}
-      type: datetime
-  faqs:
-    title: FAQs
+  client_resources:
     client: full
-    server: full
     columns:
-    - name: question
-      admin_ui: {width: 200}
+    - admin_ui: {width: 200}
+      name: main_title
       type: string
-    - name: answer
-      admin_ui: {width: 200}
+    - admin_ui: {width: 200}
+      name: link_title
       type: string
+    - admin_ui: {width: 200}
+      name: URL
+      type: string
+    server: full
+    title: Client Resources
   contact:
-    title: Contact
     client: none
-    server: full
     columns:
-    - name: name
-      admin_ui: {width: 200}
+    - admin_ui: {width: 200}
+      name: name
       type: string
-    - name: user
-      admin_ui: {width: 200}
+    - admin_ui: {width: 200}
+      name: user
       type: string
-    - name: topic
-      admin_ui: {width: 200}
+    - admin_ui: {width: 200}
+      name: topic
       type: string
-    - name: question
-      admin_ui: {width: 200}
+    - admin_ui: {width: 200}
+      name: question
       type: string
-    - name: datetime
-      admin_ui: {width: 200}
+    - admin_ui: {width: 200}
+      name: datetime
       type: datetime
+    server: full
+    title: Contact
+  faqs:
+    client: full
+    columns:
+    - admin_ui: {width: 200}
+      name: question
+      type: string
+    - admin_ui: {width: 200}
+      name: answer
+      type: string
+    server: full
+    title: FAQs
+  open_hours:
+    client: search
+    columns:
+    - admin_ui: {width: 200}
+      name: open_time
+      type: number
+    - admin_ui: {width: 200}
+      name: close_time
+      type: number
+    - admin_ui: {width: 200}
+      name: open
+      type: bool
+    - admin_ui: {width: 200}
+      name: day
+      type: string
+    server: full
+    title: Open Hours
+  phone_numbers:
+    client: full
+    columns:
+    - admin_ui: {width: 200}
+      name: user
+      type: string
+    - admin_ui: {width: 200}
+      name: phone
+      type: string
+    server: full
+    title: Phone Numbers
+  settings:
+    client: search
+    columns:
+    - admin_ui: {width: 200}
+      name: key
+      type: string
+    - admin_ui: {width: 200}
+      name: value
+      type: simpleObject
+    server: full
+    title: Settings
+  table_10:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: quotes
+      type: string
+    server: full
+    title: Table 10
+  users:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: email
+      type: string
+    - admin_ui: {width: 200}
+      name: enabled
+      type: bool
+    - admin_ui: {width: 200}
+      name: last_login
+      type: datetime
+    - admin_ui: {width: 200}
+      name: password_hash
+      type: string
+    - admin_ui: {width: 200}
+      name: n_password_failures
+      type: number
+    - admin_ui: {width: 200}
+      name: confirmed_email
+      type: bool
+    - admin_ui: {width: 200}
+      name: signed_up
+      type: datetime
+    server: full
+    title: Users
+dependencies: []
+metadata: {description: 'We are a full service insurance agency representing the people of Huber Heights and surrounding areas through partnership with quality insurance carriers. ', logo_img: 'asset:otto_and_associates_logo.png', title: Otto & Associates}
+name: Otto & Associates
+native_deps: {head_html: '<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" rel="preload" as="font" crossorigin="anonymous">'}
+package_name: Simple_Website_Template
 renamed: true
+runtime_options: {client_version: '3', server_spec: null, server_version: python3-sandbox, version: 2}
+services:
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/tables.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/anvil/email.yml
+- client_config: {allow_signup: false, confirm_email: false, enable_automatically: false, require_secure_passwords: false, use_email: true, use_token: false}
+  server_config: {user_table: users}
+  source: /runtime/services/anvil/users.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/stripe.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/google.yml
+startup: {module: Main, type: form}
+startup_form: null

@@ -1,34 +1,23 @@
-container:
-  type: DataRowPanel
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    auto_display_data: true, visible: true, font_size: null, font: '', spacing_above: none,
-    spacing_below: none, italic: false, background: '', bold: false, underline: false}
 components:
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
-  name: label_1
+- data_bindings:
+  - {code: 'self.item[''level'']', property: text}
   layout_properties: {column: WRSVQH}
-  data_bindings:
-  - {property: text, code: 'self.item[''level'']'}
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
-  name: label_2
+  name: label_1
+  properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''half-sesh'']', property: text}
   layout_properties: {column: JJJXPT}
-  data_bindings:
-  - {property: text, code: 'self.item[''half-sesh'']'}
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
-  name: label_3
+  name: label_2
+  properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''full-sesh'']', property: text}
   layout_properties: {column: OGOGUA}
-  data_bindings:
-  - {property: text, code: 'self.item[''full-sesh'']'}
+  name: label_3
+  properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+  type: Label
+container:
+  properties: {align: center, auto_display_data: true, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', italic: false, role: null, spacing_above: none, spacing_below: none, tooltip: '', underline: false, visible: true}
+  type: DataRowPanel
 is_package: true

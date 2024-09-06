@@ -1,326 +1,283 @@
-container:
-  type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"PGRVHT":55}',
-    spacing_below: none, background: ''}
-components:
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"MWMUFV":70}',
-    spacing_below: small, background: ''}
-  name: email_card
-  layout_properties: {grid_position: 'KKQDFN,PGRVHT', full_width_row: true}
-  components:
-  - type: ColumnPanel
-    properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"GXDPIC":10}',
-      spacing_below: small, background: ''}
-    name: email_template_card
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV'}
-    components:
-    - type: Label
-      properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: email to, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_3
-      layout_properties: {grid_position: 'CGZPMW,GXDPIC', full_width_row: false}
-    - type: Label
-      properties: {role: top-border, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: user_email
-      layout_properties: {grid_position: 'VHBPPZ,CBCFII'}
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'message:', font_size: 16, font: '', spacing_above: large,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_5
-      layout_properties: {grid_position: 'FYMEGG,GRVLXD', full_width_row: false}
-    - type: TextArea
-      properties: {role: null, align: left, height: 170, tooltip: '', placeholder: 'What
-          is your message?', border: '', enabled: true, foreground: '', visible: true,
-        text: '', font_size: null, auto_expand: true, font: '', spacing_above: small,
-        spacing_below: small, italic: false, background: 'theme:White', bold: false,
-        underline: false}
-      name: message_area
-      layout_properties: {grid_position: 'DQBXRJ,EKYLDB', full_width_row: false}
-    - type: FileLoader
-      properties:
-        role: null
-        show_state: true
-        align: left
-        tooltip: ''
-        border: ''
-        file_types: null
-        enabled: true
-        files: []
-        foreground: ''
-        visible: true
-        text: Upload
-        font_size: null
-        font: ''
-        spacing_above: small
-        icon_align: left
-        spacing_below: small
-        italic: false
-        file: null
-        background: ''
-        bold: false
-        underline: false
-        multiple: true
-        icon: fa:upload
-      name: file_loader_1
-      layout_properties: {grid_position: 'COKAWG,HVANYY'}
-    - type: Button
-      properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: send, font_size: 16, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
-        underline: false, icon: ''}
-      name: submit_button
-      layout_properties: {grid_position: 'XCFVAI,QALCMU', full_width_row: false}
-      event_bindings: {click: submit_button_click}
-is_package: true
 component:
-- type: Spacer
-  properties: {height: 32}
+- layout_properties: {grid_position: 'VKRNUJ,ZOVOZL'}
   name: spacer_3
-  layout_properties: {grid_position: 'VKRNUJ,ZOVOZL'}
-- type: Link
-  properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: 'contact us ', font_size: 24, wrap_on: mobile, font: '',
-    col_spacing: medium, spacing_above: small, icon_align: right, col_widths: '',
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: 'fa:caret-down'}
+  properties: {height: 32}
+  type: Spacer
+- event_bindings: {click: contact_link_click}
+  layout_properties: {full_width_row: false, grid_position: 'NCQIFF,TKBKDG'}
   name: contact_link
-  layout_properties: {grid_position: 'NCQIFF,TKBKDG', full_width_row: false}
-  event_bindings: {click: contact_link_click}
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: false,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"OLZHPD":5,"UAUWSC":50,"VKKKTF":5}',
-    spacing_below: small, background: 'theme:Gray 50'}
-  name: contact_card
-  layout_properties: {grid_position: 'VDOOGY,TOOWFF', full_width_row: true}
-  components:
-  - type: Spacer
-    properties: {height: 32}
+  properties: {align: center, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: 24, foreground: '', icon: 'fa:caret-down', icon_align: right, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'contact us ', tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+  type: Link
+- components:
+  - layout_properties: {grid_position: 'FDAEFG,OLZHPD'}
     name: spacer_4
-    layout_properties: {grid_position: 'FDAEFG,OLZHPD'}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Please feel free to contact us at your convenience below:
-
-        ', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-      italic: false, background: '', bold: true, underline: false, icon: ''}
+    properties: {height: 32}
+    type: Spacer
+  - layout_properties: {grid_position: 'FDAEFG,UAUWSC TLKRNX,ZTDBIM'}
     name: label_1
-    layout_properties: {grid_position: 'FDAEFG,UAUWSC TLKRNX,ZTDBIM'}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Office Phone: (937) 610-0088', font_size: null, font: '',
-      spacing_above: none, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
+    properties:
+      align: center
+      background: ''
+      bold: true
+      border: ''
+      font: ''
+      font_size: 16
+      foreground: ''
+      icon: ''
+      icon_align: left
+      italic: false
+      role: null
+      spacing_above: small
+      spacing_below: small
+      text: |
+        Please feel free to contact us at your convenience below:
+      tooltip: ''
+      underline: false
+      visible: true
+    type: Label
+  - layout_properties: {grid_position: 'FDAEFG,UAUWSC BXOKCZ,ZHZSPV'}
     name: label_6
-    layout_properties: {grid_position: 'FDAEFG,UAUWSC BXOKCZ,ZHZSPV'}
-  - type: Label
-    properties: {role: top-border, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Or visit us in person:', font_size: 16, font: '', spacing_above: medium,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: small, text: 'Office Phone: (937) 610-0088', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'FDAEFG,UAUWSC MZBXQP,HURFEM'}
     name: label_7
-    layout_properties: {grid_position: 'FDAEFG,UAUWSC MZBXQP,HURFEM'}
-  - type: Link
-    properties: {role: null, url: 'https://goo.gl/maps/uAMRd5CksStSRUau8', align: center,
-      tooltip: '', border: '', foreground: '', visible: true, text: '4760I Fishburg
-        Rd.  Huber Heights, OH.  45424', font_size: null, wrap_on: mobile, font: '',
-      col_spacing: medium, spacing_above: none, icon_align: left, col_widths: '',
-      spacing_below: none, italic: false, background: '', bold: false, underline: false,
-      icon: ''}
+    properties: {align: center, background: '', bold: true, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: false, role: top-border, spacing_above: medium, spacing_below: none, text: 'Or visit us in person:', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'FDAEFG,UAUWSC VHDKIZ,GMEYEU'}
     name: link_1
-    layout_properties: {grid_position: 'FDAEFG,UAUWSC VHDKIZ,GMEYEU'}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Office Visit 9:30-5:00 M-F
-
-        (eve and weekends by appointment)', font_size: null, font: '', spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+    properties: {align: center, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: '4760I Fishburg Rd.  Huber Heights, OH.  45424', tooltip: '', underline: false, url: 'https://goo.gl/maps/uAMRd5CksStSRUau8', visible: true, wrap_on: mobile}
+    type: Link
+  - layout_properties: {grid_position: 'FDAEFG,UAUWSC FCJYQM,GNSKZL'}
     name: label_9
-    layout_properties: {grid_position: 'FDAEFG,UAUWSC FCJYQM,GNSKZL'}
-  - type: GoogleMap
-    properties: {height: 603}
-    name: map_1
+    properties:
+      align: center
+      background: ''
+      bold: false
+      border: ''
+      font: ''
+      font_size: null
+      foreground: ''
+      icon: ''
+      icon_align: left
+      italic: false
+      role: null
+      spacing_above: none
+      spacing_below: none
+      text: |-
+        Office Visit 9:30-5:00 M-F
+        (eve and weekends by appointment)
+      tooltip: ''
+      underline: false
+      visible: true
+    type: Label
+  - event_bindings: {show: map_1_show}
     layout_properties: {grid_position: 'FDAEFG,UAUWSC KAJSHV,NRXBLL'}
-    event_bindings: {show: map_1_show}
-  - type: Spacer
-    properties: {height: 32}
+    name: map_1
+    properties: {height: 603}
+    type: GoogleMap
+  - layout_properties: {grid_position: 'FDAEFG,UAUWSC GTEIFD,JNXZEL'}
     name: spacer_1
-    layout_properties: {grid_position: 'FDAEFG,UAUWSC GTEIFD,JNXZEL'}
-  - type: Spacer
     properties: {height: 32}
+    type: Spacer
+  - layout_properties: {grid_position: 'FDAEFG,VKKKTF'}
     name: spacer_6
-    layout_properties: {grid_position: 'FDAEFG,VKKKTF'}
-- type: Link
-  properties: {role: top-border, url: '', align: center, tooltip: '', border: '',
-    foreground: '', visible: true, text: email us, font_size: 24, wrap_on: mobile,
-    font: '', col_spacing: medium, spacing_above: small, icon_align: right, col_widths: '',
-    spacing_below: small, italic: false, background: 'theme:Gray 50', bold: false,
-    underline: false, icon: 'fa:caret-down'}
-  name: email_link
-  layout_properties: {grid_position: 'EBPRIF,DOPMTM', full_width_row: false}
-  event_bindings: {click: email_link_click}
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: false,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"UDXVIW":5,"MWMUFV":70,"AZJKIJ":5}',
-    spacing_below: small, background: 'theme:Gray 50'}
-  name: email_card
-  layout_properties: {grid_position: 'KKQDFN,PGRVHT', full_width_row: true}
-  components:
-  - type: Spacer
     properties: {height: 32}
+    type: Spacer
+  layout_properties: {full_width_row: true, grid_position: 'VDOOGY,TOOWFF'}
+  name: contact_card
+  properties: {background: 'theme:Gray 50', border: '', col_spacing: medium, col_widths: '{"OLZHPD":5,"UAUWSC":50,"VKKKTF":5}', foreground: '', role: null, spacing_above: none, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
+  type: ColumnPanel
+- event_bindings: {click: email_link_click}
+  layout_properties: {full_width_row: false, grid_position: 'EBPRIF,DOPMTM'}
+  name: email_link
+  properties: {align: center, background: 'theme:Gray 50', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: 24, foreground: '', icon: 'fa:caret-down', icon_align: right, italic: false, role: top-border, spacing_above: small, spacing_below: small, text: email us, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+  type: Link
+- components:
+  - layout_properties: {full_width_row: false, grid_position: 'XQUDDH,UDXVIW'}
     name: spacer_2
-    layout_properties: {grid_position: 'XQUDDH,UDXVIW', full_width_row: false}
-  - type: ColumnPanel
-    properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-      spacing_below: small, background: 'theme:Gray 50'}
-    name: email_options_card
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV VDZVEB,APFBOE'}
-    components:
-    - type: Button
-      properties: {role: rounded-border, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Request Proof of Insurance Card, font_size: null,
-        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: 'theme:White', bold: false, underline: false, icon: ''}
+    properties: {height: 32}
+    type: Spacer
+  - components:
+    - event_bindings: {click: proof_of_insurance_click}
+      layout_properties: {full_width_row: false, grid_position: 'TEEBHM,IEYINH'}
       name: proof_of_insurance
-      layout_properties: {grid_position: 'TEEBHM,IEYINH', full_width_row: false}
-      event_bindings: {click: proof_of_insurance_click}
-    - type: Button
-      properties: {role: rounded-border, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: 'Request a Declaration
-
-          ', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-        italic: false, background: 'theme:White', bold: false, underline: false, icon: ''}
+      properties: {align: center, background: 'theme:White', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: rounded-border, spacing_above: small, spacing_below: small, text: Request Proof of Insurance Card, tooltip: '', underline: false, visible: true}
+      type: Button
+    - event_bindings: {click: declaration_click}
+      layout_properties: {full_width_row: false, grid_position: 'TEEBHM,NOJMVV'}
       name: declaration
-      layout_properties: {grid_position: 'TEEBHM,NOJMVV', full_width_row: false}
-      event_bindings: {click: declaration_click}
-    - type: Button
-      properties: {role: rounded-border, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Request a Certificate of Insurance, font_size: null,
-        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: 'theme:White', bold: false, underline: false, icon: ''}
-      name: certificate_of_insurance
-      layout_properties: {grid_position: 'TEEBHM,CKRXLW', full_width_row: false}
-      event_bindings: {click: certificate_of_insurance_click}
-    - type: Button
-      properties: {role: rounded-border, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Request Verification of Insurance, font_size: null,
-        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: 'theme:White', bold: false, underline: false, icon: ''}
-      name: insurance_verification
-      layout_properties: {grid_position: 'TEEBHM,UWRZPS', full_width_row: false}
-      event_bindings: {click: insurance_verification_click}
-    - type: Button
-      properties: {role: rounded-border, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Other, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: 'theme:White',
-        bold: false, underline: false, icon: ''}
-      name: other
-      layout_properties: {grid_position: 'CSNLRH,FWJFCL', full_width_row: false}
-      event_bindings: {click: other_click}
-  - type: ColumnPanel
-    properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"XUGTRQ":10,"HVQBWV":50,"GXDPIC":10,"YGIHKO":50,"EGTRFN":10,"AGMDST":50}',
-      spacing_below: small, background: 'theme:Gray 50'}
-    name: email_template_card
-    layout_properties: {grid_position: 'XQUDDH,MWMUFV WWNKCY,TOPDDT'}
-    components:
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'name:', font_size: 14, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_2
-      layout_properties: {grid_position: 'ZQWWDB,XUGTRQ', full_width_row: false}
-    - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Name,
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
-        background: 'theme:White', bold: false, underline: false}
-      name: name_box
-      layout_properties: {grid_position: 'ZQWWDB,HVQBWV', full_width_row: false}
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'email address:', font_size: 14, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_3
-      layout_properties: {grid_position: 'CGZPMW,GXDPIC', full_width_row: false}
-    - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Please Enter Your Email,
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: small, type: email, spacing_below: small, italic: false,
-        background: 'theme:White', bold: false, underline: false}
-      name: email_box
-      layout_properties: {grid_position: 'CGZPMW,YGIHKO', full_width_row: false}
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'topic:', font_size: 14, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_4
-      layout_properties: {grid_position: 'ZZUEOR,EGTRFN', full_width_row: false}
-    - type: DropDown
       properties:
-        role: null
-        align: full
-        tooltip: ''
-        placeholder: select
-        border: ''
-        enabled: true
-        foreground: ''
-        items: ['']
-        visible: true
-        font_size: null
-        font: ''
-        spacing_above: small
-        spacing_below: small
-        italic: false
+        align: center
         background: theme:White
         bold: false
+        border: ''
+        enabled: true
+        font: ''
+        font_size: null
+        foreground: ''
+        icon: ''
+        icon_align: left
+        italic: false
+        role: rounded-border
+        spacing_above: small
+        spacing_below: small
+        text: |
+          Request a Declaration
+        tooltip: ''
         underline: false
-        include_placeholder: true
+        visible: true
+      type: Button
+    - event_bindings: {click: certificate_of_insurance_click}
+      layout_properties: {full_width_row: false, grid_position: 'TEEBHM,CKRXLW'}
+      name: certificate_of_insurance
+      properties: {align: center, background: 'theme:White', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: rounded-border, spacing_above: small, spacing_below: small, text: Request a Certificate of Insurance, tooltip: '', underline: false, visible: true}
+      type: Button
+    - event_bindings: {click: insurance_verification_click}
+      layout_properties: {full_width_row: false, grid_position: 'TEEBHM,UWRZPS'}
+      name: insurance_verification
+      properties: {align: center, background: 'theme:White', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: rounded-border, spacing_above: small, spacing_below: small, text: Request Verification of Insurance, tooltip: '', underline: false, visible: true}
+      type: Button
+    - event_bindings: {click: other_click}
+      layout_properties: {full_width_row: false, grid_position: 'CSNLRH,FWJFCL'}
+      name: other
+      properties: {align: full, background: 'theme:White', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: rounded-border, spacing_above: small, spacing_below: small, text: Other, tooltip: '', underline: false, visible: true}
+      type: Button
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV VDZVEB,APFBOE'}
+    name: email_options_card
+    properties: {background: 'theme:Gray 50', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {full_width_row: false, grid_position: 'ZQWWDB,XUGTRQ'}
+      name: label_2
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 14, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: none, spacing_below: none, text: 'name:', tooltip: '', underline: false, visible: true}
+      type: Label
+    - layout_properties: {full_width_row: false, grid_position: 'ZQWWDB,HVQBWV'}
+      name: name_box
+      properties: {align: left, background: 'theme:White', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: Please Enter Your Name, role: null, spacing_above: none, spacing_below: none, text: '', tooltip: '', type: text, underline: false, visible: true}
+      type: TextBox
+    - layout_properties: {full_width_row: false, grid_position: 'CGZPMW,GXDPIC'}
+      name: label_3
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 14, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: 'email address:', tooltip: '', underline: false, visible: true}
+      type: Label
+    - layout_properties: {full_width_row: false, grid_position: 'CGZPMW,YGIHKO'}
+      name: email_box
+      properties: {align: left, background: 'theme:White', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: Please Enter Your Email, role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: email, underline: false, visible: true}
+      type: TextBox
+    - layout_properties: {full_width_row: false, grid_position: 'ZZUEOR,EGTRFN'}
+      name: label_4
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 14, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: 'topic:', tooltip: '', underline: false, visible: true}
+      type: Label
+    - layout_properties: {full_width_row: false, grid_position: 'ZZUEOR,AGMDST'}
       name: topic_drop
-      layout_properties: {grid_position: 'ZZUEOR,AGMDST', full_width_row: false}
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'question/comment:', font_size: 16, font: '', spacing_above: large,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties:
+        align: full
+        background: theme:White
+        bold: false
+        border: ''
+        enabled: true
+        font: ''
+        font_size: null
+        foreground: ''
+        include_placeholder: true
+        italic: false
+        items: ['']
+        placeholder: select
+        role: null
+        spacing_above: small
+        spacing_below: small
+        tooltip: ''
+        underline: false
+        visible: true
+      type: DropDown
+    - layout_properties: {full_width_row: false, grid_position: 'FYMEGG,GRVLXD'}
       name: label_5
-      layout_properties: {grid_position: 'FYMEGG,GRVLXD', full_width_row: false}
-    - type: TextArea
-      properties: {role: null, align: left, height: 170, tooltip: '', placeholder: 'What
-          is your question/comment?', border: '', enabled: true, foreground: '', visible: true,
-        text: '', font_size: null, auto_expand: true, font: '', spacing_above: small,
-        spacing_below: small, italic: false, background: 'theme:White', bold: false,
-        underline: false}
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: large, spacing_below: small, text: 'question/comment:', tooltip: '', underline: false, visible: true}
+      type: Label
+    - layout_properties: {full_width_row: false, grid_position: 'DQBXRJ,EKYLDB'}
       name: question_area
-      layout_properties: {grid_position: 'DQBXRJ,EKYLDB', full_width_row: false}
-    - type: Button
-      properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: submit, font_size: 16, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
-        underline: false, icon: ''}
+      properties: {align: left, auto_expand: true, background: 'theme:White', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', height: 170, italic: false, placeholder: 'What is your question/comment?', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+      type: TextArea
+    - event_bindings: {click: submit_button_click}
+      layout_properties: {full_width_row: false, grid_position: 'PQTXEL,ASDMVJ'}
       name: submit_button
-      layout_properties: {grid_position: 'PQTXEL,ASDMVJ', full_width_row: false}
-      event_bindings: {click: submit_button_click}
-  - type: Spacer
-    properties: {height: 32}
+      properties: {align: center, background: '', bold: true, border: '', enabled: true, font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: false, role: primary-color, spacing_above: small, spacing_below: small, text: submit, tooltip: '', underline: false, visible: true}
+      type: Button
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV WWNKCY,TOPDDT'}
+    name: email_template_card
+    properties: {background: 'theme:Gray 50', border: '', col_spacing: medium, col_widths: '{"XUGTRQ":10,"HVQBWV":50,"GXDPIC":10,"YGIHKO":50,"EGTRFN":10,"AGMDST":50}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
+    type: ColumnPanel
+  - layout_properties: {full_width_row: false, grid_position: 'XQUDDH,AZJKIJ'}
     name: spacer_5
-    layout_properties: {grid_position: 'XQUDDH,AZJKIJ', full_width_row: false}
-- type: Spacer
-  properties: {height: 32}
+    properties: {height: 32}
+    type: Spacer
+  layout_properties: {full_width_row: true, grid_position: 'KKQDFN,PGRVHT'}
+  name: email_card
+  properties: {background: 'theme:Gray 50', border: '', col_spacing: medium, col_widths: '{"UDXVIW":5,"MWMUFV":70,"AZJKIJ":5}', foreground: '', role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'KRGEHX,NHGERN'}
   name: spacer_7
-  layout_properties: {grid_position: 'KRGEHX,NHGERN'}
+  properties: {height: 32}
+  type: Spacer
+components:
+- components:
+  - components:
+    - layout_properties: {full_width_row: false, grid_position: 'CGZPMW,GXDPIC'}
+      name: label_3
+      properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: subheading, spacing_above: small, spacing_below: small, text: email to, tooltip: '', underline: false, visible: true}
+      type: Label
+    - layout_properties: {grid_position: 'VHBPPZ,CBCFII'}
+      name: user_email
+      properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: top-border, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+      type: Label
+    - layout_properties: {full_width_row: false, grid_position: 'FYMEGG,GRVLXD'}
+      name: label_5
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: large, spacing_below: small, text: 'message:', tooltip: '', underline: false, visible: true}
+      type: Label
+    - layout_properties: {full_width_row: false, grid_position: 'DQBXRJ,EKYLDB'}
+      name: message_area
+      properties: {align: left, auto_expand: true, background: 'theme:White', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', height: 170, italic: false, placeholder: 'What is your message?', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+      type: TextArea
+    - layout_properties: {grid_position: 'COKAWG,HVANYY'}
+      name: file_loader_1
+      properties:
+        align: left
+        background: ''
+        bold: false
+        border: ''
+        enabled: true
+        file: null
+        file_types: null
+        files: []
+        font: ''
+        font_size: null
+        foreground: ''
+        icon: fa:upload
+        icon_align: left
+        italic: false
+        multiple: true
+        role: null
+        show_state: true
+        spacing_above: small
+        spacing_below: small
+        text: Upload
+        tooltip: ''
+        underline: false
+        visible: true
+      type: FileLoader
+    - event_bindings: {click: submit_button_click}
+      layout_properties: {full_width_row: false, grid_position: 'XCFVAI,QALCMU'}
+      name: submit_button
+      properties: {align: center, background: '', bold: true, border: '', enabled: true, font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: false, role: primary-color, spacing_above: small, spacing_below: small, text: send, tooltip: '', underline: false, visible: true}
+      type: Button
+    layout_properties: {grid_position: 'XQUDDH,MWMUFV'}
+    name: email_template_card
+    properties: {background: '', border: '', col_spacing: medium, col_widths: '{"GXDPIC":10}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: never}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'KKQDFN,PGRVHT'}
+  name: email_card
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{"MWMUFV":70}', foreground: '', role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+container:
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{"PGRVHT":55}', foreground: '', role: null, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+is_package: true

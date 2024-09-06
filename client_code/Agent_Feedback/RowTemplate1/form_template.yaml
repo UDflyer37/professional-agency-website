@@ -1,115 +1,112 @@
-container:
-  type: DataRowPanel
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true,
-    visible: true, font_size: null, font: '', spacing_above: none, spacing_below: large,
-    italic: false, background: '', bold: false, underline: false}
-components:
-- type: RichText
-  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: null, content: '{text}
-
-      ', font: '', spacing_above: none, spacing_below: none, data: null, background: '',
-    format: markdown}
-  name: rich_text_2
-  layout_properties: {column: HYCPCP}
-  components:
-  - type: Label
-    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Info:', font_size: null, font: '', spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: label_5
-    layout_properties: {column: HYCPCP, slot: text}
-- type: Label
-  properties: {}
-  name: label_1
-  layout_properties: {column: HYCPCP}
-  data_bindings:
-  - {property: text, code: 'self.item[''name'']'}
-- type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: true, background: '', bold: false, underline: false, icon: ''}
-  name: label_2
-  layout_properties: {column: HYCPCP, slot: date}
-  data_bindings:
-  - {property: text, code: '"(" + self.item[''datetime''].strftime( "%A %d %b %Y at
-      %I:%M %p") + ")"'}
-- type: RichText
-  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: null, content: '{text}', font: '', spacing_above: none,
-    spacing_below: none, data: null, background: '', format: markdown}
-  name: rich_text_3
-  layout_properties: {column: NWGTDT}
-  components:
-  - type: Label
-    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Email/Feedback:', font_size: null, font: '', spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: label_8
-    layout_properties: {column: NWGTDT, slot: text}
-- type: RichText
-  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: null, content: '{email}
-
-      ***
-
-      {label}', font: '', spacing_above: small, spacing_below: none, data: null, background: '',
-    format: markdown}
-  name: rich_text_4
-  layout_properties: {column: NWGTDT}
-  components:
-  - type: Link
-    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
-      spacing_above: small, icon_align: left, col_widths: '', spacing_below: none,
-      italic: false, background: '', bold: false, underline: false, icon: ''}
-    name: email_link
-    layout_properties: {column: NWGTDT, slot: email}
-    event_bindings: {click: email_link_click}
-    data_bindings:
-    - {property: text, code: 'self.item[''user'']'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: ''}
-    name: label_3
-    layout_properties: {column: NWGTDT, slot: label}
-    data_bindings:
-    - {property: text, code: 'self.item[''question'']'}
-- type: RichText
-  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: null, content: '{delete}{text}', font: '',
-    spacing_above: none, spacing_below: none, data: null, background: '', format: markdown}
-  name: rich_text_1
-  layout_properties: {column: ZHLLXE}
-  components:
-  - type: Label
-    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Topic:', font_size: null, font: '', spacing_above: none,
-      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: label_7
-    layout_properties: {column: ZHLLXE, slot: text}
-  - type: Link
-    properties: {role: null, url: '', align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: 16, wrap_on: mobile, font: '', col_spacing: medium,
-      spacing_above: none, icon_align: left, col_widths: '', spacing_below: none,
-      italic: false, background: '', bold: false, underline: false, icon: 'fa:trash-o'}
-    name: delete_link
-    layout_properties: {column: GJAUNT, slot: delete}
-    event_bindings: {click: delete_link_click}
-- type: Spacer
-  properties: {height: 32}
-  name: spacer_1
-  layout_properties: {column: GJAUNT}
-- type: Label
-  properties: {}
-  name: label_4
-  layout_properties: {column: ZHLLXE, slot: text}
-  data_bindings:
-  - {property: text, code: 'self.item[''topic'']'}
-is_package: true
 component: []
+components:
+- components:
+  - layout_properties: {column: HYCPCP, slot: text}
+    name: label_5
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: none, spacing_below: none, text: 'Info:', tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {column: HYCPCP}
+  name: rich_text_2
+  properties:
+    align: left
+    background: ''
+    border: ''
+    content: |
+      {text}
+    data: null
+    enable_slots: true
+    font: ''
+    font_size: null
+    foreground: ''
+    format: markdown
+    role: null
+    spacing_above: none
+    spacing_below: none
+    tooltip: ''
+    visible: true
+  type: RichText
+- data_bindings:
+  - {code: 'self.item[''name'']', property: text}
+  layout_properties: {column: HYCPCP}
+  name: label_1
+  properties: {}
+  type: Label
+- data_bindings:
+  - {code: '"(" + self.item[''datetime''].strftime( "%A %d %b %Y at %I:%M %p") + ")"', property: text}
+  layout_properties: {column: HYCPCP, slot: date}
+  name: label_2
+  properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+  type: Label
+- components:
+  - layout_properties: {column: NWGTDT, slot: text}
+    name: label_8
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: none, spacing_below: none, text: 'Email/Feedback:', tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {column: NWGTDT}
+  name: rich_text_3
+  properties: {align: left, background: '', border: '', content: '{text}', data: null, enable_slots: true, font: '', font_size: null, foreground: '', format: markdown, role: null, spacing_above: none, spacing_below: none, tooltip: '', visible: true}
+  type: RichText
+- components:
+  - data_bindings:
+    - {code: 'self.item[''user'']', property: text}
+    event_bindings: {click: email_link_click}
+    layout_properties: {column: NWGTDT, slot: email}
+    name: email_link
+    properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: none, text: '', tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  - data_bindings:
+    - {code: 'self.item[''question'']', property: text}
+    layout_properties: {column: NWGTDT, slot: label}
+    name: label_3
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {column: NWGTDT}
+  name: rich_text_4
+  properties:
+    align: left
+    background: ''
+    border: ''
+    content: |-
+      {email}
+      ***
+      {label}
+    data: null
+    enable_slots: true
+    font: ''
+    font_size: null
+    foreground: ''
+    format: markdown
+    role: null
+    spacing_above: small
+    spacing_below: none
+    tooltip: ''
+    visible: true
+  type: RichText
+- components:
+  - layout_properties: {column: ZHLLXE, slot: text}
+    name: label_7
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: none, spacing_below: none, text: 'Topic:', tooltip: '', underline: false, visible: true}
+    type: Label
+  - event_bindings: {click: delete_link_click}
+    layout_properties: {column: GJAUNT, slot: delete}
+    name: delete_link
+    properties: {align: center, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: 16, foreground: '', icon: 'fa:trash-o', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: '', tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  layout_properties: {column: ZHLLXE}
+  name: rich_text_1
+  properties: {align: left, background: '', border: '', content: '{delete}{text}', data: null, enable_slots: true, font: '', font_size: null, foreground: '', format: markdown, role: null, spacing_above: none, spacing_below: none, tooltip: '', visible: true}
+  type: RichText
+- layout_properties: {column: GJAUNT}
+  name: spacer_1
+  properties: {height: 32}
+  type: Spacer
+- data_bindings:
+  - {code: 'self.item[''topic'']', property: text}
+  layout_properties: {column: ZHLLXE, slot: text}
+  name: label_4
+  properties: {}
+  type: Label
+container:
+  properties: {align: left, auto_display_data: true, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', italic: false, role: null, spacing_above: none, spacing_below: large, tooltip: '', underline: false, visible: true}
+  type: DataRowPanel
+is_package: true

@@ -76,25 +76,29 @@
     $(window).trigger('resize');
   }
 
-  // Click event handling for sidebar toggle and navigation shield
-  $('.sidebar-toggle, .nav-shield').off('click').on('click', function() {
-    var ln = $('.structure > .nav-holder > .left-nav');
-    if (ln.is(":visible") || $('.nav-shield').is(".shown")) {
-      hideSidebar();
-    } else if(!ln.is(":empty")) {
-      showSidebar();
-    }
-  });
-
-  // Click event handling for left navigation items
-  $('.left-nav').off('click').on('click', 'a, button', function() {
-    if ($('.nav-shield').is(":visible")) {
-      $('.nav-shield').trigger('click');
-    }
+  $(document).ready(function() {
+    // Click event handling for sidebar toggle and navigation shield
+    $('.sidebar-toggle, .nav-shield').off('click').on('click', function() {
+      var ln = $('.structure > .nav-holder > .left-nav');
+      if (ln.is(":visible") || $('.nav-shield').is(".shown")) {
+        hideSidebar();
+      } else if(!ln.is(":empty")) {
+        showSidebar();
+      }
+    });
+  
+    // Click event handling for left navigation items
+    $('.left-nav').off('click').on('click', 'a, button', function() {
+      if ($('.nav-shield').is(":visible")) {
+        $('.nav-shield').trigger('click');
+      }
+    });
   });
 
   // Function to change the text dynamically
   function change_text(message){
     document.getElementById("scroll-text").innerHTML = message;
   }
+
 </script>
+

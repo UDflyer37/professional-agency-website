@@ -1,212 +1,122 @@
-container:
-  type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{"ZVQDBS":15,"CFMBQZ":30,"AKMHKX":15}',
-    spacing_below: none, background: ''}
-components:
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
-  name: card_2
-  layout_properties: {grid_position: 'IKAXUA,OMFAYI', full_width_row: true}
-  components:
-  - type: Label
-    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: schedule an appointment., font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: label_2
-    layout_properties: {grid_position: 'CLQKUW,ZCLXJL'}
-  - type: Label
-    properties: {role: top-border, align: center, tooltip: '', border: '', foreground: 'theme:Primary
-        500', visible: true, text: '', font_size: 18, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: true, background: '', bold: false,
-      underline: false, icon: ''}
-    name: datetime_label
-    layout_properties: {grid_position: 'FPXOAA,NHNNPQ'}
-- type: Spacer
-  properties: {height: 32}
-  name: spacer_2
-  layout_properties: {grid_position: 'PZBAUI,ZVQDBS'}
-- type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"OZMAGJ":15,"BWSHYU":45,"XHSHMD":15,"CFRLBM":45}',
-    spacing_below: small, background: ''}
-  name: card_1
-  layout_properties: {grid_position: 'PZBAUI,CFMBQZ'}
-  components:
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Name:', font_size: 16, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: true, background: '', bold: true,
-      underline: false, icon: ''}
-    name: label_3
-    layout_properties: {grid_position: 'UFUYWW,XHSHMD'}
-  - type: TextBox
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
-      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-      font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false}
-    name: name_box
-    layout_properties: {grid_position: 'UFUYWW,CFRLBM'}
-    data_bindings:
-    - {property: text, code: 'self.item[''name'']', writeback: true}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Email:', font_size: 16, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: true, background: '', bold: true,
-      underline: false, icon: ''}
-    name: label_10
-    layout_properties: {grid_position: 'TDWPVL,OZMAGJ'}
-  - type: TextBox
-    properties: {}
-    name: email_box
-    layout_properties: {grid_position: 'TDWPVL,BWSHYU'}
-    data_bindings:
-    - {property: text, code: 'self.item[''email'']', writeback: true}
-- type: Spacer
-  properties: {height: 32}
-  name: spacer_1
-  layout_properties: {grid_position: 'PZBAUI,AKMHKX'}
-is_package: true
 component:
-- type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
-  name: card_2
-  layout_properties: {grid_position: 'IKAXUA,OMFAYI', full_width_row: true}
-  components:
-  - type: Label
-    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'how can we help you?', font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+- components:
+  - layout_properties: {grid_position: 'CLQKUW,ZCLXJL'}
     name: label_2
-    layout_properties: {grid_position: 'CLQKUW,ZCLXJL'}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Primary
-        500', visible: true, text: find answers to frequently asked questions, font_size: 18,
-      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true,
-      background: '', bold: false, underline: false, icon: ''}
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: subheading, spacing_above: small, spacing_below: small, text: 'how can we help you?', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'FPXOAA,NHNNPQ'}
     name: label_1
-    layout_properties: {grid_position: 'FPXOAA,NHNNPQ'}
-- type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: 'theme:Neutral'}
-  name: card_1
-  layout_properties: {grid_position: 'ZBENMH,RLZWAO', full_width_row: true}
-  components:
-  - type: Label
-    properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: payment., font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: 18, foreground: 'theme:Primary 500', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: find answers to frequently asked questions, tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {full_width_row: true, grid_position: 'IKAXUA,OMFAYI'}
+  name: card_2
+  properties: {background: '', border: '', col_spacing: none, col_widths: '{}', foreground: '', role: card, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- components:
+  - layout_properties: {grid_position: 'DZOXHP,QLUCDU'}
     name: label_3
-    layout_properties: {grid_position: 'DZOXHP,QLUCDU'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '1. lorem ipsum dolor sit amet, consectetur adipiscing
-        elit?', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-      italic: true, background: '', bold: false, underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: subheading, spacing_above: small, spacing_below: small, text: payment., tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'LLYCUD,ISGRLI'}
     name: label_4
-    layout_properties: {grid_position: 'LLYCUD,ISGRLI'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'aenean porttitor consectetur quam, at placerat ipsum luctus
-        ultricies. proin eu velit blandit, ultricies risus quis, tristique metus.
-        in bibendum neque at accumsan cursus. donec commodo, ante non aliquam porttitor,
-        turpis risus imperdiet nisl, ac sagittis leo mi eu est. suspendisse eu viverra
-        justo. ', font_size: null, font: '', spacing_above: small, icon_align: left,
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: '1. lorem ipsum dolor sit amet, consectetur adipiscing elit?', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'SYYAYU,VGVBCX'}
     name: label_7
-    layout_properties: {grid_position: 'SYYAYU,VGVBCX'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '2. mauris convallis, dolor a bibendum finibus, sem nulla
-        iaculis nisl, et sollicitudin odio est in ante?', font_size: 16, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: true,
-      background: '', bold: false, underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'aenean porttitor consectetur quam, at placerat ipsum luctus ultricies. proin eu velit blandit, ultricies risus quis, tristique metus. in bibendum neque at accumsan cursus. donec commodo, ante non aliquam porttitor, turpis risus imperdiet nisl, ac sagittis leo mi eu est. suspendisse eu viverra justo. ', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'KXZKJG,IVSNIO'}
     name: label_5
-    layout_properties: {grid_position: 'KXZKJG,IVSNIO'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'sed et nisl nec diam sollicitudin fermentum et quis urna.
-        sed viverra nibh in velit sagittis, et efficitur augue iaculis. donec aliquam
-        felis vitae ex varius tempus. morbi ullamcorper condimentum magna a ultrices.
-        vivamus vitae arcu ornare, dictum est mollis, condimentum ex. ', font_size: null,
-      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: '2. mauris convallis, dolor a bibendum finibus, sem nulla iaculis nisl, et sollicitudin odio est in ante?', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'BLSWYG,NQDBIV'}
     name: label_8
-    layout_properties: {grid_position: 'BLSWYG,NQDBIV'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '3. in orci elementum arcu sollicitudin euismod in non
-        purus. aenean sed dictum es?', font_size: 16, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: true, background: '', bold: false,
-      underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'sed et nisl nec diam sollicitudin fermentum et quis urna. sed viverra nibh in velit sagittis, et efficitur augue iaculis. donec aliquam felis vitae ex varius tempus. morbi ullamcorper condimentum magna a ultrices. vivamus vitae arcu ornare, dictum est mollis, condimentum ex. ', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'SREEIL,CKGKJY'}
     name: label_6
-    layout_properties: {grid_position: 'SREEIL,CKGKJY'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'duis laoreet, turpis gravida vestibulum maximus, neque
-        orci faucibus lacus, in porta dolor ex commodo turpis. aenean consequat euismod
-        iaculis. donec sagittis massa leo, a vehicula tortor tincidunt quis. sed iaculis
-        at nisl sed tempor.', font_size: null, font: '', spacing_above: small, icon_align: left,
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: '3. in orci elementum arcu sollicitudin euismod in non purus. aenean sed dictum es?', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'YUGLFN,XXDTCC'}
     name: label_9
-    layout_properties: {grid_position: 'YUGLFN,XXDTCC'}
-  - type: Label
-    properties: {role: subheading, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: general., font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'duis laoreet, turpis gravida vestibulum maximus, neque orci faucibus lacus, in porta dolor ex commodo turpis. aenean consequat euismod iaculis. donec sagittis massa leo, a vehicula tortor tincidunt quis. sed iaculis at nisl sed tempor.', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'ZCWTXB,CEQWBC'}
     name: label_10
-    layout_properties: {grid_position: 'ZCWTXB,CEQWBC'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '1. lorem ipsum dolor sit amet, consectetur adipiscing
-        elit?', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-      italic: true, background: '', bold: false, underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: subheading, spacing_above: small, spacing_below: small, text: general., tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'UIWISP,JZKXJV'}
     name: label_11
-    layout_properties: {grid_position: 'UIWISP,JZKXJV'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'duis vel ipsum eget massa elementum sagittis. Vestibulum
-        vitae erat vel nisi sodales congue eget at felis. aliquam mattis dapibus est,
-        vitae feugiat nunc tincidunt ut.', font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: '1. lorem ipsum dolor sit amet, consectetur adipiscing elit?', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'XBRARH,ZGGGMY'}
     name: label_12
-    layout_properties: {grid_position: 'XBRARH,ZGGGMY'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'pellentesque ultrices tortor vitae ipsum congue, sed fringilla
-        dolor suscipit. pellentesque euismod interdum ex, vitae sagittis quam dictum
-        ut. proin tincidunt mauris ac velit sollicitudin, quis efficitur nulla laoreet.',
-      font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-      italic: false, background: '', bold: false, underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'duis vel ipsum eget massa elementum sagittis. Vestibulum vitae erat vel nisi sodales congue eget at felis. aliquam mattis dapibus est, vitae feugiat nunc tincidunt ut.', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'IEWOBQ,HYOVQD'}
     name: label_14
-    layout_properties: {grid_position: 'IEWOBQ,HYOVQD'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '2. mauris convallis, dolor a bibendum finibus, sem nulla
-        iaculis nisl, et sollicitudin odio est in ante?', font_size: 16, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: true,
-      background: '', bold: false, underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'pellentesque ultrices tortor vitae ipsum congue, sed fringilla dolor suscipit. pellentesque euismod interdum ex, vitae sagittis quam dictum ut. proin tincidunt mauris ac velit sollicitudin, quis efficitur nulla laoreet.', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'WAASZQ,BJNQNB'}
     name: label_13
-    layout_properties: {grid_position: 'WAASZQ,BJNQNB'}
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'aenean porttitor consectetur quam, at placerat ipsum luctus
-        ultricies. proin eu velit blandit, ultricies risus quis, tristique metus.
-        in bibendum neque at accumsan cursus. donec commodo, ante non aliquam porttitor,
-        turpis risus imperdiet nisl, ac sagittis leo mi eu est.', font_size: null,
-      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: '2. mauris convallis, dolor a bibendum finibus, sem nulla iaculis nisl, et sollicitudin odio est in ante?', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'SHCHZM,MDHLQX'}
     name: label_15
-    layout_properties: {grid_position: 'SHCHZM,MDHLQX'}
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'aenean porttitor consectetur quam, at placerat ipsum luctus ultricies. proin eu velit blandit, ultricies risus quis, tristique metus. in bibendum neque at accumsan cursus. donec commodo, ante non aliquam porttitor, turpis risus imperdiet nisl, ac sagittis leo mi eu est.', tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {full_width_row: true, grid_position: 'ZBENMH,RLZWAO'}
+  name: card_1
+  properties: {background: 'theme:Neutral', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: card, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+components:
+- components:
+  - layout_properties: {grid_position: 'CLQKUW,ZCLXJL'}
+    name: label_2
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: subheading, spacing_above: small, spacing_below: small, text: schedule an appointment., tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'FPXOAA,NHNNPQ'}
+    name: datetime_label
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: 18, foreground: 'theme:Primary 500', icon: '', icon_align: left, italic: true, role: top-border, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+    type: Label
+  layout_properties: {full_width_row: true, grid_position: 'IKAXUA,OMFAYI'}
+  name: card_2
+  properties: {background: '', border: '', col_spacing: none, col_widths: '{}', foreground: '', role: null, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'PZBAUI,ZVQDBS'}
+  name: spacer_2
+  properties: {height: 32}
+  type: Spacer
+- components:
+  - layout_properties: {grid_position: 'UFUYWW,XHSHMD'}
+    name: label_3
+    properties: {align: left, background: '', bold: true, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: 'Name:', tooltip: '', underline: false, visible: true}
+    type: Label
+  - data_bindings:
+    - {code: 'self.item[''name'']', property: text, writeback: true}
+    layout_properties: {grid_position: 'UFUYWW,CFRLBM'}
+    name: name_box
+    properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
+    type: TextBox
+  - layout_properties: {grid_position: 'TDWPVL,OZMAGJ'}
+    name: label_10
+    properties: {align: left, background: '', bold: true, border: '', font: '', font_size: 16, foreground: '', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: 'Email:', tooltip: '', underline: false, visible: true}
+    type: Label
+  - data_bindings:
+    - {code: 'self.item[''email'']', property: text, writeback: true}
+    layout_properties: {grid_position: 'TDWPVL,BWSHYU'}
+    name: email_box
+    properties: {}
+    type: TextBox
+  layout_properties: {grid_position: 'PZBAUI,CFMBQZ'}
+  name: card_1
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{"OZMAGJ":15,"BWSHYU":45,"XHSHMD":15,"CFRLBM":45}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: never}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'PZBAUI,AKMHKX'}
+  name: spacer_1
+  properties: {height: 32}
+  type: Spacer
+container:
+  properties: {background: '', border: '', col_spacing: none, col_widths: '{"ZVQDBS":15,"CFMBQZ":30,"AKMHKX":15}', foreground: '', role: null, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+is_package: true

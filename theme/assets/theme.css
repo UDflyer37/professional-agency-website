@@ -884,6 +884,22 @@ https://stackoverflow.com/questions/30533055/calculating-shadow-values-for-all-m
  }
 }
 
+/* Default hidden navigation */
+.structure .nav-holder .left-nav {
+    display: none;
+    position: fixed; /* Add fixed position to make it behave like a sidebar */
+    width: 250px;
+    left: -250px; /* Off-screen initially */
+    top: 0;
+    height: 100%;
+    background-color: #333;
+}
+
+/* Navigation becomes visible when toggled */
+.structure .nav-holder .left-nav.shown {
+    display: block;
+    left: 0; /* Slide into view */
+}
 
 @media only screen
   and (min-device-width : 320px)

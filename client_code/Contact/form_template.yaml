@@ -1,68 +1,53 @@
-container:
-  type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: 'theme:Primary 500'}
 components:
-- type: ColumnPanel
-  properties: {role: home-header, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"YBMXYP":15,"XSCRTZ":30,"HUSBWB":15}',
-    spacing_below: none, background: ''}
-  name: card_1
-  layout_properties: {grid_position: 'RMBQJU,KYGIRX', full_width_row: true}
-  components:
-  - type: Spacer
-    properties: {height: 207}
+- components:
+  - layout_properties: {grid_position: 'RKUUQE,QTWHXZ'}
     name: spacer_2
-    layout_properties: {grid_position: 'RKUUQE,QTWHXZ'}
-  - type: Label
-    properties: {role: headline, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: Let US Help YOU., font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+    properties: {height: 207}
+    type: Spacer
+  - layout_properties: {full_width_row: true, grid_position: 'IEYOBV,YGQLCL'}
     name: label_1
-    layout_properties: {grid_position: 'IEYOBV,YGQLCL', full_width_row: true}
-  - type: Spacer
-    properties: {height: 32}
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: headline, spacing_above: small, spacing_below: small, text: Let US Help YOU., tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {full_width_row: true, grid_position: 'HILILR,NGVDGV'}
     name: spacer_1
-    layout_properties: {grid_position: 'HILILR,NGVDGV', full_width_row: true}
-  - type: Spacer
     properties: {height: 32}
+    type: Spacer
+  - layout_properties: {grid_position: 'CVNTDD,YBMXYP'}
     name: spacer_6
-    layout_properties: {grid_position: 'CVNTDD,YBMXYP'}
-  - type: ColumnPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-      spacing_below: small, background: ''}
-    name: card_2
-    layout_properties: {grid_position: 'CVNTDD,XSCRTZ'}
-    components:
-    - type: Button
-      properties: {role: raised, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: find us., font_size: 24, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: 'theme:Gray
-          50', bold: false, underline: false, icon: ''}
-      name: button_1
-      layout_properties: {grid_position: 'QVEERE,YXTKXM', full_width_row: true}
-      event_bindings: {click: contact_link_click}
-    - type: Spacer
-      properties: {height: 32}
-      name: spacer_4
-      layout_properties: {grid_position: 'YLYYQR,MGMZFV'}
-    - type: Button
-      properties: {role: raised, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: email us., font_size: 24, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: 'theme:Gray
-          50', bold: false, underline: false, icon: ''}
-      name: button_2
-      layout_properties: {grid_position: 'HQVIFW,VGFEPM', full_width_row: true}
-      event_bindings: {click: email_link_click}
-  - type: Spacer
     properties: {height: 32}
+    type: Spacer
+  - components:
+    - event_bindings: {click: contact_link_click}
+      layout_properties: {full_width_row: true, grid_position: 'QVEERE,YXTKXM'}
+      name: button_1
+      properties: {align: full, background: 'theme:Gray 50', bold: false, border: '', enabled: true, font: '', font_size: 24, foreground: '', icon: '', icon_align: left, italic: false, role: raised, spacing_above: small, spacing_below: small, text: find us., tooltip: '', underline: false, visible: true}
+      type: Button
+    - layout_properties: {grid_position: 'YLYYQR,MGMZFV'}
+      name: spacer_4
+      properties: {height: 32}
+      type: Spacer
+    - event_bindings: {click: email_link_click}
+      layout_properties: {full_width_row: true, grid_position: 'HQVIFW,VGFEPM'}
+      name: button_2
+      properties: {align: full, background: 'theme:Gray 50', bold: false, border: '', enabled: true, font: '', font_size: 24, foreground: '', icon: '', icon_align: left, italic: false, role: raised, spacing_above: small, spacing_below: small, text: email us., tooltip: '', underline: false, visible: true}
+      type: Button
+    layout_properties: {grid_position: 'CVNTDD,XSCRTZ'}
+    name: card_2
+    properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+    type: ColumnPanel
+  - layout_properties: {grid_position: 'CVNTDD,HUSBWB'}
     name: spacer_5
-    layout_properties: {grid_position: 'CVNTDD,HUSBWB'}
-  - type: Spacer
-    properties: {height: 122}
+    properties: {height: 32}
+    type: Spacer
+  - layout_properties: {grid_position: 'KOCEWW,QTMTBQ'}
     name: spacer_3
-    layout_properties: {grid_position: 'KOCEWW,QTMTBQ'}
+    properties: {height: 122}
+    type: Spacer
+  layout_properties: {full_width_row: true, grid_position: 'RMBQJU,KYGIRX'}
+  name: card_1
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{"YBMXYP":15,"XSCRTZ":30,"HUSBWB":15}', foreground: '', role: home-header, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+container:
+  properties: {background: 'theme:Primary 500', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: null, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
 is_package: true

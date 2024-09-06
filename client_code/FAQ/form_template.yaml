@@ -1,40 +1,26 @@
-container:
-  type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
 components:
-- type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
-  name: card_2
-  layout_properties: {grid_position: 'IKAXUA,OMFAYI', full_width_row: true}
-  components:
-  - type: Label
-    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'how can we help you?', font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+- components:
+  - layout_properties: {grid_position: 'CLQKUW,ZCLXJL'}
     name: label_2
-    layout_properties: {grid_position: 'CLQKUW,ZCLXJL'}
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Black',
-      visible: true, text: find answers to frequently asked questions, font_size: 18,
-      font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true,
-      background: '', bold: false, underline: false, icon: ''}
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: subheading, spacing_above: small, spacing_below: small, text: 'how can we help you?', tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'FPXOAA,NHNNPQ'}
     name: label_1
-    layout_properties: {grid_position: 'FPXOAA,NHNNPQ'}
-  - type: RichText
-    properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-      foreground: '', visible: true, font_size: null, content: '***', font: '', spacing_above: small,
-      spacing_below: small, data: null, background: '', format: markdown}
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: 18, foreground: 'theme:Black', icon: '', icon_align: left, italic: true, role: null, spacing_above: small, spacing_below: small, text: find answers to frequently asked questions, tooltip: '', underline: false, visible: true}
+    type: Label
+  - layout_properties: {grid_position: 'DQFELN,QXRTLK'}
     name: rich_text_1
-    layout_properties: {grid_position: 'DQFELN,QXRTLK'}
-  - type: RepeatingPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-      visible: true, spacing_above: large, spacing_below: small, item_template: FAQ.ItemTemplate4,
-      background: ''}
+    properties: {align: left, background: '', border: '', content: '***', data: null, enable_slots: true, font: '', font_size: null, foreground: '', format: markdown, role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: RichText
+  - layout_properties: {grid_position: 'PKHILH,LOITPU'}
     name: repeating_panel_1
-    layout_properties: {grid_position: 'PKHILH,LOITPU'}
+    properties: {background: '', border: '', foreground: '', item_template: FAQ.ItemTemplate4, items: null, role: null, spacing_above: large, spacing_below: small, tooltip: '', visible: true}
+    type: RepeatingPanel
+  layout_properties: {full_width_row: true, grid_position: 'IKAXUA,OMFAYI'}
+  name: card_2
+  properties: {background: '', border: '', col_spacing: none, col_widths: '{}', foreground: '', role: card, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+container:
+  properties: {background: '', border: '', col_spacing: none, col_widths: '{}', foreground: '', role: null, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
 is_package: true

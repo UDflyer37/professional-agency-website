@@ -1,141 +1,112 @@
-container:
-  type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: large, col_widths: '{"YDDGQM":23,"VDHNGF":35,"MOJGYV":25,"IYMDUC":2}',
-    spacing_below: large, background: ''}
-components:
-- type: Spacer
-  properties: {height: 32}
-  name: spacer_1
-  layout_properties: {grid_position: 'VUOIID,IYMDUC'}
-- type: CheckBox
-  properties: {role: null, align: left, tooltip: '', border: '', enabled: true, foreground: '',
-    allow_indeterminate: false, visible: true, text: check_box_1, font_size: null,
-    font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
-    bold: false, checked: false, underline: false}
-  name: check_box_1
-  layout_properties: {grid_position: 'VUOIID,YDDGQM'}
-  data_bindings:
-  - {property: text, code: 'self.item[''day'']'}
-  - {property: checked, code: 'self.item[''open'']', writeback: false}
-  event_bindings: {change: check_box_1_change}
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: small, background: ''}
-  name: flow_panel_1
-  layout_properties: {grid_position: 'VUOIID,VDHNGF'}
-  components:
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-    name: flow_panel_4
-    layout_properties: {grid_position: 'WSIVWZ,KJMTYK'}
-    components:
-    - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Open, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_1
-      layout_properties: {grid_position: 'VUOIID,XHSINT'}
-    - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false}
-      name: open_box
-      layout_properties: {width: 40, expand: false}
-      event_bindings: {change: open_box_change}
-    - type: DropDown
-      properties:
-        role: null
-        align: full
-        tooltip: ''
-        placeholder: ''
-        border: ''
-        enabled: true
-        foreground: ''
-        items: [a.m., p.m.]
-        visible: true
-        font_size: null
-        font: ''
-        spacing_above: small
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: false
-      name: am_pm_drop_1
-      layout_properties: {expand: false, width: null}
-      event_bindings: {change: am_pm_drop_1_change}
-  - type: FlowPanel
-    properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-      foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
-    name: flow_panel_3
-    layout_properties: {grid_position: 'IDMWCQ,ZRJMJG'}
-    components:
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Close, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_2
-      layout_properties: {}
-    - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false}
-      name: close_box
-      layout_properties: {width: 35, expand: false}
-      event_bindings: {change: close_box_change}
-    - type: DropDown
-      properties:
-        role: null
-        align: full
-        tooltip: ''
-        placeholder: ''
-        border: ''
-        enabled: true
-        foreground: ''
-        items: [p.m., a.m.]
-        visible: true
-        font_size: null
-        font: ''
-        spacing_above: small
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: false
-      name: am_pm_drop_2
-      layout_properties: {expand: false, width: null}
-      event_bindings: {change: am_pm_drop_2_change}
-- type: FlowPanel
-  properties: {role: null, spacing: medium, align: center, tooltip: '', border: '',
-    foreground: '', visible: false, spacing_above: small, spacing_below: small, background: ''}
-  name: flow_panel_2
-  layout_properties: {grid_position: 'VUOIID,MOJGYV'}
-  components:
-  - type: Link
-    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Confirm Change, font_size: null, wrap_on: mobile, font: '',
-      col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: 'fa:check'}
-    name: save_link
-    layout_properties: {}
-    event_bindings: {click: save_link_click}
-  - type: Link
-    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Reset, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
-      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
-      italic: false, background: '', bold: false, underline: false, icon: 'fa:times'}
-    name: cancel_link
-    layout_properties: {}
-    event_bindings: {click: cancel_link_click}
-is_package: true
 component: []
+components:
+- layout_properties: {grid_position: 'VUOIID,IYMDUC'}
+  name: spacer_1
+  properties: {height: 32}
+  type: Spacer
+- data_bindings:
+  - {code: 'self.item[''day'']', property: text}
+  - {code: 'self.item[''open'']', property: checked, writeback: false}
+  event_bindings: {change: check_box_1_change}
+  layout_properties: {grid_position: 'VUOIID,YDDGQM'}
+  name: check_box_1
+  properties: {align: left, allow_indeterminate: false, background: '', bold: false, border: '', checked: false, enabled: true, font: '', font_size: null, foreground: '', italic: false, role: null, spacing_above: small, spacing_below: small, text: check_box_1, tooltip: '', underline: false, visible: true}
+  type: CheckBox
+- components:
+  - components:
+    - layout_properties: {grid_position: 'VUOIID,XHSINT'}
+      name: label_1
+      properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Open, tooltip: '', underline: false, visible: true}
+      type: Label
+    - event_bindings: {change: open_box_change}
+      layout_properties: {expand: false, width: 40}
+      name: open_box
+      properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: number, underline: false, visible: true}
+      type: TextBox
+    - event_bindings: {change: am_pm_drop_1_change}
+      layout_properties: {expand: false, width: null}
+      name: am_pm_drop_1
+      properties:
+        align: full
+        background: ''
+        bold: false
+        border: ''
+        enabled: true
+        font: ''
+        font_size: null
+        foreground: ''
+        include_placeholder: false
+        italic: false
+        items: [a.m., p.m.]
+        placeholder: ''
+        role: null
+        spacing_above: small
+        spacing_below: small
+        tooltip: ''
+        underline: false
+        visible: true
+      type: DropDown
+    layout_properties: {grid_position: 'WSIVWZ,KJMTYK'}
+    name: flow_panel_4
+    properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: FlowPanel
+  - components:
+    - layout_properties: {}
+      name: label_2
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Close, tooltip: '', underline: false, visible: true}
+      type: Label
+    - event_bindings: {change: close_box_change}
+      layout_properties: {expand: false, width: 35}
+      name: close_box
+      properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: number, underline: false, visible: true}
+      type: TextBox
+    - event_bindings: {change: am_pm_drop_2_change}
+      layout_properties: {expand: false, width: null}
+      name: am_pm_drop_2
+      properties:
+        align: full
+        background: ''
+        bold: false
+        border: ''
+        enabled: true
+        font: ''
+        font_size: null
+        foreground: ''
+        include_placeholder: false
+        italic: false
+        items: [p.m., a.m.]
+        placeholder: ''
+        role: null
+        spacing_above: small
+        spacing_below: small
+        tooltip: ''
+        underline: false
+        visible: true
+      type: DropDown
+    layout_properties: {grid_position: 'IDMWCQ,ZRJMJG'}
+    name: flow_panel_3
+    properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+    type: FlowPanel
+  layout_properties: {grid_position: 'VUOIID,VDHNGF'}
+  name: flow_panel_1
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- components:
+  - event_bindings: {click: save_link_click}
+    layout_properties: {}
+    name: save_link
+    properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:check', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Confirm Change, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  - event_bindings: {click: cancel_link_click}
+    layout_properties: {}
+    name: cancel_link
+    properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:times', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Reset, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  layout_properties: {grid_position: 'VUOIID,MOJGYV'}
+  name: flow_panel_2
+  properties: {align: center, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: small, spacing_below: small, tooltip: '', visible: false}
+  type: FlowPanel
+container:
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{"YDDGQM":23,"VDHNGF":35,"MOJGYV":25,"IYMDUC":2}', foreground: '', role: null, spacing_above: large, spacing_below: large, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+is_package: true

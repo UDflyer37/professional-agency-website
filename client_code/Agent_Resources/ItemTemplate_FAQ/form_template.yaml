@@ -1,182 +1,160 @@
-container:
-  type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"SOVFBV":55,"USTGTQ":30}',
-    spacing_below: small, background: ''}
-  data_bindings:
-  - {property: tag, code: 'self.item[''question'']'}
-components:
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"QHBEAM":45}',
-    spacing_below: small, background: ''}
-  name: label_card
-  layout_properties: {grid_position: 'TKLSMW,SOVFBV'}
-  components:
-  - type: Label
-    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: ''}
-    name: title
-    layout_properties: {grid_position: 'AQQKUU,QHBEAM HUCBMC,IIHSRR'}
-    data_bindings:
-    - {property: text, code: 'self.item[''question'']'}
-  - type: Label
-    properties: {}
-    name: label_1
-    layout_properties: {grid_position: 'AQQKUU,QHBEAM HEKVXE,UZONMX'}
-    data_bindings:
-    - {property: text, code: 'self.item[''answer'']'}
-  - type: Link
-    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: edit, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
-      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
-      italic: false, background: '', bold: false, underline: false, icon: 'fa:pencil-square'}
-    name: edit_link
-    layout_properties: {grid_position: 'AQQKUU,PGXQRS'}
-    event_bindings: {click: edit_link_click}
-- type: ColumnPanel
-  properties: {role: top-border, tooltip: '', border: '', foreground: '', visible: false,
-    wrap_on: mobile, col_spacing: medium, spacing_above: medium, col_widths: '{}',
-    spacing_below: small, background: ''}
-  name: text_card
-  layout_properties: {grid_position: 'RUJMNW,DWLDLB'}
-  components:
-  - type: TextBox
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
-      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-      font: '', spacing_above: large, type: text, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false}
-    name: question_text_box
-    layout_properties: {grid_position: 'TMSNOO,TDPTKS'}
-    data_bindings:
-    - {property: text, code: 'self.item[''question'']', writeback: false}
-  - type: TextBox
-    properties: {}
-    name: answer_text_box
-    layout_properties: {grid_position: 'PRICVM,IXISXJ'}
-    data_bindings:
-    - {property: text, code: 'self.item[''answer'']', writeback: false}
-  - type: RichText
-    properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
-      foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}
-
-        {delete}', font: '', spacing_above: small, spacing_below: small, data: null,
-      background: '', format: markdown}
-    name: rich_text_1
-    layout_properties: {grid_position: 'ZCNYMG,VBERZX'}
-    components:
-    - type: Link
-      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: confirm change, font_size: null, wrap_on: mobile, font: '',
-        col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
-        icon: 'fa:check'}
-      name: confirm_link
-      layout_properties: {slot: confirm}
-      event_bindings: {click: confirm_link_click}
-    - type: Link
-      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: reset, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
-        spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
-        italic: false, background: '', bold: false, underline: false, icon: 'fa:times'}
-      name: reset_link
-      layout_properties: {slot: reset}
-      event_bindings: {click: reset_link_click}
-    - type: Button
-      properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: delete, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:trash'}
-      name: delete_link
-      layout_properties: {slot: delete}
-      event_bindings: {click: delete_link_click}
-is_package: true
 component:
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"QHBEAM":45}',
-    spacing_below: small, background: ''}
-  name: label_card
-  layout_properties: {grid_position: 'TKLSMW,SOVFBV'}
-  components:
-  - type: Label
-    properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: ''}
-    name: title
+- components:
+  - data_bindings:
+    - {code: 'self.item[''user'']', property: text}
     layout_properties: {grid_position: 'AQQKUU,QHBEAM HUCBMC,IIHSRR'}
-    data_bindings:
-    - {property: text, code: 'self.item[''user'']'}
-  - type: Label
-    properties: {}
-    name: label_1
+    name: title
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+    type: Label
+  - data_bindings:
+    - {code: 'self.item[''phone'']', property: text}
     layout_properties: {grid_position: 'AQQKUU,QHBEAM HEKVXE,UZONMX'}
-    data_bindings:
-    - {property: text, code: 'self.item[''phone'']'}
-  - type: Link
-    properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: edit, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
-      spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
-      italic: false, background: '', bold: false, underline: false, icon: 'fa:pencil-square'}
-    name: edit_link
-    layout_properties: {grid_position: 'AQQKUU,PGXQRS'}
-    event_bindings: {click: edit_link_click}
-- type: ColumnPanel
-  properties: {role: top-border, tooltip: '', border: '', foreground: '', visible: false,
-    wrap_on: mobile, col_spacing: medium, spacing_above: medium, col_widths: '{}',
-    spacing_below: small, background: ''}
-  name: text_card
-  layout_properties: {grid_position: 'RUJMNW,DWLDLB'}
-  components:
-  - type: TextBox
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
-      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-      font: '', spacing_above: large, type: text, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false}
-    name: user_text_box
-    layout_properties: {grid_position: 'TMSNOO,TDPTKS'}
-    data_bindings:
-    - {property: text, code: 'self.item[''user'']', writeback: false}
-  - type: TextBox
+    name: label_1
     properties: {}
-    name: phone_text_box
+    type: Label
+  - event_bindings: {click: edit_link_click}
+    layout_properties: {grid_position: 'AQQKUU,PGXQRS'}
+    name: edit_link
+    properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:pencil-square', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: edit, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  layout_properties: {grid_position: 'TKLSMW,SOVFBV'}
+  name: label_card
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{"QHBEAM":45}', foreground: '', role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- components:
+  - data_bindings:
+    - {code: 'self.item[''user'']', property: text, writeback: false}
+    layout_properties: {grid_position: 'TMSNOO,TDPTKS'}
+    name: user_text_box
+    properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: large, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
+    type: TextBox
+  - data_bindings:
+    - {code: 'self.item[''phone'']', property: text, writeback: false}
     layout_properties: {grid_position: 'PRICVM,IXISXJ'}
-    data_bindings:
-    - {property: text, code: 'self.item[''phone'']', writeback: false}
-  - type: RichText
-    properties: {role: null, align: right, tooltip: '', enable_slots: true, border: '',
-      foreground: '', visible: true, font_size: null, content: '{confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}
-
-        {delete}', font: '', spacing_above: small, spacing_below: small, data: null,
-      background: '', format: markdown}
-    name: rich_text_1
-    layout_properties: {grid_position: 'ZCNYMG,VBERZX'}
-    components:
-    - type: Link
-      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: confirm change, font_size: null, wrap_on: mobile, font: '',
-        col_spacing: medium, spacing_above: small, icon_align: left, col_widths: '',
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
-        icon: 'fa:check'}
-      name: confirm_link
+    name: phone_text_box
+    properties: {}
+    type: TextBox
+  - components:
+    - event_bindings: {click: confirm_link_click}
       layout_properties: {slot: confirm}
-      event_bindings: {click: confirm_link_click}
-    - type: Link
-      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: reset, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
-        spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
-        italic: false, background: '', bold: false, underline: false, icon: 'fa:times'}
-      name: reset_link
+      name: confirm_link
+      properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:check', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: confirm change, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+      type: Link
+    - event_bindings: {click: reset_link_click}
       layout_properties: {slot: reset}
-      event_bindings: {click: reset_link_click}
-    - type: Button
-      properties: {role: primary-color, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: delete, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:trash'}
-      name: delete_link
+      name: reset_link
+      properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:times', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: reset, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+      type: Link
+    - event_bindings: {click: delete_link_click}
       layout_properties: {slot: delete}
-      event_bindings: {click: delete_link_click}
+      name: delete_link
+      properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: 'fa:trash', icon_align: left, italic: false, role: primary-color, spacing_above: small, spacing_below: small, text: delete, tooltip: '', underline: false, visible: true}
+      type: Button
+    layout_properties: {grid_position: 'ZCNYMG,VBERZX'}
+    name: rich_text_1
+    properties:
+      align: right
+      background: ''
+      border: ''
+      content: |-
+        {confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}
+        {delete}
+      data: null
+      enable_slots: true
+      font: ''
+      font_size: null
+      foreground: ''
+      format: markdown
+      role: null
+      spacing_above: small
+      spacing_below: small
+      tooltip: ''
+      visible: true
+    type: RichText
+  layout_properties: {grid_position: 'RUJMNW,DWLDLB'}
+  name: text_card
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: top-border, spacing_above: medium, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
+  type: ColumnPanel
+components:
+- components:
+  - data_bindings:
+    - {code: 'self.item[''question'']', property: text}
+    layout_properties: {grid_position: 'AQQKUU,QHBEAM HUCBMC,IIHSRR'}
+    name: title
+    properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+    type: Label
+  - data_bindings:
+    - {code: 'self.item[''answer'']', property: text}
+    layout_properties: {grid_position: 'AQQKUU,QHBEAM HEKVXE,UZONMX'}
+    name: label_1
+    properties: {}
+    type: Label
+  - event_bindings: {click: edit_link_click}
+    layout_properties: {grid_position: 'AQQKUU,PGXQRS'}
+    name: edit_link
+    properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:pencil-square', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: edit, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  layout_properties: {grid_position: 'TKLSMW,SOVFBV'}
+  name: label_card
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{"QHBEAM":45}', foreground: '', role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- components:
+  - data_bindings:
+    - {code: 'self.item[''question'']', property: text, writeback: false}
+    layout_properties: {grid_position: 'TMSNOO,TDPTKS'}
+    name: question_text_box
+    properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: large, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
+    type: TextBox
+  - data_bindings:
+    - {code: 'self.item[''answer'']', property: text, writeback: false}
+    layout_properties: {grid_position: 'PRICVM,IXISXJ'}
+    name: answer_text_box
+    properties: {}
+    type: TextBox
+  - components:
+    - event_bindings: {click: confirm_link_click}
+      layout_properties: {slot: confirm}
+      name: confirm_link
+      properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:check', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: confirm change, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+      type: Link
+    - event_bindings: {click: reset_link_click}
+      layout_properties: {slot: reset}
+      name: reset_link
+      properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:times', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: reset, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+      type: Link
+    - event_bindings: {click: delete_link_click}
+      layout_properties: {slot: delete}
+      name: delete_link
+      properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: 'fa:trash', icon_align: left, italic: false, role: primary-color, spacing_above: small, spacing_below: small, text: delete, tooltip: '', underline: false, visible: true}
+      type: Button
+    layout_properties: {grid_position: 'ZCNYMG,VBERZX'}
+    name: rich_text_1
+    properties:
+      align: right
+      background: ''
+      border: ''
+      content: |-
+        {confirm} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{reset}
+        {delete}
+      data: null
+      enable_slots: true
+      font: ''
+      font_size: null
+      foreground: ''
+      format: markdown
+      role: null
+      spacing_above: small
+      spacing_below: small
+      tooltip: ''
+      visible: true
+    type: RichText
+  layout_properties: {grid_position: 'RUJMNW,DWLDLB'}
+  name: text_card
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: top-border, spacing_above: medium, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
+  type: ColumnPanel
+container:
+  data_bindings:
+  - {code: 'self.item[''question'']', property: tag}
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{"SOVFBV":55,"USTGTQ":30}', foreground: '', role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+is_package: true

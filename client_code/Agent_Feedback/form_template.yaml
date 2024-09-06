@@ -1,425 +1,315 @@
-container:
-  type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
-components:
-- type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
-  name: card_1
-  layout_properties: {grid_position: 'UTXDOJ,EFORFK', full_width_row: true}
-  components:
-  - type: Label
-    properties: {role: subheading, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: client feedback., font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: label_2
-    layout_properties: {grid_position: 'CCDTZL,XYZHWT'}
-  - type: ColumnPanel
-    properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-      spacing_below: small, background: ''}
-    name: appointments_card
-    layout_properties: {grid_position: 'OQPAOZ,IFKSLS', full_width_row: true}
-    components:
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Feedback, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_1
-      layout_properties: {grid_position: 'NBFOHM,JFGVDE'}
-    - type: Button
-      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear All Feedback, font_size: null,
-        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
-      name: clear_button
-      layout_properties: {grid_position: 'NBFOHM,LPWUWF'}
-      event_bindings: {click: clear_button_click}
-    - type: DropDown
-      properties: {}
-      name: sort_drop
-      layout_properties: {grid_position: 'SQIZAF,QIPOVM'}
-      event_bindings: {change: sort_drop_change}
-    - type: DataGrid
-      properties:
-        role: null
-        columns:
-        - {id: ZHLLXE, title: '', data_key: '', $$hashKey: 'object:44381', expand: true,
-          width: ''}
-        - {id: HYCPCP, title: '', data_key: '', $$hashKey: 'object:83151', expand: false,
-          width: ''}
-        - {id: NWGTDT, title: '', data_key: '', $$hashKey: 'object:83453', width: '400',
-          expand: true}
-        auto_header: true
-        tooltip: ''
-        border: ''
-        foreground: ''
-        rows_per_page: 20
-        visible: true
-        wrap_on: never
-        show_page_controls: true
-        spacing_above: small
-        spacing_below: small
-        background: ''
-      name: data_grid_3
-      layout_properties: {grid_position: 'GRMBFG,IAPTJY', full_width_row: false}
-      components:
-      - type: RepeatingPanel
-        properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-          visible: true, spacing_above: large, spacing_below: none, item_template: Agent_Feedback.RowTemplate1,
-          background: ''}
-        name: repeating_panel_1
-        layout_properties: {}
-is_package: true
 component:
-- type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: ''}
-  name: card_1
-  layout_properties: {grid_position: 'UTXDOJ,EFORFK', full_width_row: true}
-  components:
-  - type: Link
-    properties: {role: text, url: '', align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: view appointments, font_size: 24, wrap_on: mobile, font: '',
-      col_spacing: medium, spacing_above: small, icon_align: right, col_widths: '',
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: 'fa:caret-down'}
-    name: appointments_link
+- components:
+  - event_bindings: {click: appointments_link_click}
     layout_properties: {grid_position: 'FHTCUI,HVVPMD'}
-    event_bindings: {click: appointments_link_click}
-  - type: ColumnPanel
-    properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"UJSPGC":35,"VCQXGW":25}',
-      spacing_below: small, background: ''}
-    name: appointments_card
-    layout_properties: {grid_position: 'OQPAOZ,IFKSLS'}
-    components:
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Upcoming Appointments, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+    name: appointments_link
+    properties: {align: center, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: 24, foreground: '', icon: 'fa:caret-down', icon_align: right, italic: false, role: text, spacing_above: small, spacing_below: small, text: view appointments, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  - components:
+    - layout_properties: {grid_position: 'NBFOHM,JFGVDE'}
       name: label_1
-      layout_properties: {grid_position: 'NBFOHM,JFGVDE'}
-    - type: DropDown
-      properties: {}
-      name: sort_drop
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: Upcoming Appointments, tooltip: '', underline: false, visible: true}
+      type: Label
+    - event_bindings: {change: sort_drop_change}
       layout_properties: {grid_position: 'SQIZAF,QIPOVM'}
-      event_bindings: {change: sort_drop_change}
-    - type: DataGrid
-      properties:
-        role: null
-        columns:
-        - {id: VLKRWG, title: Name, data_key: '', $$hashKey: 'object:2668'}
-        - {id: SUCLWN, title: Date, data_key: '', $$hashKey: 'object:2669'}
-        - {id: GENXCP, title: Email, data_key: '', $$hashKey: 'object:2670'}
-        - {id: KCFOWJ, title: '', data_key: column_1, $$hashKey: 'object:2674', width: '40'}
-        auto_header: true
-        tooltip: ''
-        border: ''
-        foreground: ''
-        rows_per_page: 20
-        visible: true
-        wrap_on: never
-        show_page_controls: true
-        spacing_above: small
-        spacing_below: small
-        background: ''
-      name: data_grid_1
-      layout_properties: {grid_position: 'ZLUWEP,XGAORE'}
-      components:
-      - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate1}
+      name: sort_drop
+      properties: {}
+      type: DropDown
+    - components:
+      - layout_properties: {}
         name: repeating_panel_1
-        layout_properties: {}
-    - type: Spacer
-      properties: {height: 32}
-      name: spacer_1
-      layout_properties: {grid_position: 'OGYGVL,SXLTWN'}
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Past Appointments, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_2
-      layout_properties: {grid_position: 'AHWCXG,UJSPGC'}
-    - type: Button
-      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear Past Appointments, font_size: null,
-        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
-      name: clear_button
-      layout_properties: {grid_position: 'AHWCXG,VCQXGW'}
-      event_bindings: {click: clear_button_click}
-    - type: DataGrid
+        properties: {item_template: Agent_Appointments.RowTemplate1, spacing_above: none, spacing_below: none}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'ZLUWEP,XGAORE'}
+      name: data_grid_1
       properties:
-        role: null
-        columns:
-        - {id: IBYQZL, title: Name, data_key: column_1, $$hashKey: 'object:8242'}
-        - {id: BGOZTA, title: Date, data_key: column_2, $$hashKey: 'object:8243'}
-        - {id: IOHEFA, title: email, data_key: column_3, $$hashKey: 'object:8244'}
         auto_header: true
-        tooltip: ''
+        background: ''
         border: ''
+        columns:
+        - {$$hashKey: 'object:2668', data_key: '', id: VLKRWG, title: Name}
+        - {$$hashKey: 'object:2669', data_key: '', id: SUCLWN, title: Date}
+        - {$$hashKey: 'object:2670', data_key: '', id: GENXCP, title: Email}
+        - {$$hashKey: 'object:2674', data_key: column_1, id: KCFOWJ, title: '', width: '40'}
         foreground: ''
+        role: null
         rows_per_page: 20
-        visible: true
-        wrap_on: never
         show_page_controls: true
         spacing_above: small
         spacing_below: small
-        background: ''
-      name: data_grid_2
-      layout_properties: {grid_position: 'BXJVGN,OAZRMP'}
-      components:
-      - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Agent_Appointments.RowTemplate2}
-        name: repeating_panel_2
-        layout_properties: {}
-- type: ColumnPanel
-  properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
-    background: 'theme:Neutral'}
-  name: card_2
-  layout_properties: {grid_position: 'RXLMNX,RKIMVN', full_width_row: true}
-  components:
-  - type: Link
-    properties: {role: text, url: '', align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: settings, font_size: 24, wrap_on: mobile, font: '', col_spacing: medium,
-      spacing_above: small, icon_align: right, col_widths: '', spacing_below: small,
-      italic: false, background: '', bold: false, underline: false, icon: 'fa:caret-down'}
-    name: settings_link
-    layout_properties: {grid_position: 'ETSCDN,VFLKLJ'}
-    event_bindings: {click: settings_link_click}
-  - type: ColumnPanel
-    properties: {role: card, tooltip: '', border: '', foreground: '', visible: false,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"WJRUOO":5,"GNICBY":55,"OHMERL":6,"UFNROA":54}',
-      spacing_below: small, background: 'theme:Neutral'}
-    name: settings_card
-    layout_properties: {grid_position: 'DLAKTC,PZXPKU'}
-    components:
-    - type: Label
-      properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Admin Settings, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: label_3
-      layout_properties: {grid_position: 'MAEWCE,NXGFQC'}
-    - type: Spacer
+        tooltip: ''
+        visible: true
+        wrap_on: never
+      type: DataGrid
+    - layout_properties: {grid_position: 'OGYGVL,SXLTWN'}
+      name: spacer_1
       properties: {height: 32}
+      type: Spacer
+    - layout_properties: {grid_position: 'AHWCXG,UJSPGC'}
+      name: label_2
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: Past Appointments, tooltip: '', underline: false, visible: true}
+      type: Label
+    - event_bindings: {click: clear_button_click}
+      layout_properties: {grid_position: 'AHWCXG,VCQXGW'}
+      name: clear_button
+      properties: {align: right, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Clear Past Appointments, tooltip: '', underline: false, visible: true}
+      type: Button
+    - components:
+      - layout_properties: {}
+        name: repeating_panel_2
+        properties: {item_template: Agent_Appointments.RowTemplate2, spacing_above: none, spacing_below: none}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'BXJVGN,OAZRMP'}
+      name: data_grid_2
+      properties:
+        auto_header: true
+        background: ''
+        border: ''
+        columns:
+        - {$$hashKey: 'object:8242', data_key: column_1, id: IBYQZL, title: Name}
+        - {$$hashKey: 'object:8243', data_key: column_2, id: BGOZTA, title: Date}
+        - {$$hashKey: 'object:8244', data_key: column_3, id: IOHEFA, title: email}
+        foreground: ''
+        role: null
+        rows_per_page: 20
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        tooltip: ''
+        visible: true
+        wrap_on: never
+      type: DataGrid
+    layout_properties: {grid_position: 'OQPAOZ,IFKSLS'}
+    name: appointments_card
+    properties: {background: '', border: '', col_spacing: medium, col_widths: '{"UJSPGC":35,"VCQXGW":25}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'UTXDOJ,EFORFK'}
+  name: card_1
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: card, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- components:
+  - event_bindings: {click: settings_link_click}
+    layout_properties: {grid_position: 'ETSCDN,VFLKLJ'}
+    name: settings_link
+    properties: {align: center, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: 24, foreground: '', icon: 'fa:caret-down', icon_align: right, italic: false, role: text, spacing_above: small, spacing_below: small, text: settings, tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
+    type: Link
+  - components:
+    - layout_properties: {grid_position: 'MAEWCE,NXGFQC'}
+      name: label_3
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: Admin Settings, tooltip: '', underline: false, visible: true}
+      type: Label
+    - layout_properties: {grid_position: 'JWLJMX,WJRUOO'}
       name: spacer_3
-      layout_properties: {grid_position: 'JWLJMX,WJRUOO'}
-    - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-        spacing_below: small, background: 'theme:Neutral'}
-      name: card_3
-      layout_properties: {grid_position: 'JWLJMX,GNICBY'}
-      components:
-      - type: RichText
-        properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-          foreground: '', visible: true, font_size: null, content: '{label} {text_box}
-            &nbsp;&nbsp;days &nbsp;&nbsp;&nbsp;{save}&nbsp;&nbsp;&nbsp; {cancel} ',
-          font: '', spacing_above: small, spacing_below: small, data: null, background: '',
-          format: markdown}
-        name: rich_text_2
-        layout_properties: {grid_position: 'XMJJSU,WMMFFP'}
-        components:
-        - type: Label
-          properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-            visible: true, text: 'Max Appointment Date:  ', font_size: null, font: '',
-            spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-            background: '', bold: false, underline: false, icon: ''}
+      properties: {height: 32}
+      type: Spacer
+    - components:
+      - components:
+        - layout_properties: {slot: label}
           name: label_5
-          layout_properties: {slot: label}
-        - type: TextBox
-          properties: {role: null, align: center, hide_text: false, tooltip: '', placeholder: '',
-            border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-            font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
-            background: '', bold: false, underline: false}
-          name: max_date_box
-          layout_properties: {slot: text_box, width: 95}
+          properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'Max Appointment Date:  ', tooltip: '', underline: false, visible: true}
+          type: Label
+        - data_bindings:
+          - {code: 'self.max_date_row[''value'']', property: text, writeback: false}
           event_bindings: {change: max_date_box_change}
-          data_bindings:
-          - {property: text, code: 'self.max_date_row[''value'']', writeback: false}
-        - type: Link
-          properties: {role: null, url: '', align: left, tooltip: '', border: '',
-            foreground: '', visible: false, text: Confirm Change, font_size: null,
-            wrap_on: mobile, font: '', col_spacing: medium, spacing_above: small,
-            icon_align: left, col_widths: '', spacing_below: small, italic: false,
-            background: '', bold: false, underline: false, icon: 'fa:check'}
-          name: save_max_link
+          layout_properties: {slot: text_box, width: 95}
+          name: max_date_box
+          properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: number, underline: false, visible: true}
+          type: TextBox
+        - event_bindings: {click: save_max_link_click}
           layout_properties: {slot: save}
-          event_bindings: {click: save_max_link_click}
-        - type: Link
-          properties: {role: null, url: '', align: left, tooltip: '', border: '',
-            foreground: '', visible: false, text: Reset, font_size: null, wrap_on: mobile,
-            font: '', col_spacing: medium, spacing_above: small, icon_align: left,
-            col_widths: '', spacing_below: small, italic: false, background: '', bold: false,
-            underline: false, icon: 'fa:times'}
-          name: cancel_max_link
+          name: save_max_link
+          properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:check', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Confirm Change, tooltip: '', underline: false, url: '', visible: false, wrap_on: mobile}
+          type: Link
+        - event_bindings: {click: cancel_max_link_click}
           layout_properties: {slot: cancel}
-          event_bindings: {click: cancel_max_link_click}
-        - type: RichText
-          properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-            foreground: '', visible: true, font_size: null, content: '{label}  {num_text_box}
-              &nbsp;{drop_down}      &nbsp;&nbsp;&nbsp;{save} &nbsp;&nbsp;&nbsp;{cancel}',
-            font: '', spacing_above: large, spacing_below: small, data: null, background: '',
-            format: markdown}
-          name: rich_text_1
-          layout_properties: {grid_position: 'XMJJSU,QHQIDH'}
-          components:
-          - type: Label
-            properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-              visible: true, text: 'Appointment Interval:  ', font_size: null, font: '',
-              spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-              background: '', bold: false, underline: false, icon: ''}
+          name: cancel_max_link
+          properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:times', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Reset, tooltip: '', underline: false, url: '', visible: false, wrap_on: mobile}
+          type: Link
+        - components:
+          - layout_properties: {slot: label}
             name: label_4
-            layout_properties: {slot: label}
-          - type: TextBox
-            properties: {role: null, align: center, hide_text: false, tooltip: '',
-              placeholder: '', border: '', enabled: true, foreground: '', visible: true,
-              text: '', font_size: null, font: '', spacing_above: small, type: number,
-              spacing_below: small, italic: false, background: '', bold: false, underline: false}
-            name: interval_box
-            layout_properties: {slot: num_text_box, width: 95}
+            properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'Appointment Interval:  ', tooltip: '', underline: false, visible: true}
+            type: Label
+          - data_bindings:
+            - {code: '', property: text, writeback: false}
             event_bindings: {change: interval_box_change}
-            data_bindings:
-            - {property: text, code: '', writeback: false}
-          - type: DropDown
+            layout_properties: {slot: num_text_box, width: 95}
+            name: interval_box
+            properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: number, underline: false, visible: true}
+            type: TextBox
+          - event_bindings: {change: interval_drop_change}
+            layout_properties: {slot: drop_down}
+            name: interval_drop
             properties:
-              role: null
               align: full
-              tooltip: ''
-              placeholder: ''
-              border: ''
-              enabled: true
-              foreground: ''
-              items: [hours, minutes]
-              visible: true
-              font_size: null
-              font: ''
-              spacing_above: small
-              spacing_below: small
-              italic: false
               background: ''
               bold: false
-              underline: false
+              border: ''
+              enabled: true
+              font: ''
+              font_size: null
+              foreground: ''
               include_placeholder: false
-            name: interval_drop
-            layout_properties: {slot: drop_down}
-            event_bindings: {change: interval_drop_change}
-          - type: Link
-            properties: {role: null, url: '', align: left, tooltip: '', border: '',
-              foreground: '', visible: false, text: Confirm Change, font_size: null,
-              wrap_on: mobile, font: '', col_spacing: medium, spacing_above: small,
-              icon_align: left, col_widths: '', spacing_below: small, italic: false,
-              background: '', bold: false, underline: false, icon: 'fa:check'}
-            name: save_link
+              italic: false
+              items: [hours, minutes]
+              placeholder: ''
+              role: null
+              spacing_above: small
+              spacing_below: small
+              tooltip: ''
+              underline: false
+              visible: true
+            type: DropDown
+          - event_bindings: {click: save_link_click}
             layout_properties: {slot: save}
-            event_bindings: {click: save_link_click}
-          - type: Link
-            properties: {role: null, url: '', align: left, tooltip: '', border: '',
-              foreground: '', visible: false, text: Reset, font_size: null, wrap_on: mobile,
-              font: '', col_spacing: medium, spacing_above: small, icon_align: left,
-              col_widths: '', spacing_below: small, italic: false, background: '',
-              bold: false, underline: false, icon: 'fa:times'}
-            name: cancel_link
+            name: save_link
+            properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:check', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Confirm Change, tooltip: '', underline: false, url: '', visible: false, wrap_on: mobile}
+            type: Link
+          - event_bindings: {click: cancel_link_click}
             layout_properties: {slot: cancel}
-            event_bindings: {click: cancel_link_click}
-      - type: RichText
-        properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-          foreground: '', visible: true, font_size: null, content: '{label}{text_box}
-            &nbsp;&nbsp;&nbsp;{save} &nbsp;&nbsp;&nbsp;{cancel}', font: '', spacing_above: small,
-          spacing_below: small, data: null, background: '', format: markdown}
-        name: rich_text_3
-        layout_properties: {grid_position: 'NNRUJE,GGUDAT'}
-        components:
-        - type: Label
-          properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-            visible: true, text: 'Number of Appointments per Time Slot:  ', font_size: null,
-            font: '', spacing_above: small, icon_align: left, spacing_below: small,
-            italic: false, background: '', bold: false, underline: false, icon: ''}
+            name: cancel_link
+            properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:times', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Reset, tooltip: '', underline: false, url: '', visible: false, wrap_on: mobile}
+            type: Link
+          layout_properties: {grid_position: 'XMJJSU,QHQIDH'}
+          name: rich_text_1
+          properties: {align: left, background: '', border: '', content: '{label}  {num_text_box} &nbsp;{drop_down}      &nbsp;&nbsp;&nbsp;{save} &nbsp;&nbsp;&nbsp;{cancel}', data: null, enable_slots: true, font: '', font_size: null, foreground: '', format: markdown, role: null, spacing_above: large, spacing_below: small, tooltip: '', visible: true}
+          type: RichText
+        layout_properties: {grid_position: 'XMJJSU,WMMFFP'}
+        name: rich_text_2
+        properties: {align: left, background: '', border: '', content: '{label} {text_box} &nbsp;&nbsp;days &nbsp;&nbsp;&nbsp;{save}&nbsp;&nbsp;&nbsp; {cancel} ', data: null, enable_slots: true, font: '', font_size: null, foreground: '', format: markdown, role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+        type: RichText
+      - components:
+        - layout_properties: {slot: label}
           name: label_6
-          layout_properties: {slot: label}
-        - type: Link
-          properties: {role: null, url: '', align: left, tooltip: '', border: '',
-            foreground: '', visible: false, text: Confirm Change, font_size: null,
-            wrap_on: mobile, font: '', col_spacing: medium, spacing_above: small,
-            icon_align: left, col_widths: '', spacing_below: small, italic: false,
-            background: '', bold: false, underline: false, icon: 'fa:check'}
-          name: save_num_link
+          properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: 'Number of Appointments per Time Slot:  ', tooltip: '', underline: false, visible: true}
+          type: Label
+        - event_bindings: {click: save_num_link_click}
           layout_properties: {slot: save}
-          event_bindings: {click: save_num_link_click}
-        - type: Link
-          properties: {role: null, url: '', align: left, tooltip: '', border: '',
-            foreground: '', visible: false, text: Reset, font_size: null, wrap_on: mobile,
-            font: '', col_spacing: medium, spacing_above: small, icon_align: left,
-            col_widths: '', spacing_below: small, italic: false, background: '', bold: false,
-            underline: false, icon: 'fa:times'}
-          name: cancel_num_link
+          name: save_num_link
+          properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:check', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Confirm Change, tooltip: '', underline: false, url: '', visible: false, wrap_on: mobile}
+          type: Link
+        - event_bindings: {click: cancel_num_link_click}
           layout_properties: {slot: cancel}
-          event_bindings: {click: cancel_num_link_click}
-        - type: TextBox
-          properties: {role: null, align: center, hide_text: false, tooltip: '', placeholder: '',
-            border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-            font: '', spacing_above: small, type: number, spacing_below: small, italic: false,
-            background: '', bold: false, underline: false}
-          name: booking_num_box
-          layout_properties: {slot: text_box, width: 201}
-          data_bindings:
-          - {property: text, code: 'self.num_row[''value'']', writeback: false}
+          name: cancel_num_link
+          properties: {align: left, background: '', bold: false, border: '', col_spacing: medium, col_widths: '', font: '', font_size: null, foreground: '', icon: 'fa:times', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Reset, tooltip: '', underline: false, url: '', visible: false, wrap_on: mobile}
+          type: Link
+        - data_bindings:
+          - {code: 'self.num_row[''value'']', property: text, writeback: false}
           event_bindings: {change: booking_num_box_change}
-    - type: ColumnPanel
-      properties: {role: card, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"AAEWSP":5,"TOXHAD":55}',
-        spacing_below: small, background: 'theme:Neutral'}
-      name: card_4
-      layout_properties: {grid_position: 'FKFUWO,ILCZZT'}
-      components:
-      - type: Label
-        properties: {role: text, align: left, tooltip: '', border: '', foreground: '',
-          visible: true, text: Opening Hours, font_size: null, font: '', spacing_above: small,
-          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-          underline: false, icon: ''}
+          layout_properties: {slot: text_box, width: 201}
+          name: booking_num_box
+          properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', hide_text: false, italic: false, placeholder: '', role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: number, underline: false, visible: true}
+          type: TextBox
+        layout_properties: {grid_position: 'NNRUJE,GGUDAT'}
+        name: rich_text_3
+        properties: {align: left, background: '', border: '', content: '{label}{text_box} &nbsp;&nbsp;&nbsp;{save} &nbsp;&nbsp;&nbsp;{cancel}', data: null, enable_slots: true, font: '', font_size: null, foreground: '', format: markdown, role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true}
+        type: RichText
+      layout_properties: {grid_position: 'JWLJMX,GNICBY'}
+      name: card_3
+      properties: {background: 'theme:Neutral', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+      type: ColumnPanel
+    - components:
+      - layout_properties: {grid_position: 'UJLIIL,PUUPTR'}
         name: label_7
-        layout_properties: {grid_position: 'UJLIIL,PUUPTR'}
-      - type: Spacer
-        properties: {height: 22}
+        properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: Opening Hours, tooltip: '', underline: false, visible: true}
+        type: Label
+      - layout_properties: {grid_position: 'PENTCK,CPXQEL'}
         name: spacer_5
-        layout_properties: {grid_position: 'PENTCK,CPXQEL'}
-      - type: Spacer
-        properties: {height: 32}
+        properties: {height: 22}
+        type: Spacer
+      - layout_properties: {grid_position: 'QICBVE,AAEWSP'}
         name: spacer_2
-        layout_properties: {grid_position: 'QICBVE,AAEWSP'}
-      - type: RepeatingPanel
-        properties: {item_template: Agent_Appointments.ItemTemplate3}
+        properties: {height: 32}
+        type: Spacer
+      - layout_properties: {grid_position: 'QICBVE,TOXHAD'}
         name: repeating_panel_3
-        layout_properties: {grid_position: 'QICBVE,TOXHAD'}
-    - type: Spacer
-      properties: {height: 32}
+        properties: {item_template: Agent_Appointments.ItemTemplate3}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'FKFUWO,ILCZZT'}
+      name: card_4
+      properties: {background: 'theme:Neutral', border: '', col_spacing: medium, col_widths: '{"AAEWSP":5,"TOXHAD":55}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+      type: ColumnPanel
+    - layout_properties: {grid_position: 'CLKOLX,OHMERL'}
       name: spacer_4
-      layout_properties: {grid_position: 'CLKOLX,OHMERL'}
-    - type: ColumnPanel
-      properties: {col_widths: '{}'}
-      name: column_panel_1
-      layout_properties: {grid_position: 'CLKOLX,UFNROA'}
-      components:
-      - type: DropDown
-        properties: {}
+      properties: {height: 32}
+      type: Spacer
+    - components:
+      - layout_properties: {grid_position: 'UYCRNH,ZUZXXA'}
         name: timezone_drop
-        layout_properties: {grid_position: 'UYCRNH,ZUZXXA'}
-      - type: Button
-        properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-          foreground: '', visible: true, text: SET LOCATION, font_size: null, font: '',
-          spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-          background: '', bold: false, underline: false, icon: ''}
-        name: location_button
+        properties: {}
+        type: DropDown
+      - event_bindings: {click: location_button_click}
         layout_properties: {grid_position: 'UYCRNH,USBFHS'}
-        event_bindings: {click: location_button_click}
+        name: location_button
+        properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: SET LOCATION, tooltip: '', underline: false, visible: true}
+        type: Button
+      layout_properties: {grid_position: 'CLKOLX,UFNROA'}
+      name: column_panel_1
+      properties: {col_widths: '{}'}
+      type: ColumnPanel
+    layout_properties: {grid_position: 'DLAKTC,PZXPKU'}
+    name: settings_card
+    properties: {background: 'theme:Neutral', border: '', col_spacing: medium, col_widths: '{"WJRUOO":5,"GNICBY":55,"OHMERL":6,"UFNROA":54}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: false, wrap_on: mobile}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'RXLMNX,RKIMVN'}
+  name: card_2
+  properties: {background: 'theme:Neutral', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: card, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+components:
+- components:
+  - layout_properties: {grid_position: 'CCDTZL,XYZHWT'}
+    name: label_2
+    properties: {align: center, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: subheading, spacing_above: small, spacing_below: small, text: client feedback., tooltip: '', underline: false, visible: true}
+    type: Label
+  - components:
+    - layout_properties: {grid_position: 'NBFOHM,JFGVDE'}
+      name: label_1
+      properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: text, spacing_above: small, spacing_below: small, text: Feedback, tooltip: '', underline: false, visible: true}
+      type: Label
+    - event_bindings: {click: clear_button_click}
+      layout_properties: {grid_position: 'NBFOHM,LPWUWF'}
+      name: clear_button
+      properties: {align: right, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Clear All Feedback, tooltip: '', underline: false, visible: true}
+      type: Button
+    - event_bindings: {change: sort_drop_change}
+      layout_properties: {grid_position: 'SQIZAF,QIPOVM'}
+      name: sort_drop
+      properties: {}
+      type: DropDown
+    - components:
+      - layout_properties: {}
+        name: repeating_panel_1
+        properties: {background: '', border: '', foreground: '', item_template: Agent_Feedback.RowTemplate1, items: null, role: null, spacing_above: large, spacing_below: none, tooltip: '', visible: true}
+        type: RepeatingPanel
+      layout_properties: {full_width_row: false, grid_position: 'GRMBFG,IAPTJY'}
+      name: data_grid_3
+      properties:
+        auto_header: true
+        background: ''
+        border: ''
+        columns:
+        - {$$hashKey: 'object:44381', data_key: '', expand: true, id: ZHLLXE, title: '', width: ''}
+        - {$$hashKey: 'object:83151', data_key: '', expand: false, id: HYCPCP, title: '', width: ''}
+        - {$$hashKey: 'object:83453', data_key: '', expand: true, id: NWGTDT, title: '', width: '400'}
+        foreground: ''
+        role: null
+        rows_per_page: 20
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        tooltip: ''
+        visible: true
+        wrap_on: never
+      type: DataGrid
+    layout_properties: {full_width_row: true, grid_position: 'OQPAOZ,IFKSLS'}
+    name: appointments_card
+    properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+    type: ColumnPanel
+  layout_properties: {full_width_row: true, grid_position: 'UTXDOJ,EFORFK'}
+  name: card_1
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: card, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: never}
+  type: ColumnPanel
+container:
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: null, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+is_package: true

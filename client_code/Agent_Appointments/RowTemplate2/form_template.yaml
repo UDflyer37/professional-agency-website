@@ -1,23 +1,22 @@
-container: {type: DataRowPanel}
-components:
-- type: Label
-  properties: {}
-  name: label_1
-  layout_properties: {column: IBYQZL}
-  data_bindings:
-  - {property: text, code: 'self.item[''name'']'}
-- type: Label
-  properties: {}
-  name: label_2
-  layout_properties: {column: BGOZTA}
-  data_bindings:
-  - {property: text, code: 'self.item[''datetime''].strftime( "%A %d %b %Y at %I:%M
-      %p")'}
-- type: Link
-  properties: {}
-  name: email_link
-  layout_properties: {column: IOHEFA}
-  data_bindings:
-  - {property: text, code: 'self.item[''user'']'}
-is_package: true
 component: []
+components:
+- data_bindings:
+  - {code: 'self.item[''name'']', property: text}
+  layout_properties: {column: IBYQZL}
+  name: label_1
+  properties: {}
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''datetime''].strftime( "%A %d %b %Y at %I:%M %p")', property: text}
+  layout_properties: {column: BGOZTA}
+  name: label_2
+  properties: {}
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''user'']', property: text}
+  layout_properties: {column: IOHEFA}
+  name: email_link
+  properties: {}
+  type: Link
+container: {type: DataRowPanel}
+is_package: true
