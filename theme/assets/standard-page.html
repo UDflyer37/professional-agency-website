@@ -1,5 +1,60 @@
 <!-- Include Roboto font from Google Fonts with different weights -->
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" rel="preload" as="font" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.nav-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.nav-buttons a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #5396BC;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+}
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #5396BC;
+    padding: 20px;
+    z-index: 999;
+}
+.mobile-menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .nav-buttons {
+        display: none;
+    }
+    .mobile-nav {
+        display: block;
+    }
+}
+</style>
 
 <!-- Main structure of the page -->
 <div class="structure">
@@ -29,7 +84,7 @@
   </div>
   
   <!-- Sidebar Toggle Button and Scroll Left elements -->
-  <a class="sidebar-toggle" anvil-if-slot-empty="top-left-btn" anvil-hide-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
+  <!-- <a class="sidebar-toggle" anvil-if-slot-empty="top-left-btn" anvil-hide-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn" href="javascript:void(0)"><i class="fa fa-bars"></i></a> -->
   <div class="scroll-left" anvil-slot="scroll-left">     
     <p id="scroll-text">It's about Trust, Service, and You!</p>
   </div>
@@ -47,15 +102,22 @@
     </div>
   </div>
   
-  <!-- Navigation Shield -->
-  <div class="nav-shield"></div> 
-</div>
+  
 
 <!-- Default drop area for Anvil -->
 <div anvil-drop-default anvil-drop-redirect=".placeholder" anvil-drop-container=".anvil-container"></div>
 
+<button class="mobile-nav" onclick="toggleMobileMenu()">N</button>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/appointment">make an appointment.</a>
+    <a href="/contact">contact us.</a>
+    <a href="/about">about us.</a>
+</div>
+
 <!-- JavaScript section with functions for hiding/showing sidebar and changing text -->
 <script>
+  /*
   // Function to hide the sidebar
   function hideSidebar() {
     var ln = $('.structure > .nav-holder > .left-nav');
@@ -94,10 +156,19 @@
       }
     });
   });
-
+  */
   // Function to change the text dynamically
   function change_text(message){
     document.getElementById("scroll-text").innerHTML = message;
+  }
+  
+  function toggleMobileMenu() {
+    var menu = document.getElementById('mobileMenu');
+    if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+    } else {
+        menu.style.display = 'block';
+    }
   }
 
 </script>

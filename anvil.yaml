@@ -101,6 +101,14 @@ db_schema:
       type: string
     server: full
     title: Phone Numbers
+  quotes:
+    client: search
+    columns:
+    - admin_ui: {width: 200}
+      name: quotes
+      type: string
+    server: full
+    title: quotes
   settings:
     client: search
     columns:
@@ -112,14 +120,6 @@ db_schema:
       type: simpleObject
     server: full
     title: Settings
-  table_10:
-    client: none
-    columns:
-    - admin_ui: {width: 200}
-      name: quotes
-      type: string
-    server: full
-    title: Table 10
   users:
     client: none
     columns:
