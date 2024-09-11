@@ -26,7 +26,7 @@
     
     <!-- Clear Float -->
     <div style="clear:both"></div>
-  </div>
+
   
   <!-- Sidebar Toggle Button and Scroll Left elements -->
   <a class="sidebar-toggle" anvil-if-slot-empty="top-left-btn" anvil-hide-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
@@ -56,6 +56,7 @@
 
 <!-- JavaScript section with functions for hiding/showing sidebar and changing text -->
 <script>
+
   // Function to hide the sidebar
   function hideSidebar() {
     var ln = $('.structure > .nav-holder > .left-nav');
@@ -93,6 +94,14 @@
     }
   });
 
+  function toggleMobileMenu() {
+      var menu = document.getElementById('mobileMenu');
+      if (menu.style.display === 'block') {
+          menu.style.display = 'none';
+      } else {
+          menu.style.display = 'block';
+      }
+  }
   // Function to change the text dynamically
   function change_text(message){
     document.getElementById("scroll-text").innerHTML = message;
