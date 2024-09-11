@@ -29,6 +29,8 @@ class Main(MainTemplate):
     global quotes
     quotes = [r['quotes'] for r in app_tables.quotes.search()]
 
+    self.dom_nodes['home'].addEventListener('click', self.home_link_click)
+
     
   def contact_link_click(self, **event_args):
     """This method is called when the link is clicked"""
