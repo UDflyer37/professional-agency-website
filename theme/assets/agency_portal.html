@@ -19,8 +19,8 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: white;
-    color: black;
+    background-color: #5396BC;
+    color: white;
     border: none;
     border-radius: 50%;
     width: 60px;
@@ -45,22 +45,13 @@
     text-decoration: none;
     padding: 10px 0;
     text-align: center;
-    font-size: 16px; 
+    font-size: 16px; /* Adjust to a comfortable size */
 }
 
 .mobile-menu h1 a {
   font-size: 24px;
   font-weight: bold; 
   color: white; 
-}
-
-.mobile-menu a.active {
-  background-color: #ECECEC; /* Darker background */
-  color: #5396BC; /* Golden text for emphasis */
-  font-weight: bold; /* Bold font */
-  border-left: 5px solid #4680A0; /* Add a golden border on the left */
-  border-right: 5px solid #4680A0; /* Add a golden border on the left */
-  transition: background-color 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -124,16 +115,13 @@
   <!-- Default drop area for Anvil -->
   <div anvil-drop-default anvil-drop-redirect=".placeholder" anvil-drop-container=".anvil-container"></div>
   
-  <button class="mobile-nav" onclick="toggleMobileMenu()">
-  <img src="_/theme/otto_and_associates_logo.png" alt="Menu Icon" style="height: 20px; vertical-align: middle; horizontal-align: middle;">
-  menu.
-  </button>
+  <button class="mobile-nav" onclick="toggleMobileMenu()">menu.</button>
   
   <div class="mobile-menu" id="mobileMenu">
       <h1><a anvil-name="home"><img src="_/theme/otto_and_associates_logo.png" alt="Logo" style="height: 30px; vertical-align: middle;"> Otto & Associates</a></h1>
-      <a onclick="highlightMenuItem(this)" anvil-name= appointment>make an appointment.</a>
-      <a onclick="highlightMenuItem(this)" anvil-name="contact">contact us.</a>
-      <a onclick="highlightMenuItem(this)" anvil-name="about">about us.</a>
+      <a anvil-name= appointment>make an appointment.</a>
+      <a anvil-name="contact">contact us.</a>
+      <a anvil-name="about">about us.</a>
   </div>
 </div>
 <!-- JavaScript section with functions for hiding/showing sidebar and changing text -->
@@ -151,17 +139,5 @@
         menu.style.display = 'block';
     }
   }
-  
-  function highlightMenuItem(item) {
-  var menuItems = document.querySelectorAll('.mobile-menu a');
-  
-  // Remove 'active' class from all menu items
-  menuItems.forEach(function(menuItem) {
-    menuItem.classList.remove('active');
-  });
-  
-  // Add 'active' class to the clicked menu item
-  item.classList.add('active');
-}
 </script>
 

@@ -29,11 +29,35 @@ class Main(MainTemplate):
     global quotes
     quotes = [r['quotes'] for r in app_tables.quotes.search()]
 
-    self.dom_nodes['home'].addEventListener('click', self.home_link_click())
-    self.dom_nodes['appointment'].addEventListener('click', self.appointment_link_click())
-    self.dom_nodes['contact'].addEventListener('click', self.contact_link_click())
-    self.dom_nodes['about'].addEventListener('click', self.about_link_click())
+    self.dom_nodes['home'].addEventListener('click', self._home_link_click)
+    self.dom_nodes['appointment'].addEventListener('click', self._appointment_link_click)
+    self.dom_nodes['contact'].addEventListener('click', self._contact_link_click)
+    self.dom_nodes['about'].addEventListener('click', self._about_link_click)
     
+  def _home_link_click(self, event):
+    # Prevent default form submission
+    event.preventDefault()
+    self.content_panel.clear()
+    self.content_panel.add_component(Home(), full_width_row=True)
+
+  def _appointment_link_click(self, event):
+    # Prevent default form submission
+    event.preventDefault()
+    self.content_panel.clear()
+    self.content_panel.add_component(Appointment(), full_width_row=True)
+    
+  def _contact_link_click(self, event):
+    # Prevent default form submission
+    event.preventDefault()
+    self.content_panel.clear()
+    self.content_panel.add_component(Contact(), full_width_row=True)
+
+  def _about_link_click(self, event):
+    # Prevent default form submission
+    event.preventDefault()
+    self.content_panel.clear()
+    self.content_panel.add_component(About(), full_width_row=True)
+  
   def contact_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     self.content_panel.clear()
