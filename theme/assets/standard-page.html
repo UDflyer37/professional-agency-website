@@ -55,11 +55,11 @@
 }
 
 .mobile-menu a.active {
-  background-color: #ECECEC; /* Darker background */
-  color: #5396BC; /* Golden text for emphasis */
-  font-weight: bold; /* Bold font */
-  border-left: 5px solid #4680A0; /* Add a golden border on the left */
-  border-right: 5px solid #4680A0; /* Add a golden border on the left */
+  background-color: #ECECEC; 
+  color: #5396BC; 
+  font-weight: bold; 
+  border-left: 5px solid #4680A0; 
+  border-right: 5px solid #4680A0; 
   transition: background-color 0.3s ease;
 }
 
@@ -130,8 +130,8 @@
   </button>
   
   <div class="mobile-menu" id="mobileMenu">
-      <h1><a anvil-name="home"><img src="_/theme/otto_and_associates_logo.png" alt="Logo" style="height: 30px; vertical-align: middle;"> Otto & Associates</a></h1>
-      <a onclick="highlightMenuItem(this)" anvil-name= appointment>make an appointment.</a>
+      <h1><a onclick="unhighlightMenuItems()" anvil-name="home"><img src="_/theme/otto_and_associates_logo.png" alt="Logo" style="height: 30px; vertical-align: middle;"> Otto & Associates</a></h1>
+      <a onclick="highlightMenuItem(this)" anvil-name= "appointment">make an appointment.</a>
       <a onclick="highlightMenuItem(this)" anvil-name="contact">contact us.</a>
       <a onclick="highlightMenuItem(this)" anvil-name="about">about us.</a>
   </div>
@@ -162,6 +162,16 @@
   
   // Add 'active' class to the clicked menu item
   item.classList.add('active');
-}
+  }
+
+  function unhighlightMenuItems() {
+  var menuItems = document.querySelectorAll('.mobile-menu a');
+  
+  // Remove 'active' class from all menu items
+  menuItems.forEach(function(menuItem) {
+    menuItem.classList.remove('active');
+  });
+  }
+  
 </script>
 

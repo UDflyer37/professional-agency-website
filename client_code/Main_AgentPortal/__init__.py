@@ -23,6 +23,34 @@ class Main_AgentPortal(Main_AgentPortalTemplate):
     self.content_panel.add_component(Agent_Portal(), full_width_row=True)
 
     self.refresh()
+    self.dom_nodes['home'].addEventListener('click', self._home_link_click)
+    self.dom_nodes['appointments'].addEventListener('click', self._appointments_link_click)
+    self.dom_nodes['resources'].addEventListener('click', self._resources_link_click)
+    self.dom_nodes['feedback'].addEventListener('click', self._feedback_link_click)
+    
+  def _home_link_click(self, event):
+    # Prevent default form submission
+    event.preventDefault()
+    self.content_panel.clear()
+    self.content_panel.add_component(Agent_Portal(), full_width_row=True)
+
+  def _appointments_link_click(self, event):
+    # Prevent default form submission
+    event.preventDefault()
+    self.content_panel.clear()
+    self.content_panel.add_component(Agent_Appointments(), full_width_row=True)
+    
+  def _resources_link_click(self, event):
+    # Prevent default form submission
+    event.preventDefault()
+    self.content_panel.clear()
+    self.content_panel.add_component(Agent_Resources(), full_width_row=True)
+
+  def _feedback_link_click(self, event):
+    # Prevent default form submission
+    event.preventDefault()
+    self.content_panel.clear()
+    self.content_panel.add_component(Agent_Feedback(), full_width_row=True)
 
   def refresh(self, **event_args):
     app_tables.quotes.client_readable()

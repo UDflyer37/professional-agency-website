@@ -245,6 +245,6 @@ components:
   properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: null, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
   type: ColumnPanel
 container:
-  properties: {background: '', border: '', foreground: '', html: '@theme:standard-page.html', role: null, tooltip: '', visible: true}
+  properties: {background: '', border: '', foreground: '', html: '@theme:agency_portal.html', role: null, tooltip: '', visible: true}
   type: HtmlTemplate
 is_package: true
