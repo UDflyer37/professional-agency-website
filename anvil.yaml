@@ -102,7 +102,7 @@ db_schema:
     server: full
     title: Phone Numbers
   quotes:
-    client: search
+    client: full
     columns:
     - admin_ui: {width: 200}
       name: quotes
