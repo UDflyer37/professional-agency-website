@@ -99,7 +99,7 @@ OTTO_TEST_DATABASE_URL=postgresql://localhost/otto_test pytest
 
 ## Deploy on Vercel
 
-This project is already shaped for Vercel's Python runtime. That was verified against Vercel's current Flask documentation: there is no `/api` folder and no build configuration, because the zero-configuration Flask support finds `app.py` by itself. The only `vercel.json` in the project schedules the daily reminder check; delete that file if you do not want texts.
+This project is already shaped for Vercel's Python runtime. There is no `/api` folder and no build command, because Vercel's Flask support finds `app.py` by itself. `vercel.json` does two things: it pins the framework to `flask`, so a fresh import is not mistaken for a static site that serves only `public/`, and it schedules the daily reminder check. Delete the `crons` entry if you do not want texts.
 
 What makes it work:
 
