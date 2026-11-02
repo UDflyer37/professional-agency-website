@@ -117,10 +117,11 @@ Steps:
 3. In **Settings → Environment Variables**, add:
    - `OTTO_SECRET_KEY`: 64 random hex characters.
    - `OTTO_AGENCY_EMAIL`: the inbox for bookings and requests.
-   - `OTTO_SMTP_HOST`, `OTTO_SMTP_PORT`, `OTTO_SMTP_USERNAME`, `OTTO_SMTP_PASSWORD`, `OTTO_SMTP_SENDER`: the mail account the site sends from.
+   - `OTTO_SMTP_HOST`, `OTTO_SMTP_PORT`, `OTTO_SMTP_USERNAME`, `OTTO_SMTP_PASSWORD`, `OTTO_SMTP_SENDER`: the mail account the site sends from. The Turbify values are in [Email](#email) below.
    - Optional texts: `OTTO_TWILIO_ACCOUNT_SID`, `OTTO_TWILIO_AUTH_TOKEN` and `OTTO_TWILIO_FROM` (the Twilio number texts are sent from). Nothing is sent until these are set *and* texts are switched on in the portal.
+   - `CRON_SECRET`: any random string of 16 or more characters. Vercel does **not** create this for you; it only sends the value you set as the `Authorization: Bearer` header when it invokes the cron. Without it, `/tasks/reminders` answers 403, so the daily check does nothing.
    - Leave `OTTO_SECURE_COOKIES` unset (it defaults to `true`).
-   - `vercel.json` adds a daily cron at 12:00 UTC (8:00 am Eastern) that calls `/tasks/reminders`. Vercel normally adds `CRON_SECRET` to the project when the cron is created and sends it as a Bearer token; if it is missing from **Environment Variables**, add one yourself (any long random string) so the daily check can authenticate. The route returns 403 without it, so it cannot be triggered by a stranger. Vercel's Hobby plan allows one run a day, which matches the default reminder window.
+   - `vercel.json` adds a daily cron at 12:00 UTC (8:00 am Eastern) that calls `/tasks/reminders`. Vercel's Hobby plan allows one run a day, which matches the default reminder window.
 4. Create the tables and a login once, from your computer, against the Neon database:
 
    ```bash
@@ -142,7 +143,11 @@ Optional: `vercel dev` runs the site through Vercel's local emulator instead of 
 
 Vercel does not send mail itself. Use any SMTP account:
 
-- **Yahoo** (the current inbox): `smtp.mail.yahoo.com`, port 465, with an app password from Yahoo account security.
+- **Turbify business mail** (the current inbox, and where theottoagency.com is registered):
+  - `OTTO_SMTP_HOST=smtp.bizmail.yahoo.com`
+  - `OTTO_SMTP_PORT=465`
+  - `OTTO_SMTP_USERNAME` and `OTTO_SMTP_SENDER`: `andi@theottoagency.com` (the full address, not just `andi`)
+  - `OTTO_SMTP_PASSWORD`: an **app password**, not the mailbox password. In Turbify Mail, open Settings → Account security → Generate app password, name it `website`, and use the 16-character code it shows once.
 - **Google Workspace**: `smtp.gmail.com`, port 587, with an app password.
 - **Resend** or **Postmark**: better delivery from your own domain. Both need DNS records added for theottoagency.com.
 
