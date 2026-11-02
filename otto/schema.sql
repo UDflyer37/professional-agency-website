@@ -156,3 +156,13 @@ CREATE TABLE IF NOT EXISTS notes (
 );
 ALTER TABLE notes ADD COLUMN IF NOT EXISTS pinned BOOLEAN NOT NULL DEFAULT false;
 CREATE INDEX IF NOT EXISTS notes_updated_at ON notes (updated_at DESC);
+
+-- Added in 3.3.0: fixed-window counters behind the limits on the public forms.
+-- `bucket` is a keyed hash of the visitor's address, never the address itself.
+CREATE TABLE IF NOT EXISTS request_throttle (
+    bucket TEXT NOT NULL,
+    window_start TIMESTAMPTZ NOT NULL,
+    hits INTEGER NOT NULL DEFAULT 1,
+    PRIMARY KEY (bucket, window_start)
+);
+CREATE INDEX IF NOT EXISTS request_throttle_window ON request_throttle (window_start);

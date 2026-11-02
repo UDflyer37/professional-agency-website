@@ -9,7 +9,7 @@ from typing import ParamSpec, TypeVar
 from flask import Flask, abort, g, redirect, request, session, url_for
 from werkzeug.wrappers.response import Response
 
-from otto import store
+from otto import store, throttle
 from otto.db import get_db
 
 P = ParamSpec("P")
@@ -58,13 +58,22 @@ def _security_headers(response: Response) -> Response:
         "font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'",
     )
     response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("Cross-Origin-Opener-Policy", "same-origin")
     response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
     response.headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+    if request.path.startswith(("/portal/", "/tasks/")):
+        # Signed-in pages carry a session cookie and the office's own records. Without this
+        # Flask marks them cacheable, and a shared cache or the browser's back button could
+        # hand one person's page to the next.
+        response.headers["Cache-Control"] = "no-store"
+        response.headers["Pragma"] = "no-cache"
     return response
 
 
 def register(app: Flask) -> None:
     app.before_request(_check_csrf)
+    app.before_request(throttle.guard)
     app.before_request(_load_agent)
     app.after_request(_security_headers)
     app.jinja_env.globals["csrf_token"] = csrf_token

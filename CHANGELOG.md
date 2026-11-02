@@ -2,6 +2,24 @@
 
 All notable changes to this project are recorded here. The format follows Keep a Changelog, and versions follow Semantic Versioning.
 
+## [3.3.0] - 2026-11-02
+
+A security pass before the site goes live for real.
+
+### Added
+- **Limits on the open forms.** Each visitor gets five bookings, six requests or quotes and ten sign-in attempts per ten minutes, with a larger shared budget behind it. Without this a script could fill the inbox, book every free slot for a month, and — once Twilio is connected — spend real money on texts. Counters are kept in Postgres, because Vercel answers each request from a fresh function and would forget anything in memory. Only a salted hash of the address is stored, never the address.
+- A `request_throttle` table for those counters. `init-db` creates it; run it once after deploying.
+- A `429` page that says how long to wait, with a `Retry-After` header.
+
+### Changed
+- Portal pages now answer `Cache-Control: no-store`. Flask marked them cacheable, which left the office's own records able to sit in a shared cache or reappear from the back button after signing out.
+- `X-Frame-Options: DENY` and `Cross-Origin-Opener-Policy: same-origin` join the existing headers, for browsers that ignore `frame-ancestors`.
+- The reminder cron compares its bearer token in constant time. The `?token=` fallback is gone: a secret in a URL ends up in logs and browser history, and Vercel always sends the header.
+- `.env.example` now shows `OTTO_SECURE_COOKIES=true`. It said `false` while telling the reader to keep it true in production, which is how a site ends up issuing sign-in cookies over plain http.
+
+### Fixed
+- The sign-in redirect accepted a path with a backslash (`/\evil.example`), which browsers can read as a host. Such a path now falls back to the dashboard.
+
 ## [3.2.1] - 2026-11-01
 
 ### Fixed

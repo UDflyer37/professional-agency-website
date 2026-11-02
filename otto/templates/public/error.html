@@ -4,8 +4,8 @@
 <header class="page-head">
   <div class="page-head__inner page-short">
     <div>
-      <p class="eyebrow"><span class="eyebrow__num">{{ code }}</span><span>Not here</span><span class="eyebrow__rule" aria-hidden="true"></span></p>
-      <h1 class="page-head__title">{% if code == 404 %}Page not found{% else %}That did not work{% endif %}</h1>
+      <p class="eyebrow"><span class="eyebrow__num">{{ code }}</span><span>{% if code == 404 %}Not here{% elif code == 429 %}One moment{% else %}Something slipped{% endif %}</span><span class="eyebrow__rule" aria-hidden="true"></span></p>
+      <h1 class="page-head__title">{% if code == 404 %}Page not found{% elif code == 429 %}Too many at once{% else %}That did not work{% endif %}</h1>
     </div>
   </div>
 </header>

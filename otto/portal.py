@@ -42,9 +42,16 @@ def _texter():
 
 
 def _same_site_path(target: str | None) -> str:
-    if target and target.startswith("/") and not target.startswith("//") and not urlparse(target).netloc:
-        return target
-    return url_for("portal.dashboard")
+    """Accept only a path on this site; anything else goes to the dashboard.
+
+    A path may not start with two slashes, carry a backslash (browsers read `/\\evil.example`
+    as a host in some contexts) or hold control characters.
+    """
+    if not target or not target.startswith("/") or target.startswith("//"):
+        return url_for("portal.dashboard")
+    if "\\" in target or any(character < " " for character in target) or urlparse(target).netloc:
+        return url_for("portal.dashboard")
+    return target
 
 
 def _local(moment: datetime | None) -> str:

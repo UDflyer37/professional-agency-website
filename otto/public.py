@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import hmac
 from datetime import timedelta
 
 from flask import Blueprint, abort, current_app, g, jsonify, make_response, redirect, render_template, request, url_for
 from werkzeug.wrappers.response import Response
 
-from otto import content, media, notify, site, store
+from otto import content, media, notify, site, store, throttle
 from otto.config import Settings
 from otto.db import get_db
 from otto.mailer import Email, Mailer, send_quietly
@@ -326,12 +327,16 @@ def privacy() -> str:
 
 @bp.app_errorhandler(400)
 @bp.app_errorhandler(404)
-def client_error(error: Exception) -> tuple[str, int]:
+@bp.app_errorhandler(429)
+def client_error(error: Exception) -> Response:
     code = getattr(error, "code", 400)
     description = getattr(error, "description", "")
     if code == 404:
         description = "That page is not here. It may have moved when the site was rebuilt."
-    return render_template("public/error.html", code=code, description=description), code
+    response = make_response(render_template("public/error.html", code=code, description=description), code)
+    if code == 429:
+        response.headers["Retry-After"] = str(throttle.WINDOW_SECONDS)
+    return response
 
 
 
@@ -387,8 +392,9 @@ def reminder_task() -> Response | tuple[Response, int]:
     settings = _settings()
     if not settings.cron_secret:
         abort(403)
-    supplied = request.headers.get("Authorization", "") or f"Bearer {request.args.get('token', '')}"
-    if supplied != f"Bearer {settings.cron_secret}":
+    # Compared in constant time, and only from the header: a secret in a query string ends
+    # up in Referer values, logs and browser history. Vercel always sends the header.
+    if not hmac.compare_digest(request.headers.get("Authorization", ""), f"Bearer {settings.cron_secret}"):
         abort(403)
 
     values = site.get_setting(get_db(), "notify")

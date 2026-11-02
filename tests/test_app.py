@@ -26,6 +26,7 @@ pytestmark = pytest.mark.skipif(not DATABASE_URL, reason="OTTO_TEST_DATABASE_URL
 TABLES = (
     "agents", "office_hours", "booking_rules", "bookings", "messages", "faqs", "links",
     "site_settings", "carriers", "coverage", "team", "testimonials", "media", "time_off", "notes",
+    "request_throttle",
 )
 
 
@@ -157,6 +158,53 @@ def test_redirect_after_login_stays_on_site(client: FlaskClient, app: Flask) -> 
         data={"csrf_token": token, "email": "andi@example.com", "password": "a long test password"},
     )
     assert response.headers["Location"] == "/portal/"
+
+
+def test_redirect_after_login_ignores_backslash_tricks(client: FlaskClient, app: Flask) -> None:
+    with app.app_context():
+        store.upsert_agent(db.get_db(), "andi@example.com", "Andi", generate_password_hash("a long test password"))
+    token = csrf_from(client, "/portal/login")
+    response = client.post(
+        "/portal/login?next=/%5Cevil.example.com",
+        data={"csrf_token": token, "email": "andi@example.com", "password": "a long test password"},
+    )
+    assert response.headers["Location"] == "/portal/"
+
+
+def test_public_forms_are_rate_limited(client: FlaskClient) -> None:
+    form = {"csrf_token": csrf_from(client, "/contact"), "topic": "proof-card", "name": "Pat Doe", "email": "pat@example.com"}
+    for _ in range(6):
+        assert client.post("/contact", data=form).status_code == 302
+    blocked = client.post("/contact", data=form)
+    assert blocked.status_code == 429
+    assert blocked.headers["Retry-After"] == "600"
+    assert "few minutes" in blocked.get_data(as_text=True)
+
+
+def test_login_is_rate_limited_per_visitor(client: FlaskClient, app: Flask) -> None:
+    with app.app_context():
+        store.upsert_agent(db.get_db(), "andi@example.com", "Andi", generate_password_hash("a long test password"))
+    token = csrf_from(client, "/portal/login")
+    attempts = [
+        client.post("/portal/login", data={"csrf_token": token, "email": "andi@example.com", "password": "wrong"}).status_code
+        for _ in range(10)
+    ]
+    assert 429 not in attempts
+    assert client.post("/portal/login", data={"csrf_token": token, "email": "andi@example.com", "password": "wrong"}).status_code == 429
+
+
+def test_portal_pages_are_never_cached(client: FlaskClient, app: Flask) -> None:
+    with app.app_context():
+        store.upsert_agent(db.get_db(), "andi@example.com", "Andi", generate_password_hash("a long test password"))
+    client.post(
+        "/portal/login",
+        data={"csrf_token": csrf_from(client, "/portal/login"), "email": "andi@example.com", "password": "a long test password"},
+    )
+    for path in ("/portal/", "/portal/messages", "/portal/notes"):
+        response = client.get(path)
+        assert response.headers["Cache-Control"] == "no-store", path
+        assert response.headers["X-Frame-Options"] == "DENY", path
+    assert client.get("/").headers.get("Cache-Control") != "no-store"
 
 
 def test_phone_call_needs_a_number(client: FlaskClient) -> None:

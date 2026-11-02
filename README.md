@@ -152,7 +152,26 @@ Vercel does not send mail itself. Use any SMTP account:
 - **Google Workspace**: `smtp.gmail.com`, port 587, with an app password.
 - **Resend** or **Postmark**: better delivery from your own domain. Both need DNS records added for theottoagency.com.
 
-Port 465 uses SSL; any other port uses STARTTLS.
+Port 465 uses SSL; any other port starts in the clear and upgrades with STARTTLS.
+
+### Security
+
+What the app does on its own, so it does not have to be set up again after a deploy:
+
+- **Sign-in.** Passwords are stored as scrypt hashes. A wrong password and an unknown address take the same time to answer, so the form cannot be used to find out which logins exist. Five failures lock that account for fifteen minutes. The session cookie is `Secure`, `HttpOnly` and `SameSite=Lax`, and it is rebuilt on every sign-in.
+- **Every change is a POST with a CSRF token.** That includes the public forms, so another site cannot post a booking or a message on a visitor's behalf.
+- **Every portal page requires a sign-in**, and answers `Cache-Control: no-store` so a shared cache or the back button cannot show the office's own records to the next person.
+- **Public forms are rate limited** per visitor and per ten minutes: five bookings, six requests or quotes from one address, and ten sign-in attempts. The counters live in Postgres because Vercel forgets anything held in memory between requests. Only a salted hash of the address is stored, not the address.
+- **Uploads** must be JPEG, PNG or WebP by their first bytes, not by the name the browser gives them, and are served with that same content type.
+- **Headers.** A strict Content-Security-Policy (`'self'` only, no inline scripts), `nosniff`, `frame-ancestors 'none'` plus `X-Frame-Options: DENY`, and HSTS from Vercel.
+- **Secrets** are read from the environment only. Nothing sensitive is in the repository or its history, and the reminder cron compares its bearer token in constant time.
+- **Previews** are behind Vercel's deployment protection, so a preview URL is not readable by strangers.
+
+Worth knowing:
+
+- There is no second factor on the portal. Use a long password (a sentence works) and keep it in a password manager.
+- Anyone who knows the office address can lock the portal for fifteen minutes at a time by failing five sign-ins. It cannot let them in, but it can be irritating. The visitor limit makes it slow to repeat.
+- Preview deployments use the same database as production, so anything done on a preview URL is real. Vercel's protection is what keeps them private.
 
 ## Moving data from Anvil
 
