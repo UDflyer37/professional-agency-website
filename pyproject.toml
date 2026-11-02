@@ -1,6 +1,6 @@
 [project]
 name = "otto-agency"
-version = "3.2.0"
+version = "3.2.1"
 description = "Website, appointment booking and agent portal for Otto & Associates Insurance Agency"
 requires-python = ">=3.12"
 dependencies = [

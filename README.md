@@ -109,11 +109,12 @@ What makes it work:
 - Everything in `public/` is served from the site root by Vercel's CDN. That is why the stylesheet lives at `public/static/css/site.css` and is requested as `/static/css/site.css`. Flask serves the same folder locally from `static_folder`.
 - The function filesystem is read-only, so uploaded photos and logos are stored in Postgres and served from `/media/<id>`.
 - `db.py` disables server-side prepared statements, which Neon's pooled connection (PgBouncer) requires.
+- `vercel.json` also lists `otto/templates/**` and `otto/schema.sql` under `functions.includeFiles`. Vercel bundles Python modules but not the HTML they render, so without that every page answers with `TemplateNotFound: public/home.html`.
 
 Steps:
 
 1. Push this folder to a GitHub repository and import it at vercel.com/new. Leave the framework preset on its detected default and add no build settings.
-2. In the project, open **Storage**, add **Neon** (Postgres) and connect it. This sets `DATABASE_URL`. Use the pooled connection string.
+2. In the project, open **Storage**, add **Neon** (Postgres) and connect it. This sets `DATABASE_URL`. Use the pooled connection string. From the CLI, `vercel integration add neon` does the same thing and sets the variable for every environment.
 3. In **Settings → Environment Variables**, add:
    - `OTTO_SECRET_KEY`: 64 random hex characters.
    - `OTTO_AGENCY_EMAIL`: the inbox for bookings and requests.
@@ -127,7 +128,7 @@ Steps:
    ```bash
    npm i -g vercel
    vercel link
-   vercel env pull .env              # copies the Vercel variables into .env
+   vercel env pull /tmp/vercel.env   # NOT .env: pulling over .env replaces your local settings
    # Set OTTO_SECURE_COOKIES=false in .env only while testing the portal on localhost.
    flask --app app init-db
    flask --app app create-agent andi@theottoagency.com "Andi Otto"

@@ -2,6 +2,15 @@
 
 All notable changes to this project are recorded here. The format follows Keep a Changelog, and versions follow Semantic Versioning.
 
+## [3.2.1] - 2026-11-01
+
+### Fixed
+- The site now works on Vercel. The framework is pinned to Flask in `vercel.json`, and `functions.includeFiles` ships `otto/templates/**` and `otto/schema.sql` with the function. Vercel bundles Python modules but not the HTML they render, so without it every page answered `TemplateNotFound: public/home.html`.
+- The deploy notes claimed Vercel creates `CRON_SECRET` when a cron job is configured. It does not: it only sends the value you set, so the daily reminder check answered 403 with nothing configured. The notes now say to add it yourself.
+
+### Changed
+- The deploy notes document the Turbify mail settings the office mailbox needs (`smtp.bizmail.yahoo.com`, port 465, app password) and warn that `vercel env pull .env` replaces local settings.
+
 ## [3.2.0] - 2026-10-30
 
 ### Added
