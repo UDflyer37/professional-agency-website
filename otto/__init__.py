@@ -16,7 +16,7 @@ from otto.config import Settings
 from otto.mailer import LogMailer, Mailer, SmtpMailer
 from otto.sms import LogTexter, Texter, TwilioTexter
 
-__version__ = "3.3.0"
+__version__ = "3.3.1"
 
 PUBLIC_STATIC = Path(__file__).resolve().parent.parent / "public" / "static"
 
