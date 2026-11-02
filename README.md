@@ -119,7 +119,7 @@ Steps:
    - `OTTO_SECRET_KEY`: 64 random hex characters.
    - `OTTO_AGENCY_EMAIL`: the inbox for bookings and requests.
    - `OTTO_SMTP_HOST`, `OTTO_SMTP_PORT`, `OTTO_SMTP_USERNAME`, `OTTO_SMTP_PASSWORD`, `OTTO_SMTP_SENDER`: the mail account the site sends from. The Turbify values are in [Email](#email) below.
-   - Optional texts: `OTTO_TWILIO_ACCOUNT_SID`, `OTTO_TWILIO_AUTH_TOKEN` and `OTTO_TWILIO_FROM` (the Twilio number texts are sent from). Nothing is sent until these are set *and* texts are switched on in the portal.
+   - Optional texts: `OTTO_TWILIO_ACCOUNT_SID`, `OTTO_TWILIO_AUTH_TOKEN` and `OTTO_TWILIO_FROM` (the Twilio number texts are sent from). Nothing is sent until these are set *and* texts are switched on in the portal. Reaching a US phone needs a paid Twilio account: a local number must finish A2P 10DLC registration, or a toll-free number its own verification, before Twilio will deliver. A trial account can only text numbers you have verified.
    - `CRON_SECRET`: any random string of 16 or more characters. Vercel does **not** create this for you; it only sends the value you set as the `Authorization: Bearer` header when it invokes the cron. Without it, `/tasks/reminders` answers 403, so the daily check does nothing.
    - Leave `OTTO_SECURE_COOKIES` unset (it defaults to `true`).
    - `vercel.json` adds a daily cron at 12:00 UTC (8:00 am Eastern) that calls `/tasks/reminders`. Vercel's Hobby plan allows one run a day, which matches the default reminder window.

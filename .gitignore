@@ -6,3 +6,6 @@ __pycache__/
 .vercel/
 .taste-skill/
 instance/
+.vercel
+.env.local
+.env.*.local
