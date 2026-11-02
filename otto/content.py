@@ -60,11 +60,11 @@ AGENCY = Agency(
     city="Sunbury",
     region="OH",
     postcode="43074",
-    # The office line is the main number; the second is the agents' cell.
-    phone_display="(937) 545-6148",
-    phone_dial="+19375456148",
-    second_phone_display="(937) 610-0088",
-    second_phone_dial="+19376100088",
+    # (937) 610-0088 is the number we answer; (937) 545-6148 is the cell for after hours.
+    phone_display="(937) 610-0088",
+    phone_dial="+19376100088",
+    second_phone_display="(937) 545-6148",
+    second_phone_dial="+19375456148",
     email="andi@theottoagency.com",
     map_url="https://www.google.com/maps/search/?api=1&query=6650+Kilbourne+Rd+Sunbury+OH+43074",
 )

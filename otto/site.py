@@ -369,11 +369,11 @@ def get_row(connection: Connection, table: str, row_id: int) -> dict[str, Any] |
 
 
 def _fix_swapped_phones(connection: Connection) -> None:
-    """Version 2.0 saved the cell as the main number. Put the office line first, once."""
+    """Earlier versions saved the cell as the main number. Put (937) 610-0088 first, once."""
     row = connection.execute("SELECT value FROM site_settings WHERE key = 'agency'").fetchone()
     if not row:
         return
     value = dict(row["value"])
-    if value.get("phone") == "(937) 610-0088" and value.get("phone2") == "(937) 545-6148":
+    if value.get("phone") == "(937) 545-6148" and value.get("phone2") == "(937) 610-0088":
         value["phone"], value["phone2"] = value["phone2"], value["phone"]
         connection.execute("UPDATE site_settings SET value = %s WHERE key = 'agency'", (Jsonb(value),))

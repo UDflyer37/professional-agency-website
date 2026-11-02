@@ -359,7 +359,7 @@ def test_rotating_headlines_render_and_office_number_leads(client: FlaskClient) 
     page = client.get("/").get_data(as_text=True)
     assert "data-rotator" in page
     assert "Your best insurance policy is a good agent." in page
-    assert page.index("(937) 545-6148") < page.index("(937) 610-0088")
+    assert page.index("(937) 610-0088") < page.index("(937) 545-6148")
 
 
 def test_old_layouts_gain_new_sections_in_place(app: Flask) -> None:
@@ -446,14 +446,14 @@ def test_manual_booking_outside_office_hours_is_refused(client: FlaskClient, app
     assert "outside office hours" in response.get_data(as_text=True)
 
 
-def test_init_db_puts_the_office_number_first(app: Flask) -> None:
+def test_init_db_puts_the_main_number_first(app: Flask) -> None:
     with app.app_context():
         connection = db.get_db()
-        site.save_setting(connection, "agency", {"phone": "(937) 610-0088", "phone2": "(937) 545-6148"})
+        site.save_setting(connection, "agency", {"phone": "(937) 545-6148", "phone2": "(937) 610-0088"})
         db.initialise(connection)
         agency = site.get_setting(connection, "agency")
-    assert agency["phone"] == "(937) 545-6148"
-    assert agency["phone2"] == "(937) 610-0088"
+    assert agency["phone"] == "(937) 610-0088"
+    assert agency["phone2"] == "(937) 545-6148"
 
 
 def test_faq_arrows_reorder_and_renumber(client: FlaskClient, app: Flask) -> None:

@@ -2,6 +2,11 @@
 
 All notable changes to this project are recorded here. The format follows Keep a Changelog, and versions follow Semantic Versioning.
 
+## [3.3.1] - 2026-11-02
+
+### Changed
+- **The main number is (937) 610-0088.** It leads in the header, the footer, the contact page and the booking confirmations, and (937) 545-6148 is listed beside it as the cell for after hours. `init-db` swaps sites that saved the two the other way round.
+
 ## [3.3.0] - 2026-11-02
 
 A security pass before the site goes live for real.
