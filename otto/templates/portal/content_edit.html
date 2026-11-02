@@ -1,0 +1,60 @@
+{% extends "portal/base.html" %}
+{% import "portal/_fields.html" as f %}
+{% block title %}{{ 'Edit' if row else 'Add' }} {{ kind.singular }}{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <p class="crumbs"><a href="{{ url_for('portal.website') }}">Website</a> / <a href="{{ url_for('portal.website_list', slug=slug) }}">{{ kind.title }}</a> / {{ 'Edit' if row else 'Add' }}</p>
+    <h1 class="page-title">{{ (row[kind.summary_field] if row else 'New ' ~ kind.singular) }}</h1>
+  </div>
+</header>
+{% if errors %}<div class="alert" role="alert">Some things need fixing before this can be saved. They are marked below.</div>{% endif %}
+<form class="editor" method="post" enctype="multipart/form-data" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <section class="card editor__section">
+    <div class="fields">
+      {% for field in kind.fields %}
+        {% set value = values.get(field.name) %}
+        {% if field.kind == 'textarea' %}
+          {{ f.textarea(field.name, field.label, value, rows=4, help=field.help, error=errors.get(field.name), required=field.required, counter=field.max_length) }}
+        {% elif field.kind == 'lines' %}
+          {{ f.textarea(field.name, field.label, (value or [])|join('\n'), rows=5, help=field.help, error=errors.get(field.name), required=field.required) }}
+        {% elif field.kind == 'image' %}
+          {% set static_name = 'logo_static' if field.name == 'logo_media_id' else 'photo_static' %}
+          {% set src = url_for('public.media_file', media_id=value) if value else (url_for('static', filename=row[static_name]) if row and row[static_name] else '') %}
+          {{ f.image(field.name, field.label, src, help=field.help, error=errors.get(field.name)) }}
+        {% elif field.kind == 'select' %}
+          <fieldset class="field field--wide">
+            <legend class="field__legend">{{ field.label }}</legend>
+            <div class="art-picker">
+              {% for key, label in illustrations.items() %}
+              <label class="art-choice">
+                <input type="radio" name="{{ field.name }}" value="{{ key }}" {% if (value or 'shield') == key %}checked{% endif %}>
+                <span>{% include "art/" ~ key ~ ".svg" %}<em>{{ label }}</em></span>
+              </label>
+              {% endfor %}
+            </div>
+          </fieldset>
+        {% elif field.kind == 'number' %}
+          {{ f.input(field.name, field.label, value or 40, type='number', help=field.help, error=errors.get(field.name), attrs='min="16" max="80" step="2"') }}
+        {% else %}
+          {{ f.input(field.name, field.label, value, type=('url' if field.kind == 'url' else 'text'), help=field.help, error=errors.get(field.name), required=field.required, attrs='maxlength="' ~ field.max_length ~ '"') }}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  <div class="savebar">
+    {% if row %}
+    <button class="button button--danger-quiet" type="submit" form="delete-form">Delete</button>
+    {% endif %}
+    <span class="savebar__spacer"></span>
+    <a class="button button--quiet" href="{{ url_for('portal.website_list', slug=slug) }}">Cancel</a>
+    <button class="button" type="submit">Save</button>
+  </div>
+</form>
+{% if row %}
+<form id="delete-form" method="post" action="{{ url_for('portal.website_action', slug=slug, row_id=row.id, action='delete') }}" data-confirm="Delete {{ row[kind.summary_field] }}? This cannot be undone.">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+</form>
+{% endif %}
+{% endblock %}

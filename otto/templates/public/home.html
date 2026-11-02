@@ -1,0 +1,492 @@
+{% extends "public/base.html" %}
+{% block body_class %}page-home{% endblock %}
+
+{% macro img_src(media_id, static_path) -%}
+{{ url_for('public.media_file', media_id=media_id) if media_id else url_for('static', filename=static_path) }}
+{%- endmacro %}
+
+{# Every coloured band draws its own seam above itself, in its own top colour, so any order
+   the agents choose in the portal still joins cleanly. #}
+{% macro edge(shape) -%}
+<svg class="edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  {% if shape == 'wave' %}<path d="M0 90V44c150-26 268-34 402-14s268 38 404 12 300-42 634-12v60z"/>
+  {% elif shape == 'curve' %}<path d="M0 90V70C420 12 1020 12 1440 70v20z"/>
+  {% elif shape == 'arch' %}<path d="M0 90V82c240 0 300-62 720-62s480 62 720 62v8z"/>
+  {% elif shape == 'tear' %}<path d="M0 90V60l78 16 62-22 70 20 64-18 72 24 58-20 76 18 66-22 70 20 62-18 74 22 68-20 74 18 66-22 72 20 60-18 74 22 68-18 66 16v40z"/>
+  {% elif shape == 'tilt' %}<path d="M0 90 1440 24v66z"/>
+  {% else %}<path d="M0 90V54c72 0 72-22 144-22s72 22 144 22 72-22 144-22 72 22 144 22 72-22 144-22 72 22 144 22 72-22 144-22 72 22 144 22 72-22 144-22 72 22 144 22v64z"/>{% endif %}
+</svg>
+{%- endmacro %}
+
+{% macro eyebrow(n, label) -%}
+<p class="eyebrow" data-reveal><span class="eyebrow__num">{{ '%02d'|format(n) }}</span><span>{{ label }}</span><span class="eyebrow__rule" aria-hidden="true"></span></p>
+{%- endmacro %}
+
+{% macro section_tasks(n) %}
+<section class="band band--ink tasks" aria-labelledby="tasks-title">
+  {{ edge('arch') }}
+  <div class="band__inner">
+    {{ eyebrow(n, 'Start here') }}
+    <h2 class="tasks__title" id="tasks-title" data-reveal style="--d:60ms">What can we help with today?</h2>
+    <ol class="tasks__grid">
+      {% set tasks = [
+        ('#quote', 'task-quote', 'Get a quote', 'Eight companies compared, one conversation'),
+        ('#claims', 'task-claim', 'Report a claim', 'Every claims line, one tap away'),
+        (url_for('public.contact'), 'task-document', 'Request a document', 'ID cards, declarations, certificates'),
+        (url_for('public.appointments'), 'task-calendar', 'Book a call', 'Phone, video or in person'),
+      ] %}
+      {% for href, art, title, text in tasks %}
+      <li class="task" data-reveal style="--d:{{ loop.index0 * 70 }}ms">
+        <a class="task__link" href="{{ href }}">
+          <span class="task__num">{{ '%02d'|format(loop.index) }}</span>
+          <span class="task__art" aria-hidden="true">{% include "art/" ~ art ~ ".svg" %}</span>
+          <span class="task__title">{{ title }}</span>
+          <span class="task__text">{{ text }}</span>
+          <span class="task__go">Go</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro section_ribbon(n) %}
+<section class="ribbon" aria-label="What we insure">
+  <div class="ribbon__strip" data-marquee>
+    <ul class="ribbon__list">
+      {% for word in ['Homes', 'Cars', 'Boats', 'Motorcycles', 'Campers', 'Rentals', 'Small businesses', 'Umbrella', 'Contractors', 'Condos'] %}
+      <li>{{ word }}<span class="ribbon__dot" aria-hidden="true"></span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro section_companies(n) %}
+<section class="band band--paper logos" aria-labelledby="logos-title">
+  {{ edge('wave') }}
+  <div class="band__inner">
+    {{ eyebrow(n, 'Our companies') }}
+    <div class="logos__head">
+      <p class="logos__title" id="logos-title" data-reveal style="--d:60ms">We shop <strong>{{ site.carriers|length }} trusted companies</strong> so you don’t have to.</p>
+    </div>
+  </div>
+  <div class="logos__track" data-marquee>
+    <ul class="logos__list">
+      {% for carrier in site.carriers %}
+      <li>
+        <a class="logo" href="#carrier-{{ carrier.id }}" aria-label="{{ carrier.name }}{% if carrier.claims_phone %}, claims {{ carrier.claims_phone }}{% endif %}">
+          <img src="{{ img_src(carrier.logo_media_id, carrier.logo_static) }}" alt="" style="--logo-h: {{ carrier.logo_height }}px" loading="lazy">
+          <span class="logo__claims">{% if carrier.claims_phone %}Claims {{ carrier.claims_phone }}{% else %}{{ carrier.name }}{% endif %}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro section_coverage(n) %}
+<section class="band band--ink coverage" id="coverage" aria-labelledby="coverage-title">
+  {{ edge('tear') }}
+  <div class="band__inner">
+    <div class="coverage__head">
+      {{ eyebrow(n, 'What we cover') }}
+      <h2 class="section__title" id="coverage-title" data-reveal style="--d:60ms">One agency for the whole <em>family’s</em> insurance.</h2>
+      <p class="section__lead" data-reveal style="--d:120ms">Home, car, the boat, the business and everything in between. Open a line to see what fits, or hover to preview it.</p>
+    </div>
+    <div class="cov-wrap">
+      <div class="cov-list" data-hover-reveal>
+        {% for item in site.coverage %}
+        <details class="cov" name="coverage" data-reveal style="--d:{{ loop.index0 * 50 }}ms" data-art-index="{{ loop.index0 }}">
+          <summary class="cov__row">
+            <span class="cov__num" aria-hidden="true">{{ '%02d'|format(loop.index) }}</span>
+            <span class="cov__name">{{ item.name }}</span>
+            <span class="cov__headline">{{ item.headline }}</span>
+            <span class="cov__toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="cov__body">
+            <p class="cov__summary">{{ item.summary }}</p>
+            <ul class="checklist">
+              {% for line in item['items'] %}<li>{{ line }}</li>{% endfor %}
+            </ul>
+            <a class="button button--small" href="#quote" data-quote-item="{{ {'home': 'home', 'car': 'car', 'boat': 'boat', 'umbrella': 'umbrella', 'business': 'business'}.get(item.illustration, '') }}">Get a {{ item.name|lower }} quote <span class="button__arrow" aria-hidden="true">→</span></a>
+          </div>
+        </details>
+        {% endfor %}
+      </div>
+      <div class="cov-peek" aria-hidden="true" data-peek>
+        {% for item in site.coverage %}<div class="cov-peek__art {{ 'is-current' if loop.first else '' }}" data-peek-art="{{ loop.index0 }}">{% include "art/" ~ item.illustration ~ ".svg" %}</div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro section_quote(n) %}
+<section class="band band--accent quote" id="quote" aria-labelledby="quote-title">
+  {{ edge('curve') }}
+  <div class="band__inner quote__grid">
+    <div class="quote__intro">
+      {{ eyebrow(n, 'A free quote') }}
+      <h2 class="section__title" id="quote-title" data-reveal style="--d:60ms">Get a quote worth <em>reading</em>.</h2>
+      <p class="section__lead" data-reveal style="--d:100ms">Tell us what you would like covered. We compare our companies and come back with real options, in plain English.</p>
+      <ol class="quote__next" data-reveal style="--d:140ms">
+        <li><span>01</span><div><strong>You tell us what to quote.</strong> About a minute of your time.</div></li>
+        <li><span>02</span><div><strong>We shop our companies.</strong> Coverage and price, side by side.</div></li>
+        <li><span>03</span><div><strong>We call you when you’re ready.</strong> You choose. No pressure, ever.</div></li>
+      </ol>
+      <p class="quote__aside" data-reveal style="--d:180ms">Rather talk it through? Call <a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a>.</p>
+    </div>
+    <form class="sheet quote__form panel--ruled" action="{{ url_for('public.quote') }}" method="post" data-wizard data-reveal style="--d:100ms" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="wizard__progress" hidden data-progress><span data-progress-bar></span></div>
+      <fieldset class="wizard__step" data-step>
+        <legend class="wizard__legend">What would you like quoted?</legend>
+        <div class="pick-grid">
+          {% for slug, (word, label) in quote_items.items() %}
+          <label class="pick"><input type="checkbox" name="items" value="{{ slug }}"><span>{{ label }}</span></label>
+          {% endfor %}
+        </div>
+        <p class="field-error" data-items-error hidden>Choose at least one thing to quote.</p>
+        <div class="wizard__nav"><button class="button" type="button" data-next hidden>Continue <span class="button__arrow" aria-hidden="true">→</span></button><span class="wizard__count" data-count-label aria-live="polite"></span></div>
+      </fieldset>
+      <fieldset class="wizard__step" data-step>
+        <legend class="wizard__legend">How can we reach you?</legend>
+        <div class="fields">
+          <div class="field"><label for="q-name">Name</label><input id="q-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="q-email">Email</label><input id="q-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="q-phone">Phone <span class="field__optional">(optional)</span></label><input id="q-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="q-time">Best time to call</label>
+            <select id="q-time" name="best_time"><option>Any time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
+          <div class="field field--wide"><label for="q-notes">Anything we should know? <span class="field__optional">(optional)</span></label><textarea id="q-notes" name="notes" rows="3" placeholder="Renewal date, vehicles, what you pay now"></textarea></div>
+          <div class="field honey" aria-hidden="true"><label for="q-website">Leave this empty</label><input id="q-website" name="website" tabindex="-1" autocomplete="off"></div>
+        </div>
+        <div class="wizard__nav"><button class="button button--quiet" type="button" data-back hidden>Back</button><button class="button" type="submit">Send my quote request <span class="button__arrow" aria-hidden="true">→</span></button></div>
+      </fieldset>
+    </form>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro section_claims(n) %}
+<section class="band band--paper claims" id="claims" aria-labelledby="claims-title">
+  {{ edge('wave') }}
+  <div class="band__inner">
+    <div class="claims__head">
+      {{ eyebrow(n, 'Claims') }}
+      <h2 class="section__title" id="claims-title" data-reveal style="--d:60ms">Had an accident or a <em>loss?</em></h2>
+      <p class="section__lead" data-reveal style="--d:110ms">Call your company’s claims line first, any hour. Then call us and we will help you through it.</p>
+    </div>
+    <ol class="claim-steps">
+      <li data-reveal><span class="claim-steps__num">01</span><strong>Make sure everyone is safe</strong><em>Call 911 if anyone is hurt.</em></li>
+      <li data-reveal style="--d:60ms"><span class="claim-steps__num">02</span><strong>Call your company</strong><em>Numbers below, open around the clock.</em></li>
+      <li data-reveal style="--d:120ms"><span class="claim-steps__num">03</span><strong>Call us</strong><em>We follow the claim until it is settled.</em></li>
+    </ol>
+    <div class="rolex" data-finder>
+      <div class="rolex__index">
+        <h3 class="rolex__title" data-reveal>Find your company</h3>
+        <div class="rolex__search" hidden data-filter-wrap>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <label class="visually-hidden" for="carrier-search">Search for your insurance company</label>
+          <input id="carrier-search" type="search" placeholder="Search by name" autocomplete="off" data-filter>
+        </div>
+        <ol class="rolex__tabs" data-filter-list>
+          {% for carrier in site.carriers %}
+          <li data-name="{{ carrier.name|lower }}">
+            <button class="rolex__tab" type="button" data-pick="{{ carrier.id }}" aria-label="Show {{ carrier.name }} claims details">
+              <span class="rolex__num" aria-hidden="true">{{ '%02d'|format(loop.index) }}</span>
+              <span class="rolex__logo"><img src="{{ img_src(carrier.logo_media_id, carrier.logo_static) }}" alt="" style="--logo-h: {{ carrier.logo_height }}px" loading="lazy"></span>
+              <span class="rolex__name">{{ carrier.name }}</span>
+              <span class="rolex__arrow" aria-hidden="true">→</span>
+            </button>
+          </li>
+          {% endfor %}
+        </ol>
+        <p class="claims__empty" hidden data-filter-empty>No company by that name. Call us on <a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a> and we will find the right number.</p>
+      </div>
+      <div class="rolex__stage" aria-live="polite">
+        <div class="rolex__frame">
+          <span class="rolex__rod" aria-hidden="true"></span>
+          <div class="rolex__drum" data-rolex-drum>
+            {% for carrier in site.carriers %}
+            <article class="rolex__card {{ 'is-current' if loop.first else '' }}" id="carrier-{{ carrier.id }}" data-detail="{{ carrier.id }}">
+              <span class="rolex__card-tab" aria-hidden="true">{{ carrier.name[:1] }}</span>
+              <div class="rolex__card-head">
+                <img class="rolex__card-logo" src="{{ img_src(carrier.logo_media_id, carrier.logo_static) }}" alt="{{ carrier.name }}" style="--logo-h: {{ carrier.logo_height }}px" loading="lazy">
+                <span class="rolex__card-tag">{{ '%02d'|format(loop.index) }} / {{ '%02d'|format(site.carriers|length) }}</span>
+              </div>
+              <h3 class="rolex__card-name">{{ carrier.name }}</h3>
+              {% if carrier.claims_phone %}
+              <p class="rolex__label">Claims line, open around the clock</p>
+              <a class="rolex__claims" href="tel:{{ carrier.claims_phone|dial }}">{{ carrier.claims_phone }}</a>
+              {% endif %}
+              <dl class="rolex__more">
+                {% if carrier.billing_phone %}<div><dt>Billing</dt><dd><a href="tel:{{ carrier.billing_phone|dial }}">{{ carrier.billing_phone }}</a></dd></div>{% endif %}
+                {% if carrier.website %}<div><dt>Online</dt><dd><a href="{{ carrier.website }}" rel="noopener">{{ carrier.name }} website <span aria-hidden="true">↗</span></a></dd></div>{% endif %}
+              </dl>
+              <p class="rolex__note">Then call us on <a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a> so we can follow your claim.</p>
+            </article>
+            {% endfor %}
+          </div>
+          <div class="rolex__controls">
+            <button class="round-button" type="button" data-rolex-prev aria-label="Previous company">←</button>
+            <span class="rolex__count" data-rolex-count>01 / {{ '%02d'|format(site.carriers|length) }}</span>
+            <button class="round-button" type="button" data-rolex-next aria-label="Next company">→</button>
+          </div>
+        </div>
+        <p class="rolex__hint">Turn the wheel, or pick a company from the list.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro section_documents(n) %}
+<section class="band band--ink documents" aria-labelledby="documents-title">
+  {{ edge('tilt') }}
+  <div class="band__inner">
+    <div class="documents__head">
+      <div>
+        {{ eyebrow(n, 'Paperwork, quickly') }}
+        <h2 class="section__title" id="documents-title" data-reveal style="--d:60ms">Need a document <em>today?</em></h2>
+        <p class="section__lead" data-reveal style="--d:110ms">Ask online and Andi will send it during office hours. Drag or scroll to browse the shelf.</p>
+      </div>
+      <div class="gallery-controls" hidden data-gallery-controls>
+        <button class="round-button" type="button" data-gallery-prev aria-label="Previous document">←</button>
+        <button class="round-button" type="button" data-gallery-next aria-label="Next document">→</button>
+      </div>
+    </div>
+  </div>
+  <ul class="paper-gallery" data-gallery tabindex="0" aria-label="Documents you can request">
+    {% for item in paperwork %}
+    <li>
+      <a class="paper" href="{{ url_for('public.contact', topic=item.slug) }}" style="--tilt:{{ [-2.4, 1.6, -1.2, 2.2][loop.index0 % 4] }}deg">
+        <span class="paper__stamp" aria-hidden="true">{% include "art/task-document.svg" %}</span>
+        <span class="paper__label">{{ item.label }}</span>
+        <span class="paper__lines" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="paper__use">{{ item.use }}</span>
+        <span class="paper__go">Request it <span aria-hidden="true">→</span></span>
+      </a>
+    </li>
+    {% endfor %}
+    <li>
+      <a class="paper paper--other" href="{{ url_for('public.contact') }}" style="--tilt:-1.6deg">
+        <span class="paper__stamp" aria-hidden="true">{% include "art/shield.svg" %}</span>
+        <span class="paper__label">Something else?</span>
+        <span class="paper__use">Policy changes, payments, adding a driver or a vehicle. Just ask.</span>
+        <span class="paper__go">Send a request <span aria-hidden="true">→</span></span>
+      </a>
+    </li>
+  </ul>
+</section>
+{% endmacro %}
+
+{% macro section_about(n) %}
+<section class="band band--tint about" id="about" aria-labelledby="about-title">
+  {{ edge('scallop') }}
+  <div class="band__inner">
+    <div class="about__grid">
+      <div class="about__story">
+        {{ eyebrow(n, 'Our family') }}
+        <h2 class="section__title" id="about-title" data-reveal style="--d:60ms">A family agency, <em>since 1998.</em></h2>
+        <p class="about__lede" data-reveal style="--d:100ms">In 1998 Glenn answered a newspaper ad and found himself driving all over Ohio selling only life and health insurance, while clients kept asking if he did their cars and homes too.</p>
+        <p data-reveal style="--d:140ms">Eight years as American Family agents followed, with Andi beside him from 2000, earning a J.D. Power customer service award along the way. Then they went independent, so they could choose the companies, choose how clients are treated, and say yes to almost anyone who calls.</p>
+        <p data-reveal style="--d:180ms">Today they work from home in {{ agency.city }} and meet clients by phone, video or appointment.</p>
+        <p class="about__sign" data-reveal style="--d:220ms">— Glenn and Andi Otto</p>
+      </div>
+      <figure class="about__photo" data-reveal style="--d:100ms">
+        <span class="about__backdrop" aria-hidden="true"></span>
+        {% if site.hero.photo_media_id %}
+        <img src="{{ url_for('public.media_file', media_id=site.hero.photo_media_id) }}" width="479" height="640" alt="The Otto family" loading="lazy">
+        {% else %}
+        <img src="{{ url_for('static', filename='img/otto-family.webp') }}" width="479" height="640" alt="Glenn and Andi Otto with their family on a boardwalk" loading="lazy">
+        {% endif %}
+        <figcaption>The Otto family. Glenn and Andi married in 1995 and raised three sons in Ohio.</figcaption>
+      </figure>
+    </div>
+
+    {% if site.team %}
+    <div class="founders">
+      <div class="founders__head">
+        <h3 class="founders__title" data-reveal>Meet your agents</h3>
+        <p class="hero__eyebrow" data-reveal style="--d:60ms">Two people, one phone number</p>
+      </div>
+      <div class="founders__grid">
+        {% for person in site.team %}
+        <article class="founder" data-reveal style="--d:{{ loop.index0 * 90 }}ms">
+          {% if person.photo_media_id or person.photo_static %}
+          <div class="founder__frame" tabindex="0">
+            <img class="founder__photo" src="{{ img_src(person.photo_media_id, person.photo_static) }}" width="360" height="516" alt="Portrait of {{ person.name }}" loading="lazy">
+            <span class="founder__hover">Ask for {{ person.name.split(' ')[0] }} by name</span>
+          </div>
+          {% endif %}
+          <div class="founder__text">
+            {% if person.role %}<p class="founder__role">{{ person.role }}</p>{% endif %}
+            <h4 class="founder__name">{{ person.name }}</h4>
+            <p class="founder__bio">{{ person.bio }}</p>
+            <a class="founder__link" href="{{ url_for('public.appointments') }}">Book time with {{ person.name.split(' ')[0] }}</a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <dl class="stats">
+      <div data-reveal><dt><span data-count="{{ years_serving }}">{{ years_serving }}</span></dt><dd>years helping Ohio families</dd></div>
+      <div data-reveal style="--d:60ms"><dt><span data-count="{{ site.carriers|length }}">{{ site.carriers|length }}</span></dt><dd>companies quoted side by side</dd></div>
+      <div data-reveal style="--d:120ms"><dt>2</dt><dd>veterans: U.S. Army and U.S. Air Force</dd></div>
+      <div data-reveal style="--d:180ms"><dt>1</dt><dd>J.D. Power customer service award</dd></div>
+    </dl>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro section_reviews(n) %}
+{% if site.testimonials %}
+<section class="band band--paper reviews" aria-labelledby="reviews-title">
+  {{ edge('curve') }}
+  <div class="band__inner">
+    {{ eyebrow(n, 'Kind words') }}
+    <h2 class="section__title" id="reviews-title" data-reveal style="--d:60ms">What clients say</h2>
+    <div class="reviews__stage" data-rotator-reviews>
+      {% for review in site.testimonials %}
+      <blockquote class="review {{ 'is-current' if loop.first else '' }}" data-review>
+        <span class="review__mark" aria-hidden="true">“</span>
+        <p>{{ review.quote }}</p>
+        <footer><strong>{{ review.name }}</strong>{% if review.detail %} · {{ review.detail }}{% endif %}</footer>
+      </blockquote>
+      {% endfor %}
+    </div>
+    {% if site.testimonials|length > 1 %}
+    <div class="reviews__controls" hidden data-review-controls>
+      <button class="round-button" type="button" data-review-prev aria-label="Previous review">←</button>
+      <button class="round-button" type="button" data-review-next aria-label="Next review">→</button>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+{% endmacro %}
+
+{% macro section_faq(n) %}
+<section class="band band--paper faq" id="faq" aria-labelledby="faq-title">
+  {{ edge('arch') }}
+  <div class="band__inner faq__grid">
+    <div class="faq__intro">
+      {{ eyebrow(n, 'Questions') }}
+      <h2 class="section__title" id="faq-title" data-reveal style="--d:60ms">Questions we hear most</h2>
+      <p class="section__lead" data-reveal style="--d:100ms">Something else on your mind? Call <a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a> or <a href="{{ url_for('public.contact') }}">send us a note</a>.</p>
+    </div>
+    <div class="faq__list">
+      {% for faq in faqs %}
+      <details class="faq__item" name="faq" data-reveal style="--d:{{ loop.index0 * 40 }}ms">
+        <summary><span>{{ faq.question }}</span><span class="faq__icon" aria-hidden="true"></span></summary>
+        <p class="faq__answer">{{ faq.answer }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% macro section_contact(n) %}
+<section class="band band--ink visit" id="contact" aria-labelledby="visit-title">
+  {{ edge('wave') }}
+  <div class="band__inner visit__grid">
+    <div class="visit__main">
+      {{ eyebrow(n, 'Talk to us') }}
+      <h2 class="section__title" id="visit-title" data-reveal style="--d:60ms">A real person <em>answers.</em></h2>
+      <a class="visit__big" href="tel:{{ agency.phone_dial }}" data-reveal><span>Office</span>{{ agency.phone }}</a>
+      {% if agency.phone2 %}<a class="visit__big visit__big--small" href="tel:{{ agency.phone2_dial }}"><span>Cell</span>{{ agency.phone2 }}</a>{% endif %}
+      <p class="visit__line"><a href="mailto:{{ agency.email }}">{{ agency.email }}</a></p>
+      <p class="visit__line">{% if agency.show_street %}{{ agency.street }}, {% endif %}{{ agency.city }}, {{ agency.region }} {{ agency.postcode }}. Visits by appointment.</p>
+      <p class="visit__ways"><span class="chip">Phone</span> <span class="chip">Video</span> <span class="chip">In person</span></p>
+      <div class="visit__actions" data-reveal style="--d:120ms">
+        <a class="button button--accent" href="{{ url_for('public.appointments') }}">Book a call <span class="button__arrow" aria-hidden="true">→</span></a>
+        <a class="button button--ghost" href="{{ url_for('public.contact') }}">Send a request</a>
+      </div>
+    </div>
+    <div class="visit__hours" data-reveal style="--d:120ms">
+      <h3 class="visit__hours-title">Hours</h3>
+      <p class="visit__status"><span class="status {{ 'is-open' if status.is_open else 'is-closed' }}" data-office-status data-hours='{{ week_for_script|tojson }}' data-timezone="{{ timezone }}" data-away="{{ 'yes' if away_today else 'no' }}" data-away-dates='{{ away_dates|tojson }}'>{{ status.summary }}</span></p>
+      <ul>
+        {% for day, span in hours %}
+        <li {% if day == today_name %}class="is-today" aria-current="date"{% endif %}><span>{{ day }}</span><span>{{ span }}</span></li>
+        {% endfor %}
+      </ul>
+      <p class="visit__line"><a href="{{ agency.map_url }}" rel="noopener">Find us on the map ↗</a></p>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{% block main %}
+{% set quotes = site.hero.quotes if site.hero.quotes else [site.hero.title] %}
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <span class="hero__blob"></span>
+    <img class="hero__mark" src="{{ url_for('static', filename='img/otto-mark-large.webp') }}" width="900" height="558" alt="" fetchpriority="high">
+  </div>
+  <div class="hero__inner">
+    <div class="hero__grid">
+      <p class="hero__eyebrow" data-load>Independent insurance &middot; {{ agency.place }}</p>
+      <h1 class="hero__title">
+        <span class="visually-hidden">{{ agency.name }}, independent insurance agents in {{ agency.city }}, Ohio. {{ quotes[0] }}</span>
+        <span class="hero__quote" aria-hidden="true" data-rotator data-quotes='{{ quotes|tojson }}'>
+          <span class="hero__fit"><span class="hero__words" data-rotator-text>{{ quotes[0] }}</span></span>
+        </span>
+      </h1>
+      {% if quotes|length > 1 %}
+      <div class="hero__dots" hidden data-rotator-dots>
+        {% for q in quotes %}<button type="button" aria-label="Show headline {{ loop.index }}" {% if loop.first %}aria-current="true"{% endif %}><span></span></button>{% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="hero__row">
+        <div class="hero__copy">
+          <p class="hero__lead" data-load style="--d:120ms">{{ site.hero.intro }}</p>
+          <div class="hero__actions" data-load style="--d:200ms">
+            <a class="button button--accent button--large" href="#quote">Get a free quote <span class="button__arrow" aria-hidden="true">→</span></a>
+            <a class="button button--outline button--large" href="tel:{{ agency.phone_dial }}">Call {{ agency.phone }}</a>
+          </div>
+          <ul class="hero__trust" data-load style="--d:260ms">
+            <li>Independent agents</li>
+            <li>Veteran owned</li>
+            <li>Phone, video or in person</li>
+          </ul>
+        </div>
+
+        <div class="hero__aside" data-load style="--d:160ms">
+          {% if site.team %}
+          <div class="hero__people">
+            {% for person in site.team[:2] %}
+            {% if person.photo_media_id or person.photo_static %}
+            <a class="person-pill" href="{{ url_for('public.home') }}#about">
+              <img src="{{ img_src(person.photo_media_id, person.photo_static) }}" width="76" height="76" alt="" loading="lazy">
+              <span>{{ person.name }}<em>{{ person.role or 'Agent' }}</em></span>
+            </a>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
+          <p class="hero__facts">
+            <span class="status {{ 'is-open' if status.is_open else 'is-closed' }}" data-office-status data-hours='{{ week_for_script|tojson }}' data-timezone="{{ timezone }}" data-away="{{ 'yes' if away_today else 'no' }}" data-away-dates='{{ away_dates|tojson }}'>{{ status.summary }}</span>
+            <span class="hero__count"><strong>{{ site.carriers|length }}</strong> companies compared</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% set renderers = {
+  'tasks': section_tasks, 'ribbon': section_ribbon, 'companies': section_companies, 'coverage': section_coverage,
+  'quote': section_quote, 'claims': section_claims, 'documents': section_documents, 'about': section_about,
+  'reviews': section_reviews, 'faq': section_faq, 'contact': section_contact,
+} %}
+{% set counter = namespace(n=0) %}
+{% for key in site.sections %}{% if key != 'ribbon' %}{% set counter.n = counter.n + 1 %}{% endif %}{{ renderers[key](counter.n) }}{% endfor %}
+{% endblock %}

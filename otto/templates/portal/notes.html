@@ -1,0 +1,94 @@
+{% extends "portal/base.html" %}
+{% block title %}Notes{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">Notes</h1>
+    <p class="page-sub">The desk pad for anything that has no other home: a callback, a renewal to watch, the name of a company you are waiting on. Drag a note by its dotted corner, pin the ones that matter, or read them as a numbered list.</p>
+  </div>
+  <a class="button button--quiet button--small" href="{{ url_for('portal.dashboard') }}">Back to today</a>
+</header>
+
+<nav class="tabs" aria-label="Note views">
+  <a href="{{ url_for('portal.notes') }}" {% if view == 'board' %}aria-current="page"{% endif %}>Board</a>
+  <a href="{{ url_for('portal.notes', view='list') }}" {% if view == 'list' %}aria-current="page"{% endif %}>List <span class="tabs__count">{{ notes|length }}</span></a>
+</nav>
+
+{% if view == 'board' %}
+  {% if notes %}
+  <div class="note-board" data-note-board data-csrf="{{ csrf_token() }}">
+    {% for note in notes %}
+    <form class="note note--{{ note.color }} {% if note.pinned %}is-pinned{% endif %}" method="post" action="{{ url_for('portal.save_note', note_id=note.id) }}"
+          style="left: {{ note.pos_x }}px; top: {{ note.pos_y }}px; z-index: {{ note.z_index }}"
+          data-note data-move-url="{{ url_for('portal.move_note', note_id=note.id) }}" data-z="{{ note.z_index }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="note__grip" type="button" aria-label="Drag this note" data-note-grip><span></span><span></span><span></span></button>
+      {% if note.pinned %}<span class="note__pinned" aria-label="Pinned">Pinned</span>{% endif %}
+      <textarea name="body" rows="5" aria-label="Note text">{{ note.body }}</textarea>
+      <div class="note__foot">
+        <label class="note__color">
+          <span class="visually-hidden">Note colour</span>
+          <select name="color" aria-label="Note colour">
+            {% for color in colors %}<option value="{{ color }}" {% if color == note.color %}selected{% endif %}>{{ color|capitalize }}</option>{% endfor %}
+          </select>
+        </label>
+        <button class="note__pin" type="submit" name="pinned" value="{{ 'no' if note.pinned else 'yes' }}"
+                formaction="{{ url_for('portal.pin_note', note_id=note.id) }}"
+                aria-label="{{ 'Unpin this note' if note.pinned else 'Pin this note to the top of the list' }}"
+                title="{{ 'Unpin' if note.pinned else 'Pin' }}">{{ 'Unpin' if note.pinned else 'Pin' }}</button>
+        <button class="note__save" type="submit">Save</button>
+        <button class="note__delete" type="submit" formaction="{{ url_for('portal.delete_note', note_id=note.id) }}" onclick="return confirm('Delete this note?')" aria-label="Delete note">×</button>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-state-note">Nothing on the desk yet. Write the first note below — it will stay put until you move it.</p>
+  {% endif %}
+{% else %}
+  {% if notes %}
+  <ol class="note-list">
+    {% for note in notes %}
+    <li class="note-line note-line--{{ note.color }} {% if note.pinned %}is-pinned{% endif %}">
+      <span class="note-line__n">{% if note.pinned %}<span class="note-line__star" aria-label="Pinned">★</span>{% endif %}{{ '%02d'|format(loop.index) }}</span>
+      <form method="post" action="{{ url_for('portal.save_note', note_id=note.id) }}" class="note-line__form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="view" value="list">
+        <textarea name="body" rows="3" aria-label="Note {{ loop.index }}">{{ note.body }}</textarea>
+        <div class="note-line__foot">
+          <span class="note-line__date">Edited {{ note.updated_at|local_time('%b %-d, %-I:%M %p') }}</span>
+          <label class="note-line__color"><span class="visually-hidden">Colour</span>
+            <select name="color" aria-label="Note colour">
+              {% for color in colors %}<option value="{{ color }}" {% if color == note.color %}selected{% endif %}>{{ color|capitalize }}</option>{% endfor %}
+            </select>
+          </label>
+          <button class="button button--quiet button--small" type="submit">Save</button>
+          <button class="note-line__pin" type="submit" name="pinned" value="{{ 'no' if note.pinned else 'yes' }}"
+                  formaction="{{ url_for('portal.pin_note', note_id=note.id) }}">{{ 'Unpin' if note.pinned else 'Pin to top' }}</button>
+          <button class="note-line__delete" type="submit" formaction="{{ url_for('portal.delete_note', note_id=note.id) }}" onclick="return confirm('Delete this note?')">Delete</button>
+        </div>
+      </form>
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="empty-state-note">No notes yet.</p>
+  {% endif %}
+{% endif %}
+
+<form class="note-compose" method="post" action="{{ url_for('portal.add_note') }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  {% if view == 'list' %}<input type="hidden" name="view" value="list">{% endif %}
+  <h2 class="note-compose__title">A new note</h2>
+  <textarea name="body" rows="3" required maxlength="1200" placeholder="Call the Hendersons about the boat renewal, Tuesday morning." aria-label="New note"></textarea>
+  <div class="note-compose__row">
+    <fieldset class="note-colors">
+      <legend>Paper</legend>
+      {% for color in colors %}
+      <label class="note-color note-color--{{ color }}"><input type="radio" name="color" value="{{ color }}" {% if loop.first %}checked{% endif %}><span></span><em>{{ color|capitalize }}</em></label>
+      {% endfor %}
+    </fieldset>
+    <button class="button" type="submit">Pin it to the board</button>
+  </div>
+</form>
+{% endblock %}

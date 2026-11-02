@@ -1,0 +1,59 @@
+{% extends "portal/base.html" %}
+{% block title %}Time off{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">Time off</h1>
+    <p class="page-sub">Days you are away. The booking calendar stops offering times on these dates, so nobody books while you are gone. Times are {{ timezone }}.</p>
+  </div>
+</header>
+
+<div class="board">
+  <section class="card">
+    <h2 class="card__title">Days away</h2>
+    {% if entries %}
+    <ul class="plain-list plain-list--rows">
+      {% for entry in entries %}
+      <li>
+        <span>
+          <strong>{{ entry.starts_on.strftime('%a %b %-d') }}{% if entry.ends_on != entry.starts_on %} – {{ entry.ends_on.strftime('%a %b %-d, %Y') }}{% else %}, {{ entry.starts_on.strftime('%Y') }}{% endif %}</strong>
+          {% if entry.note %}<em>{{ entry.note }}</em>{% endif %}
+        </span>
+        <form method="post" action="{{ url_for('portal.delete_time_off', time_off_id=entry.id) }}" data-confirm="Remove this time off? Those days become bookable again.">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="button button--quiet button--small" type="submit">Remove</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No time off saved. The calendar follows your office hours.</p>
+    {% endif %}
+  </section>
+
+  <section class="card">
+    <h2 class="card__title">Add time off</h2>
+    <form class="form-stack" method="post" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="fields">
+        <div class="field">
+          <label for="starts_on">First day away</label>
+          <input id="starts_on" name="starts_on" type="date" value="{{ form.get('starts_on', '') }}" min="{{ today.isoformat() }}" required {% if errors.starts_on %}aria-invalid="true" aria-describedby="start-error"{% endif %}>
+          {% if errors.starts_on %}<p class="field-error" id="start-error">{{ errors.starts_on }}</p>{% endif %}
+        </div>
+        <div class="field">
+          <label for="ends_on">Last day away <span class="field__optional">(same day if blank)</span></label>
+          <input id="ends_on" name="ends_on" type="date" value="{{ form.get('ends_on', '') }}" min="{{ today.isoformat() }}" {% if errors.ends_on %}aria-invalid="true" aria-describedby="end-error"{% endif %}>
+          {% if errors.ends_on %}<p class="field-error" id="end-error">{{ errors.ends_on }}</p>{% endif %}
+        </div>
+        <div class="field field--wide">
+          <label for="note">Note <span class="field__optional">(optional)</span></label>
+          <input id="note" name="note" value="{{ form.get('note', '') }}" maxlength="120" placeholder="Holiday, conference, family trip">
+        </div>
+      </div>
+      <button class="button" type="submit">Save time off</button>
+    </form>
+    <p class="field__hint" style="margin-top: 14px">Appointments already booked on those days stay booked. Cancel them from the appointments page if needed.</p>
+  </section>
+</div>
+{% endblock %}

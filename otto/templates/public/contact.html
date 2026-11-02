@@ -1,0 +1,85 @@
+{% extends "public/base.html" %}
+{% block title %}Requests and questions | {{ agency.name }}{% endblock %}
+
+{% block main %}
+<header class="page-head">
+  <div class="page-head__inner">
+    <div>
+      <p class="eyebrow"><span class="eyebrow__num">02</span><span>Requests</span><span class="eyebrow__rule" aria-hidden="true"></span></p>
+      <h1 class="page-head__title" data-load>How can we help today?</h1>
+    </div>
+    <p class="page-head__lead" data-load style="--d:80ms">Ask for a document, a quote or anything else. Andi reads every request during office hours and answers by email or phone.</p>
+  </div>
+</header>
+
+<div class="page-body">
+  <div class="two-col two-col--wide-left">
+    <form class="contact-form" data-reveal style="--d:80ms" method="post" action="{{ url_for('public.contact') }}" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <fieldset data-reveal {% if errors.topic %}aria-describedby="topic-error"{% endif %}>
+        <legend class="panel__title">What is it about?</legend>
+        {% if errors.topic %}<p class="field-error" id="topic-error">{{ errors.topic }}</p>{% endif %}
+        <div class="choice-grid choice-grid--wide">
+          {% for slug, label in topics.items() %}
+          <label class="choice">
+            <input type="radio" name="topic" value="{{ slug }}" {% if topic == slug %}checked{% endif %} required>
+            <span>{{ label }}</span>
+          </label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <fieldset data-reveal>
+        <legend class="panel__title">Your details</legend>
+        <div class="fields">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" autocomplete="name" value="{{ form.get('name', '') }}" required {% if errors.name %}aria-invalid="true" aria-describedby="name-error"{% endif %}>
+            {% if errors.name %}<p class="field-error" id="name-error">{{ errors.name }}</p>{% endif %}
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" value="{{ form.get('email', '') }}" required {% if errors.email %}aria-invalid="true" aria-describedby="email-error"{% endif %}>
+            {% if errors.email %}<p class="field-error" id="email-error">{{ errors.email }}</p>{% endif %}
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="field__optional">(optional)</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" value="{{ form.get('phone', '') }}" {% if errors.phone %}aria-invalid="true" aria-describedby="phone-error"{% endif %}>
+            {% if errors.phone %}<p class="field-error" id="phone-error">{{ errors.phone }}</p>{% endif %}
+          </div>
+          <div class="field field--wide">
+            <label for="body">Details</label>
+            <textarea id="body" name="body" rows="6" aria-describedby="body-hint{% if errors.body %} body-error{% endif %}" {% if errors.body %}aria-invalid="true"{% endif %}>{{ form.get('body', '') or prefill_body }}</textarea>
+            <p class="field__hint" id="body-hint">For a document, tell us which policy or vehicle and where to send it. Please leave out Social Security and bank numbers.</p>
+            {% if errors.body %}<p class="field-error" id="body-error">{{ errors.body }}</p>{% endif %}
+          </div>
+          <div class="field honey" aria-hidden="true">
+            <label for="website">Leave this empty</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-actions">
+        <button class="button button--large" type="submit">Send request <span class="button__arrow" aria-hidden="true">→</span></button>
+        <p>Rather talk? Call <a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a>. A real person answers.</p>
+      </div>
+    </form>
+
+    <aside class="panel contact-card" data-reveal style="--d:120ms" aria-labelledby="direct-title">
+      <h2 class="panel__title" id="direct-title">Or reach us directly</h2>
+      <p class="contact-card__phone"><a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a></p>
+      <p><a href="mailto:{{ agency.email }}">{{ agency.email }}</a></p>
+      {% if agency.phone2 %}<p><a href="tel:{{ agency.phone2_dial }}">{{ agency.phone2 }}</a> <span class="field__optional">(cell)</span></p>{% endif %}
+      <p>{% if agency.show_street %}{{ agency.street }}<br>{% endif %}{{ agency.city }}, {{ agency.region }} {{ agency.postcode }}<br>Visits by appointment</p>
+      <ul class="side-hours">
+        {% for day, span in hours %}<li><span>{{ day }}</span><span>{{ span }}</span></li>{% endfor %}
+      </ul>
+      <ol class="contact-card__next">
+        <li><span>01</span><div><strong>Andi reads it</strong> during office hours, in the order it arrives.</div></li>
+        <li><span>02</span><div><strong>We answer by email or phone.</strong> Usually the same day, always by a person.</div></li>
+        <li><span>03</span><div><strong>For a document</strong>, tell us the policy or vehicle and where to send it.</div></li>
+      </ol>
+    </aside>
+  </div>
+</div>
+{% endblock %}

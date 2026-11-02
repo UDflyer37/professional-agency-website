@@ -1,0 +1,43 @@
+{% extends "public/base.html" %}
+{% block title %}Finish your quote request | {{ agency.name }}{% endblock %}
+{% block main %}
+<header class="page-head">
+  <div class="page-head__inner">
+    <div>
+      <p class="eyebrow"><span class="eyebrow__num">01</span><span>Almost there</span><span class="eyebrow__rule" aria-hidden="true"></span></p>
+      <h1 class="page-head__title">Almost there</h1>
+    </div>
+    <p class="page-head__lead">A couple of details are missing. Fix them below and send again.</p>
+  </div>
+</header>
+<div class="page-body">
+  <form class="sheet panel--ruled form-stack quote-retry" action="{{ url_for('public.quote') }}" method="post" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <fieldset {% if errors['items'] %}aria-describedby="items-error"{% endif %}>
+      <legend class="panel__title">What would you like quoted?</legend>
+      {% if errors['items'] %}<p class="field-error" id="items-error">{{ errors['items'] }}</p>{% endif %}
+      <div class="pick-grid">
+        {% for slug, (word, label) in quote_items.items() %}
+        <label class="pick"><input type="checkbox" name="items" value="{{ slug }}" {% if slug in picked %}checked{% endif %}><span>{{ label }}</span></label>
+        {% endfor %}
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend class="panel__title">How can we reach you?</legend>
+      <div class="fields">
+        {% for name, label, type, auto in [('name','Name','text','name'),('email','Email','email','email'),('phone','Phone (optional)','tel','tel')] %}
+        <div class="field">
+          <label for="r-{{ name }}">{{ label }}</label>
+          <input id="r-{{ name }}" name="{{ name }}" type="{{ type }}" autocomplete="{{ auto }}" value="{{ form.get(name, '') }}" {% if errors[name] %}aria-invalid="true" aria-describedby="r-{{ name }}-error"{% endif %}>
+          {% if errors[name] %}<p class="field-error" id="r-{{ name }}-error">{{ errors[name] }}</p>{% endif %}
+        </div>
+        {% endfor %}
+        <div class="field"><label for="r-time">Best time to call</label><input id="r-time" name="best_time" value="{{ form.get('best_time', '') }}"></div>
+        <div class="field field--wide"><label for="r-notes">Notes</label><textarea id="r-notes" name="notes" rows="3">{{ form.get('notes', '') }}</textarea></div>
+        <div class="field honey" aria-hidden="true"><label for="r-website">Leave this empty</label><input id="r-website" name="website" tabindex="-1" autocomplete="off"></div>
+      </div>
+    </fieldset>
+    <div class="form-actions"><button class="button" type="submit">Send my quote request <span class="button__arrow" aria-hidden="true">→</span></button></div>
+  </form>
+</div>
+{% endblock %}

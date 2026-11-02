@@ -1,0 +1,44 @@
+{% extends "portal/base.html" %}
+{% block title %}My account{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">My account</h1>
+    <p class="page-sub">Change your own password here. To add a colleague or reset someone else's, use <a href="{{ url_for('portal.users') }}">Logins</a>.</p>
+  </div>
+</header>
+
+<div class="board">
+  <section class="card">
+    <h2 class="card__title">Signed in as</h2>
+    <p class="account__name">{{ agent.name }}</p>
+    <p class="field__hint">{{ agent.email }}</p>
+  </section>
+
+  <section class="card">
+    <h2 class="card__title">Change password</h2>
+    <form class="form-stack" method="post" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="fields fields--one">
+        <div class="field">
+          <label for="current_password">Current password</label>
+          <input id="current_password" name="current_password" type="password" autocomplete="current-password" required {% if errors.current_password %}aria-invalid="true" aria-describedby="current-error"{% endif %}>
+          {% if errors.current_password %}<p class="field-error" id="current-error">{{ errors.current_password }}</p>{% endif %}
+        </div>
+        <div class="field">
+          <label for="new_password">New password</label>
+          <input id="new_password" name="new_password" type="password" autocomplete="new-password" required {% if errors.new_password %}aria-invalid="true" aria-describedby="new-error"{% endif %}>
+          {% if errors.new_password %}<p class="field-error" id="new-error">{{ errors.new_password }}</p>{% endif %}
+          <p class="field__hint">At least 12 characters. A short sentence you will remember works well.</p>
+        </div>
+        <div class="field">
+          <label for="confirm_password">Repeat the new password</label>
+          <input id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" required {% if errors.confirm_password %}aria-invalid="true" aria-describedby="confirm-error"{% endif %}>
+          {% if errors.confirm_password %}<p class="field-error" id="confirm-error">{{ errors.confirm_password }}</p>{% endif %}
+        </div>
+      </div>
+      <button class="button" type="submit">Change password</button>
+    </form>
+  </section>
+</div>
+{% endblock %}

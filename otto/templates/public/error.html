@@ -1,0 +1,19 @@
+{% extends "public/base.html" %}
+{% block title %}{{ code }} | {{ agency.name }}{% endblock %}
+{% block main %}
+<header class="page-head">
+  <div class="page-head__inner page-short">
+    <div>
+      <p class="eyebrow"><span class="eyebrow__num">{{ code }}</span><span>Not here</span><span class="eyebrow__rule" aria-hidden="true"></span></p>
+      <h1 class="page-head__title">{% if code == 404 %}Page not found{% else %}That did not work{% endif %}</h1>
+    </div>
+  </div>
+</header>
+<div class="page-body page-short form-stack">
+  <div class="sheet" data-reveal>
+    <p class="statement">{{ description }}</p>
+    <p style="margin-top: 16px">Call <a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a> and we will point you the right way.</p>
+  </div>
+  <p class="form-actions"><a class="button" href="{{ url_for('public.home') }}">Go to the home page</a></p>
+</div>
+{% endblock %}

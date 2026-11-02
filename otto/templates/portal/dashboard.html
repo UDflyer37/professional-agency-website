@@ -1,0 +1,72 @@
+{% extends "portal/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">{{ greeting }}, {{ g.agent.name.split(' ')[0] }}</h1>
+    <p class="page-sub">Here is what needs you today.</p>
+  </div>
+  <a class="button" href="{{ url_for('public.home') }}" target="_blank" rel="noopener">View website ↗</a>
+</header>
+
+<div class="dash-band">
+  <div class="stat-row">
+    <a class="stat" href="{{ url_for('portal.bookings') }}"><span class="stat__n">{{ today_count }}</span><span>appointment{{ '' if today_count == 1 else 's' }} today</span></a>
+    <a class="stat" href="{{ url_for('portal.bookings') }}"><span class="stat__n">{{ upcoming|length }}</span><span>coming up</span></a>
+    <a class="stat {{ 'stat--alert' if unread else '' }}" href="{{ url_for('portal.messages') }}"><span class="stat__n">{{ unread }}</span><span>unread request{{ '' if unread == 1 else 's' }}</span></a>
+    <a class="stat" href="{{ url_for('portal.website_basics') }}"><span class="stat__n stat__n--word">{{ 'On' if announcement.enabled else 'Off' }}</span><span>website banner</span></a>
+  </div>
+
+  <div class="board">
+    <section class="card">
+      <header class="card__head"><h2 class="card__title">Next appointments</h2><a href="{{ url_for('portal.bookings') }}">See all</a></header>
+      {% if upcoming %}
+      <ul class="agenda">
+        {% for booking in upcoming %}
+        <li>
+          <span class="agenda__when">{{ booking.starts_at|local_time('%a %b %-d') }}<strong>{{ booking.starts_at|local_time('%-I:%M %p') }}</strong></span>
+          <span class="agenda__who"><strong>{{ booking.client_name }}</strong>{{ meeting_kinds.get(booking.meeting_kind, booking.meeting_kind) }}{% if booking.client_phone %} · <a href="tel:{{ booking.client_phone }}">{{ booking.client_phone }}</a>{% endif %}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="empty">No appointments booked yet. New ones arrive here and by email.</p>
+      {% endif %}
+    </section>
+
+    <section class="card">
+      <header class="card__head"><h2 class="card__title">Latest requests</h2><a href="{{ url_for('portal.messages') }}">See all</a></header>
+      {% if latest_messages %}
+      <ul class="inbox">
+        {% for message in latest_messages %}
+        <li class="{{ 'is-unread' if not message.read_at else '' }}">
+          <strong>{{ message.topic }}</strong>
+          <span>{{ message.sender_name }} · {{ message.created_at|local_time('%b %-d') }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="empty">No requests yet. Quote requests and document requests from the website land here.</p>
+      {% endif %}
+    </section>
+  </div>
+</div>
+
+<section class="card card--wide">
+  <header class="card__head"><h2 class="card__title">Change the website</h2><a href="{{ url_for('portal.website') }}">Everything you can edit</a></header>
+  <div class="quick">
+    <a class="quick__item" href="{{ url_for('portal.website_basics') }}"><strong>Headline, phones and banner</strong><span>Edit the words on the top banner, your contact details or post a notice.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.website_look') }}"><strong>Colours and layout</strong><span>Pick a colour scheme and choose which sections show, in what order.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.website_list', slug='companies') }}"><strong>Companies and logos</strong><span>Add a carrier, update a claims number or upload a new logo.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.website_list', slug='reviews') }}"><strong>Client reviews</strong><span>Share kind words from clients. The section appears once you add one.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.faqs') }}"><strong>Questions and answers</strong><span>The short answers clients ask for most, in the order you choose.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.website_list', slug='people') }}"><strong>People</strong><span>Your photos and bios, and the faces on the top banner.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.new_booking') }}"><strong>Add an appointment</strong><span>Took a booking by phone? Put it on the same calendar.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.time_off') }}"><strong>Time off</strong><span>Mark days away so the website stops offering those times.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.texts') }}"><strong>Text reminders</strong><span>Choose what gets texted, when, and the wording of each message.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.notes') }}"><strong>Notes</strong><span>Sticky notes for the office, saved and never lost on the desk.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.backup') }}"><strong>Backup and exports</strong><span>Download your content, messages and appointments.</span></a>
+    <a class="quick__item" href="{{ url_for('portal.account') }}"><strong>My account</strong><span>Change your password or see who has a login.</span></a>
+  </div>
+</section>
+{% endblock %}

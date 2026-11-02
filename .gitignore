@@ -1,4 +1,8 @@
+.env
+.venv/
+__pycache__/
 *.pyc
-*.pyo
-__pycache__
-.anvil-data
+.pytest_cache/
+.vercel/
+.taste-skill/
+instance/

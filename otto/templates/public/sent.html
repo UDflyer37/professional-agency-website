@@ -1,0 +1,26 @@
+{% extends "public/base.html" %}
+{% block title %}{{ 'Quote request sent' if is_quote else 'Request sent' }} | {{ agency.name }}{% endblock %}
+{% block main %}
+<header class="page-head">
+  <div class="page-head__inner page-short">
+    <div>
+      <p class="eyebrow"><span class="eyebrow__num">02</span><span>Received</span><span class="eyebrow__rule" aria-hidden="true"></span></p>
+      <h1 class="page-head__title" data-load>{{ 'Your quote request is in' if is_quote else 'Your request is with us' }}</h1>
+    </div>
+  </div>
+</header>
+<div class="page-body page-short form-stack">
+  <div class="sheet done-card" data-reveal>
+    <div aria-hidden="true">{% include "art/shield.svg" %}</div>
+    <div>
+      {% if is_quote %}
+      <p class="statement">We will compare our companies and call or email you with options, usually within one business day.</p>
+      {% else %}
+      <p class="statement">Andi reads every request during office hours and replies by email or phone.</p>
+      {% endif %}
+      <p style="margin-top: 14px">Anything urgent, such as a claim, is quicker by phone: <a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a>.</p>
+    </div>
+  </div>
+  <p class="form-actions"><a class="button" href="{{ url_for('public.home') }}">Back to home</a> <a class="button button--quiet" href="{{ url_for('public.home') }}#claims">Claims numbers</a></p>
+</div>
+{% endblock %}

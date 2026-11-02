@@ -1,0 +1,78 @@
+{% extends "portal/base.html" %}
+{% block title %}Add an appointment{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <p class="crumbs"><a href="{{ url_for('portal.bookings') }}">Appointments</a> / Add</p>
+    <h1 class="page-title">Add an appointment</h1>
+    <p class="page-sub">For a booking you took by phone or in person, so the website calendar and your day agree. Times are {{ timezone }}.</p>
+  </div>
+</header>
+{% if errors %}<div class="alert" role="alert">Some details need fixing before this can be saved.</div>{% endif %}
+
+<form class="editor" method="post" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <section class="card editor__section">
+    <div class="fields">
+      <div class="field">
+        <label for="date">Date</label>
+        <input id="date" name="date" type="date" value="{{ values.date }}" required {% if errors.date %}aria-invalid="true" aria-describedby="date-error"{% endif %}>
+        {% if errors.date %}<p class="field-error" id="date-error">{{ errors.date }}</p>{% endif %}
+      </div>
+      <div class="field">
+        <label for="time">Time</label>
+        <input id="time" name="time" type="time" value="{{ values.time }}" required {% if errors.time %}aria-invalid="true" aria-describedby="time-error"{% endif %}>
+        {% if errors.time %}<p class="field-error" id="time-error">{{ errors.time }}</p>{% endif %}
+      </div>
+      <div class="field">
+        <label for="client-name">Client name</label>
+        <input id="client-name" name="name" value="{{ values.name }}" required {% if errors.name %}aria-invalid="true" aria-describedby="name-error"{% endif %}>
+        {% if errors.name %}<p class="field-error" id="name-error">{{ errors.name }}</p>{% endif %}
+      </div>
+      <div class="field">
+        <label for="client-email">Email <span class="field__optional">(optional)</span></label>
+        <input id="client-email" name="email" type="email" value="{{ values.email }}" {% if errors.email %}aria-invalid="true" aria-describedby="email-error"{% endif %}>
+        {% if errors.email %}<p class="field-error" id="email-error">{{ errors.email }}</p>{% endif %}
+      </div>
+      <div class="field">
+        <label for="client-phone">Phone <span class="field__optional">(optional)</span></label>
+        <input id="client-phone" name="phone" type="tel" value="{{ values.phone }}">
+      </div>
+      <div class="field">
+        <label for="kind">How you will meet</label>
+        <select id="kind" name="meeting_kind">
+          {% for value, label in meeting_kinds.items() %}
+          <option value="{{ value }}" {% if values.meeting_kind == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        {% if errors.meeting_kind %}<p class="field-error">{{ errors.meeting_kind }}</p>{% endif %}
+      </div>
+      <div class="field field--wide">
+        <label for="reason">What is the appointment about? <span class="field__optional">(optional)</span></label>
+        <textarea id="reason" name="reason" rows="3">{{ values.reason }}</textarea>
+      </div>
+      <div class="field field--wide">
+        <label class="check"><input type="checkbox" name="notify" {% if values.email %}checked{% endif %}> Email the client a confirmation</label>
+        <p class="field__hint">Only possible when you enter an email address.</p>
+      </div>
+    </div>
+  </section>
+  <div class="savebar">
+    <a class="button button--quiet" href="{{ url_for('portal.bookings') }}">Cancel</a>
+    <button class="button" type="submit">Add to the calendar</button>
+  </div>
+</form>
+
+<section class="card" style="margin-top: 18px">
+  <h2 class="card__title">When you are normally open</h2>
+  <ul class="plain-list">
+    {% for weekday in range(7) %}
+    {% set day = week[weekday] %}
+    <li><span>{{ weekday_names[weekday] }}</span><span>{% if day.is_open %}{{ day.opens_at.strftime('%H:%M') }} to {{ day.closes_at.strftime('%H:%M') }}{% else %}closed{% endif %}</span></li>
+    {% endfor %}
+  </ul>
+  {% if time_off %}
+  <p class="field__hint" style="margin-top: 14px">Away: {% for entry in time_off %}{{ entry.starts_on.strftime('%b %-d') }}{% if entry.ends_on != entry.starts_on %}–{{ entry.ends_on.strftime('%b %-d') }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}. <a href="{{ url_for('portal.time_off') }}">Manage time off</a>.</p>
+  {% endif %}
+</section>
+{% endblock %}

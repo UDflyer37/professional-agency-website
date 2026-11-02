@@ -1,0 +1,44 @@
+{% macro input(name, label, value='', type='text', help='', error='', required=False, attrs='') -%}
+<div class="field">
+  <label for="f-{{ name }}">{{ label }}{% if not required %} <span class="field__optional">(optional)</span>{% endif %}</label>
+  <input id="f-{{ name }}" name="{{ name }}" type="{{ type }}" value="{{ value if value is not none else '' }}" {% if required %}required{% endif %} {{ attrs|safe }}
+    {% if help or error %}aria-describedby="{% if help %}f-{{ name }}-help{% endif %}{% if error %} f-{{ name }}-error{% endif %}"{% endif %} {% if error %}aria-invalid="true"{% endif %}>
+  {% if help %}<p class="field__hint" id="f-{{ name }}-help">{{ help }}</p>{% endif %}
+  {% if error %}<p class="field-error" id="f-{{ name }}-error">{{ error }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro textarea(name, label, value='', rows=4, help='', error='', required=False, counter=0) -%}
+<div class="field field--wide">
+  <label for="f-{{ name }}">{{ label }}{% if not required %} <span class="field__optional">(optional)</span>{% endif %}</label>
+  <textarea id="f-{{ name }}" name="{{ name }}" rows="{{ rows }}" {% if required %}required{% endif %} {% if counter %}maxlength="{{ counter }}" data-counter{% endif %}
+    {% if help or error %}aria-describedby="{% if help %}f-{{ name }}-help{% endif %}{% if error %} f-{{ name }}-error{% endif %}"{% endif %} {% if error %}aria-invalid="true"{% endif %}>{{ value if value is not none else '' }}</textarea>
+  {% if help %}<p class="field__hint" id="f-{{ name }}-help">{{ help }}</p>{% endif %}
+  {% if error %}<p class="field-error" id="f-{{ name }}-error">{{ error }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{% macro switch(name, label, checked=False, help='') -%}
+<label class="switch">
+  <input type="checkbox" name="{{ name }}" {% if checked %}checked{% endif %}>
+  <span class="switch__track" aria-hidden="true"></span>
+  <span class="switch__text"><strong>{{ label }}</strong>{% if help %}<span>{{ help }}</span>{% endif %}</span>
+</label>
+{%- endmacro %}
+
+{% macro image(name, label, current_src='', help='', error='') -%}
+<div class="field field--wide image-field" data-image-field>
+  <span class="image-field__label">{{ label }}</span>
+  <div class="image-field__row">
+    <div class="image-field__preview">{% if current_src %}<img src="{{ current_src }}" alt="" data-image-preview>{% else %}<span class="image-field__none" data-image-preview>No image yet</span>{% endif %}</div>
+    <div class="image-field__controls">
+      <label class="button button--quiet button--small" for="f-{{ name }}">Choose a new image</label>
+      <input class="visually-hidden" id="f-{{ name }}" name="{{ name }}" type="file" accept="image/png,image/jpeg,image/webp" {% if help or error %}aria-describedby="{% if help %}f-{{ name }}-help{% endif %}{% if error %} f-{{ name }}-error{% endif %}"{% endif %}>
+      <span class="image-field__file" data-image-name aria-live="polite"></span>
+      {% if current_src %}<label class="check"><input type="checkbox" name="{{ name }}_reset"> Use the original image instead</label>{% endif %}
+      {% if help %}<p class="field__hint" id="f-{{ name }}-help">{{ help }}</p>{% endif %}
+      {% if error %}<p class="field-error" id="f-{{ name }}-error">{{ error }}</p>{% endif %}
+    </div>
+  </div>
+</div>
+{%- endmacro %}

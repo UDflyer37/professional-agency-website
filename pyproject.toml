@@ -1,0 +1,23 @@
+[project]
+name = "otto-agency"
+version = "3.2.0"
+description = "Website, appointment booking and agent portal for Otto & Associates Insurance Agency"
+requires-python = ">=3.12"
+dependencies = [
+    "Flask==3.1.3",
+    "psycopg[binary]==3.2.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.4", "python-dotenv==1.0.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Run `pytest` from the project root and still import the otto package.
+pythonpath = ["."]
+
+[tool.setuptools]
+packages = ["otto"]
+
+[tool.setuptools.package-data]
+otto = ["schema.sql", "templates/**/*.html"]

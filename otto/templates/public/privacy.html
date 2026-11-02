@@ -1,0 +1,18 @@
+{% extends "public/base.html" %}
+{% block title %}Privacy policy | {{ agency.name }}{% endblock %}
+{% block main %}
+<header class="page-head">
+  <div class="page-head__inner">
+    <div>
+      <p class="eyebrow"><span class="eyebrow__num">03</span><span>Privacy</span><span class="eyebrow__rule" aria-hidden="true"></span></p>
+      <h1 class="page-head__title">Privacy policy</h1>
+    </div>
+    <p class="page-head__lead">How Otto &amp; Associates collects, uses and protects the information you share through this website.</p>
+  </div>
+</header>
+<div class="page-body">
+  <article class="sheet sheet--plain prose">
+    {% include "public/_privacy_body.html" %}
+  </article>
+</div>
+{% endblock %}

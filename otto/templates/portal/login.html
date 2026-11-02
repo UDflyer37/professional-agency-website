@@ -1,0 +1,25 @@
+{% extends "portal/base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block alone %}
+<div class="login">
+  <a class="brand" href="{{ url_for('public.home') }}">
+    <img class="brand__mark" src="{{ url_for('static', filename='img/otto-mark.png') }}" width="240" height="149" alt="">
+    <span class="brand__text"><span class="brand__name">Otto &amp; Associates</span><span class="brand__sub">Agent portal</span></span>
+  </a>
+  <h1 class="page-title">Welcome back</h1>
+  <form method="post" class="form-stack" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% if error %}<p class="field-error" id="login-error" role="alert">{{ error }}</p>{% endif %}
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="username" required {% if error %}aria-describedby="login-error"{% endif %}>
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+    </div>
+    <button class="button" type="submit">Sign in</button>
+  </form>
+  <p class="login__back"><a href="{{ url_for('public.home') }}">← Back to the website</a></p>
+</div>
+{% endblock %}

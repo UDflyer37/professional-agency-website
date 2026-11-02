@@ -1,0 +1,53 @@
+{% extends "portal/base.html" %}
+{% block title %}{{ kind.title }}{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <p class="crumbs"><a href="{{ url_for('portal.website') }}">Website</a> / {{ kind.title }}</p>
+    <h1 class="page-title">{{ kind.title }}</h1>
+    <p class="page-sub">{{ kind.intro }}</p>
+  </div>
+  <a class="button" href="{{ url_for('portal.website_edit', slug=slug) }}">Add a {{ kind.singular }}</a>
+</header>
+
+{% if rows %}
+<ul class="rows">
+  {% for row in rows %}
+  {% set is_first = loop.first %}{% set is_last = loop.last %}
+  <li class="rows__item {{ '' if row.visible else 'is-hidden' }}">
+    {% if slug == 'companies' %}
+      <span class="rows__thumb rows__thumb--logo"><img src="{{ url_for('public.media_file', media_id=row.logo_media_id) if row.logo_media_id else url_for('static', filename=row.logo_static) }}" alt=""></span>
+    {% elif slug == 'people' and (row.photo_media_id or row.photo_static) %}
+      <span class="rows__thumb"><img src="{{ url_for('public.media_file', media_id=row.photo_media_id) if row.photo_media_id else url_for('static', filename=row.photo_static) }}" alt=""></span>
+    {% elif slug == 'coverage' %}
+      <span class="rows__thumb rows__thumb--art">{% include "art/" ~ row.illustration ~ ".svg" %}</span>
+    {% endif %}
+    <a class="rows__main" href="{{ url_for('portal.website_edit', slug=slug, row_id=row.id) }}">
+      <strong>{{ row[kind.summary_field] }}</strong>
+      <span>{{ (row[kind.detail_field] or '')|truncate(90) }}</span>
+    </a>
+    {% if not row.visible %}<span class="tag">Hidden</span>{% endif %}
+    <span class="rows__actions">
+      {% for action, label, symbol in [('up', 'Move up', '↑'), ('down', 'Move down', '↓')] %}
+      <form method="post" action="{{ url_for('portal.website_action', slug=slug, row_id=row.id, action=action) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="icon-button" type="submit" aria-label="{{ label }}: {{ row[kind.summary_field] }}" {% if (action == 'up' and is_first) or (action == 'down' and is_last) %}disabled{% endif %}>{{ symbol }}</button>
+      </form>
+      {% endfor %}
+      <form method="post" action="{{ url_for('portal.website_action', slug=slug, row_id=row.id, action='toggle') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="button button--quiet button--small" type="submit">{{ 'Hide' if row.visible else 'Show' }}</button>
+      </form>
+      <a class="button button--quiet button--small" href="{{ url_for('portal.website_edit', slug=slug, row_id=row.id) }}">Edit</a>
+    </span>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="card empty-state">
+  <h2 class="card__title">Nothing here yet</h2>
+  <p>{{ kind.intro }}</p>
+  <a class="button" href="{{ url_for('portal.website_edit', slug=slug) }}">Add the first {{ kind.singular }}</a>
+</div>
+{% endif %}
+{% endblock %}

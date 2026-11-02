@@ -1,0 +1,150 @@
+{% extends "portal/base.html" %}
+{% block title %}Appointments{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">Appointments</h1>
+    <p class="page-sub">{{ upcoming|length }} coming up. Bookings arrive here and by email.</p>
+  </div>
+  <div class="page-actions">
+    <a class="button button--small" href="{{ url_for('portal.new_booking') }}">Add an appointment</a>
+    <a class="button button--quiet button--small" href="{{ url_for('portal.export_bookings') }}">Download CSV</a>
+  </div>
+</header>
+
+{% if time_off %}
+<div class="notice">
+  <p><strong>Time off:</strong> {% for entry in time_off %}{{ entry.starts_on.strftime('%b %-d') }}{% if entry.ends_on != entry.starts_on %}–{{ entry.ends_on.strftime('%b %-d') }}{% endif %}{% if entry.note %} ({{ entry.note }}){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  <a href="{{ url_for('portal.time_off') }}">Manage time off</a>
+</div>
+{% endif %}
+
+{% set cal = calendar %}
+<section class="cal" aria-labelledby="cal-title">
+  <header class="cal__bar">
+    <div class="cal__nav">
+      <a class="icon-button" href="?view={{ cal.view }}&anchor={{ cal.previous }}" aria-label="Previous {{ cal.view }}">←</a>
+      <a class="icon-button" href="?view={{ cal.view }}&anchor={{ cal.following }}" aria-label="Next {{ cal.view }}">→</a>
+      <a class="cal__today" href="?view={{ cal.view }}">Today</a>
+    </div>
+    <h2 class="cal__label" id="cal-title">{{ cal.label }}</h2>
+    <div class="cal__views" role="group" aria-label="Calendar view">
+      {% for key, name in [('month', 'Month'), ('week', 'Week'), ('day', 'Day')] %}
+      <a href="?view={{ key }}&anchor={{ cal.focus.isoformat() }}" {% if cal.view == key %}aria-current="page"{% endif %}>{{ name }}</a>
+      {% endfor %}
+    </div>
+  </header>
+
+  {% if cal.view == 'month' %}
+  <div class="cal__weekdays" aria-hidden="true">{% for name in cal.weekday_names %}<span>{{ name }}</span>{% endfor %}</div>
+  <div class="cal__grid">
+    {% for day in cal.days %}
+    <div class="cal__cell {% if day.month != cal.month %}is-outside{% endif %} {% if day == cal.today %}is-today{% endif %} {% if day in cal.away %}is-away{% endif %}">
+      <a class="cal__date" href="?view=day&anchor={{ day.isoformat() }}" aria-label="Open {{ day.strftime('%A %B %-d') }}">{{ day.day }}</a>
+      {% if day in cal.away %}<span class="cal__away">Away</span>{% endif %}
+      {% for item in cal.booked.get(day, [])[:3] %}
+      <a class="cal__event" href="#b-{{ item.id }}"><time>{{ item.time }}</time> {{ item.name }}</a>
+      {% endfor %}
+      {% if cal.booked.get(day, [])|length > 3 %}<a class="cal__more" href="?view=day&anchor={{ day.isoformat() }}">+{{ cal.booked.get(day, [])|length - 3 }} more</a>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% elif cal.view == 'week' %}
+  <div class="cal__week">
+    {% for day in cal.days %}
+    <section class="cal__col {% if day == cal.today %}is-today{% endif %} {% if day in cal.away %}is-away{% endif %}">
+      <a class="cal__col-head" href="?view=day&anchor={{ day.isoformat() }}"><span>{{ cal.weekday_names[loop.index0] }}</span><strong>{{ day.day }}</strong></a>
+      {% if day in cal.away %}<p class="cal__away">Away</p>{% endif %}
+      {% for item in cal.booked.get(day, []) %}
+      <a class="cal__event cal__event--stack" href="#b-{{ item.id }}"><time>{{ item.time }}</time><span>{{ item.name }}</span><em>{{ item.kind }}</em></a>
+      {% else %}
+      {% if day not in cal.away %}<p class="cal__none">—</p>{% endif %}
+      {% endfor %}
+    </section>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="cal__day">
+    {% for item in cal.booked.get(cal.focus, []) %}
+    <a class="cal__event cal__event--big" href="#b-{{ item.id }}"><time>{{ item.time }}</time><span>{{ item.name }}</span><em>{{ item.kind }}</em></a>
+    {% else %}
+    <p class="cal__none">Nothing booked on this day.</p>
+    {% endfor %}
+    {% if cal.focus in cal.away %}<p class="cal__away cal__away--big">The office is away this day, so the website does not offer it.</p>{% endif %}
+  </div>
+  {% endif %}
+</section>
+
+<div class="portal__head portal__head--spaced">
+  <h2 class="portal__subtitle">The list</h2>
+  <p class="list-note">Every upcoming appointment, with the email and cancel actions.</p>
+</div>
+
+{% if upcoming %}
+<div class="table-wrap">
+<table class="table">
+  <thead><tr><th>When</th><th>How</th><th>Client</th><th>Note</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for booking in upcoming %}
+    <tr id="b-{{ booking.id }}">
+      <td class="nowrap">{{ booking.starts_at|local_time }}</td>
+      <td>{{ meeting_kinds.get(booking.meeting_kind, booking.meeting_kind) }}</td>
+      <td>{{ booking.client_name }}<br><a href="mailto:{{ booking.client_email }}">{{ booking.client_email }}</a>{% if booking.client_phone %}<br><a href="tel:{{ booking.client_phone }}">{{ booking.client_phone }}</a>{% endif %}</td>
+      <td class="prewrap">{{ booking.reason or '' }}</td>
+      <td>
+        <details class="action">
+          <summary>Email client</summary>
+          <form method="post" action="{{ url_for('portal.email_client', booking_id=booking.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label for="subject-{{ booking.id }}">Subject</label>
+            <input id="subject-{{ booking.id }}" name="subject" value="About your appointment">
+            <label for="body-{{ booking.id }}">Message</label>
+            <textarea id="body-{{ booking.id }}" name="body" rows="4" required></textarea>
+            <button class="button" type="submit">Send</button>
+          </form>
+        </details>
+        <details class="action">
+          <summary>Cancel</summary>
+          <form method="post" action="{{ url_for('portal.cancel_booking', booking_id=booking.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label class="check"><input type="checkbox" name="notify" value="yes" checked> Email the client</label>
+            <label for="note-{{ booking.id }}">Optional note</label>
+            <textarea id="note-{{ booking.id }}" name="note" rows="3"></textarea>
+            <button class="button button--danger" type="submit">Cancel appointment</button>
+          </form>
+        </details>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<div class="card empty-state">
+  <h2 class="card__title">No upcoming appointments</h2>
+  <p>New bookings from the website appear here and arrive by email. If a client calls the office, <a href="{{ url_for('portal.new_booking') }}">add the appointment yourself</a> so the calendar stays in one place.</p>
+</div>
+{% endif %}
+
+<div class="portal__head portal__head--spaced">
+  <h2 class="portal__subtitle">Past appointments</h2>
+  {% if past %}
+  <form method="post" action="{{ url_for('portal.clear_past_bookings') }}" data-confirm="Delete all past appointments? The clients are not emailed.">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button class="button button--quiet button--small" type="submit">Delete all past appointments</button>
+  </form>
+  {% endif %}
+</div>
+{% if past %}
+<div class="table-wrap">
+<table class="table">
+  <thead><tr><th>When</th><th>Client</th><th>Email</th></tr></thead>
+  <tbody>
+    {% for booking in past %}<tr><td class="nowrap">{{ booking.starts_at|local_time }}</td><td>{{ booking.client_name }}</td><td>{{ booking.client_email }}</td></tr>{% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p class="portal__empty">Nothing in the past yet.</p>
+{% endif %}
+{% endblock %}

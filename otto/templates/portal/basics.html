@@ -1,0 +1,95 @@
+{% extends "portal/base.html" %}
+{% import "portal/_fields.html" as f %}
+{% block title %}Text and contact details{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <p class="crumbs"><a href="{{ url_for('portal.website') }}">Website</a> / Text and contact details</p>
+    <h1 class="page-title">Text and contact details</h1>
+  </div>
+</header>
+{% if errors %}<div class="alert" role="alert">Some things need fixing before this can be saved. They are marked below.</div>{% endif %}
+{% set v = form if form else {} %}
+<form class="editor" method="post" enctype="multipart/form-data" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+  <section class="card editor__section">
+    <header class="editor__head"><h2 class="card__title">Top banner</h2><p>The first thing visitors see. The headlines take turns, changing every few seconds. Keep each one short: each is sized to fill a wide box, so six words read better than sixteen.</p></header>
+    <div class="editor__split">
+      <div class="fields fields--one">
+        {{ f.textarea('hero_quotes', 'Headlines', v.get('hero_quotes', (hero.quotes or [hero.title])|join('\n')), rows=5, help='One per line, up to six. The first one is also what search engines show.', error=errors.hero_quotes, required=True) }}
+        {{ f.textarea('hero_intro', 'Introduction', v.get('hero_intro', hero.intro), rows=4, help='One or two sentences about who you are and what you do.', counter=400) }}
+        {{ f.image('hero_photo', 'Family photo (About section)', url_for('public.media_file', media_id=hero.photo_media_id) if hero.photo_media_id else url_for('static', filename='img/otto-family.webp'), error=errors.hero_photo) }}
+      </div>
+      <div class="preview" aria-hidden="true">
+        <p class="preview__label">Preview</p>
+        <div class="preview__hero">
+          <p class="preview__title" data-preview-target="hero-title">{{ (hero.quotes or [hero.title])[0] }}</p>
+          <span class="preview__lines"><i></i><i></i><i></i></span>
+          <span class="preview__buttons"><b></b><b></b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card editor__section">
+    <header class="editor__head"><h2 class="card__title">Contact details</h2><p>Used in the header, footer, the Talk to us section and in confirmation emails.</p></header>
+    <div class="fields">
+      {{ f.input('name', 'Agency name', v.get('name', agency.name), error=errors.name, required=True) }}
+      {{ f.input('email', 'Email', v.get('email', agency.email), type='email', error=errors.email, required=True) }}
+      {{ f.input('phone', 'Office phone', v.get('phone', agency.phone), type='tel', error=errors.phone, required=True, help='The main number. Shown on every page and used for click to call.') }}
+      {{ f.input('phone2', 'Cell phone', v.get('phone2', agency.phone2), type='tel', help='Shown in the contact section for after-hours help.') }}
+      {{ f.input('street', 'Street address', v.get('street', agency.street)) }}
+      {{ f.input('city', 'City', v.get('city', agency.city), error=errors.city, required=True) }}
+      {{ f.input('region', 'State', v.get('region', agency.region)) }}
+      {{ f.input('postcode', 'ZIP code', v.get('postcode', agency.postcode)) }}
+      <div class="field field--wide">{{ f.switch('show_street', 'Show the street address on the website', agency.show_street, 'Turn this off to show only the city. Useful when you work from home.') }}</div>
+    </div>
+  </section>
+
+  <section class="card editor__section">
+    <header class="editor__head"><h2 class="card__title">Announcement banner</h2><p>A thin coloured bar across the top of every page. Good for holiday hours or news.</p></header>
+    <div class="fields">
+      <div class="field field--wide">{{ f.switch('announce_enabled', 'Show the banner', announcement.enabled) }}</div>
+      <div class="field--wide">{{ f.input('announce_text', 'Message', v.get('announce_text', announcement.text), error=errors.announce_text, help='One short sentence, up to 200 characters. Pick an example from the list or write your own.', attrs='maxlength="200" list="announce-messages" placeholder="The office is closed Thursday for Thanksgiving." data-preview="announce-text"') }}</div>
+      {{ f.input('announce_label', 'Link text', v.get('announce_label', announcement.link_label), help='The words people click. Leave it blank for a message with no link.', attrs='list="announce-labels" placeholder="Book a call" data-preview="announce-label"') }}
+      {{ f.input('announce_url', 'Link address', v.get('announce_url', announcement.link_url), error=errors.announce_url, help='Start with / for a page here, or paste a full https:// address for another site.', attrs='list="site-pages" placeholder="/appointments"') }}
+      <div class="field--wide">
+        <p class="field__label">How it will look</p>
+        <div class="announce-preview" aria-hidden="true">
+          <span data-preview-target="announce-text">{{ v.get('announce_text', announcement.text) or 'Your message appears here' }}</span>
+          <b data-preview-target="announce-label">{{ v.get('announce_label', announcement.link_label) or 'Learn more' }}</b>
+        </div>
+        <p class="field__hint">The bar sits above the header on every page. Visitors can dismiss it, and it comes back on their next visit. Pages you can link to: <code>/</code> home, <code>/appointments</code> booking, <code>/contact</code> requests, <code>/privacy</code>.</p>
+      </div>
+    </div>
+    <datalist id="announce-messages">
+      <option value="The office is closed Thursday for Thanksgiving. Call our cell for claims."></option>
+      <option value="We are open until 1:00 pm on Christmas Eve."></option>
+      <option value="New: you can now book a call online."></option>
+      <option value="Our office has moved. Same phone, same people."></option>
+      <option value="Away until Monday. For a claim, call the company line below."></option>
+    </datalist>
+    <datalist id="site-pages">
+      <option value="/">Home</option>
+      <option value="/appointments">Book an appointment</option>
+      <option value="/contact">Requests and questions</option>
+      <option value="/privacy">Privacy policy</option>
+      <option value="tel:{{ agency.phone_dial }}">Call the office</option>
+      <option value="mailto:{{ agency.email }}">Send an email</option>
+    </datalist>
+    <datalist id="announce-labels">
+      <option value="Book a call"></option>
+      <option value="See office hours"></option>
+      <option value="Request a document"></option>
+      <option value="Call us"></option>
+      <option value="Read more"></option>
+    </datalist>
+  </section>
+
+  <div class="savebar">
+    <a class="button button--quiet" href="{{ url_for('portal.website') }}">Cancel</a>
+    <button class="button" type="submit">Save changes</button>
+  </div>
+</form>
+{% endblock %}

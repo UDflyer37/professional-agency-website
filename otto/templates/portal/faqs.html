@@ -1,0 +1,51 @@
+{% extends "portal/base.html" %}
+{% block title %}Questions and answers{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <p class="crumbs"><a href="{{ url_for('portal.website') }}">Website</a> / Questions and answers</p>
+    <h1 class="page-title">Questions on the home page</h1>
+    <p class="page-sub">The short answers clients ask for most. They appear in the order below: use the arrows to move one up or down and the numbering looks after itself.</p>
+  </div>
+  <a class="button button--quiet" href="{{ url_for('public.home') }}#faq" target="_blank" rel="noopener">See them on the site ↗</a>
+</header>
+
+{% if faqs %}
+<p class="list-note">{{ faqs|length }} question{{ '' if faqs|length == 1 else 's' }}. Edits save per question.</p>
+<div class="faq-editor">
+  {% for faq in faqs %}
+  <form method="post" class="faq-card">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="faq_id" value="{{ faq.id }}">
+    <input type="hidden" name="position" value="{{ faq.position }}">
+    <header class="faq-card__head">
+      <span class="faq-card__pos"><b>{{ '%02d'|format(loop.index) }}</b> Question {{ loop.index }} of {{ faqs|length }}</span>
+      <span class="faq-card__move">
+        <button class="icon-button" type="submit" formaction="{{ url_for('portal.move_faq', faq_id=faq.id, action='up') }}" aria-label="Move this question up" {% if loop.first %}disabled{% endif %}>↑</button>
+        <button class="icon-button" type="submit" formaction="{{ url_for('portal.move_faq', faq_id=faq.id, action='down') }}" aria-label="Move this question down" {% if loop.last %}disabled{% endif %}>↓</button>
+      </span>
+    </header>
+    <div class="field"><label for="q-{{ faq.id }}">Question</label><input id="q-{{ faq.id }}" name="question" value="{{ faq.question }}" required></div>
+    <div class="field"><label for="a-{{ faq.id }}">Answer</label><textarea id="a-{{ faq.id }}" name="answer" rows="4" required>{{ faq.answer }}</textarea></div>
+    <div class="portal__row">
+      <button class="button button--small" type="submit">Save</button>
+      <button class="button button--quiet button--small" type="submit" formaction="{{ url_for('portal.delete_faq', faq_id=faq.id) }}" onclick="return confirm('Delete this question?')">Delete</button>
+    </div>
+  </form>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty-state">No questions yet. The first one you add creates the section on the home page.</p>
+{% endif %}
+
+<form method="post" class="faq-card faq-card--new">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <header class="faq-card__head">
+    <span class="faq-card__pos">Add a question</span>
+  </header>
+  <div class="field"><label for="q-new">Question</label><input id="q-new" name="question" placeholder="Do you write policies for rentals?" required></div>
+  <div class="field"><label for="a-new">Answer</label><textarea id="a-new" name="answer" rows="4" placeholder="Yes. We write landlord policies for single-family rentals, duplexes and small apartment buildings." required></textarea></div>
+  <p class="field__hint">It is added at the end of the list. Use the arrows afterwards to move it.</p>
+  <button class="button" type="submit">Add question</button>
+</form>
+{% endblock %}

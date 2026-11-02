@@ -1,0 +1,44 @@
+{% extends "portal/base.html" %}
+{% block title %}Backup and exports{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">Backup and exports</h1>
+    <p class="page-sub">Download a copy of your website words, your clients' requests and your appointments. Open the CSV files in Excel, Numbers or Google Sheets.</p>
+  </div>
+</header>
+
+<div class="hub">
+  <a class="hub__tile" href="{{ url_for('portal.backup_content') }}">
+    <span class="hub__swatch" style="background: {{ '#f2c14e' }}"></span>
+    <strong>Website backup</strong>
+    <span>Everything you edit in the portal: headlines, contact details, colours and layout, companies, coverage, people, reviews, questions and resources.</span>
+    <em>otto-website-backup.json</em>
+  </a>
+  <a class="hub__tile" href="{{ url_for('portal.export_messages') }}">
+    <strong>Messages</strong>
+    <span>{{ message_count }} saved request{{ '' if message_count == 1 else 's' }}, including the replies you sent from here.</span>
+    <em>otto-messages.csv</em>
+  </a>
+  <a class="hub__tile" href="{{ url_for('portal.export_bookings') }}">
+    <strong>Appointments</strong>
+    <span>{{ booking_count }} appointment{{ '' if booking_count == 1 else 's' }}, past and future.</span>
+    <em>otto-appointments.csv</em>
+  </a>
+  <a class="hub__tile" href="{{ url_for('portal.export_faqs') }}">
+    <strong>Questions and answers</strong>
+    <span>{{ faq_count }} question{{ '' if faq_count == 1 else 's' }} from the home page.</span>
+    <em>otto-faqs.csv</em>
+  </a>
+</div>
+
+<section class="card" style="margin-top: 18px">
+  <h2 class="card__title">What to keep and where</h2>
+  <ul class="plain-list plain-list--rows">
+    <li><span><strong>Website backup</strong><em>Download one after any big change and keep it in your own cloud storage. It can be read by a developer if the site ever needs rebuilding.</em></span></li>
+    <li><span><strong>Photos and logos</strong><em>Uploaded images live in the database, not in the backup file. Keep the original files in your own photo library as well.</em></span></li>
+    <li><span><strong>The database itself</strong><em>Vercel keeps a daily backup of the Postgres database for you. The files above are in case you move hosts or want your own copy.</em></span></li>
+    <li><span><strong>Time off</strong><em>{{ time_off_count }} saved date{{ '' if time_off_count == 1 else 's' }}. These are operational, not content, so they are not in the website backup.</em></span></li>
+  </ul>
+</section>
+{% endblock %}

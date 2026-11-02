@@ -1,0 +1,38 @@
+{% extends "portal/base.html" %}
+{% block title %}Website{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">Your website</h1>
+    <p class="page-sub">Everything here changes the live site as soon as you save. Nothing needs a developer.</p>
+  </div>
+  <a class="button" href="{{ url_for('public.home') }}" target="_blank" rel="noopener">View website ↗</a>
+</header>
+
+<div class="hub">
+  <a class="hub__tile" href="{{ url_for('portal.website_basics') }}">
+    <span class="hub__swatch" style="background: {{ loaded.theme.accent }}"></span>
+    <strong>Text and contact details</strong>
+    <span>Headline, intro, top photo, phones, address and the announcement banner.</span>
+    <em>{{ loaded.agency.phone }} · {{ loaded.agency.city }}</em>
+  </a>
+  <a class="hub__tile" href="{{ url_for('portal.website_look') }}">
+    <span class="hub__swatches"><i style="background: {{ loaded.theme.primary }}"></i><i style="background: {{ loaded.theme.accent }}"></i></span>
+    <strong>Colours and layout</strong>
+    <span>Colour scheme, corner style, and which home page sections show in what order.</span>
+    <em>{{ loaded.theme.label }}{% if hidden_count %} · {{ hidden_count }} section{{ '' if hidden_count == 1 else 's' }} hidden{% endif %}</em>
+  </a>
+  {% for slug, kind in kinds.items() %}
+  <a class="hub__tile" href="{{ url_for('portal.website_list', slug=slug) }}">
+    <strong>{{ kind.title }}</strong>
+    <span>{{ kind.intro }}</span>
+    <em>{{ counts[slug] }} {{ kind.singular if counts[slug] == 1 else kind.plural }}</em>
+  </a>
+  {% endfor %}
+  <a class="hub__tile" href="{{ url_for('portal.faqs') }}">
+    <strong>Questions and answers</strong>
+    <span>The questions clients ask most, shown near the bottom of the home page.</span>
+    <em>{{ faq_count }} question{{ '' if faq_count == 1 else 's' }}</em>
+  </a>
+</div>
+{% endblock %}

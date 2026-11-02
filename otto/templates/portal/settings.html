@@ -1,0 +1,49 @@
+{% extends "portal/base.html" %}
+{% block title %}Hours and booking{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">Office hours and booking</h1>
+    <p class="page-sub">These hours appear on the website, drive the “open now” badge and decide which times clients can book. Times are {{ timezone }}.</p>
+  </div>
+</header>
+{% if errors %}<div class="portal__errors" role="alert">{% for error in errors %}<p class="field-error">{{ error }}</p>{% endfor %}</div>{% endif %}
+<form method="post" class="portal__form portal__form--wide">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="table-wrap">
+  <table class="table">
+    <thead><tr><th>Day</th><th>Open for bookings</th><th>Opens</th><th>Closes</th></tr></thead>
+    <tbody>
+      {% for weekday in range(7) %}{% set day = week[weekday] %}
+      <tr>
+        <td>{{ weekday_names[weekday] }}</td>
+        <td><input type="checkbox" name="open_{{ weekday }}" aria-label="{{ weekday_names[weekday] }} open" {% if day.is_open %}checked{% endif %}></td>
+        <td><input type="time" name="opens_{{ weekday }}" aria-label="{{ weekday_names[weekday] }} opens" value="{{ day.opens_at.strftime('%H:%M') }}" required></td>
+        <td><input type="time" name="closes_{{ weekday }}" aria-label="{{ weekday_names[weekday] }} closes" value="{{ day.closes_at.strftime('%H:%M') }}" required></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <div class="fields fields--three">
+    <div class="field"><label for="slot_minutes">Appointment length (minutes)</label><input id="slot_minutes" name="slot_minutes" type="number" min="10" max="240" step="5" value="{{ rules.slot_minutes }}" required></div>
+    <div class="field"><label for="days_ahead">How far ahead clients can book (days)</label><input id="days_ahead" name="days_ahead" type="number" min="1" max="180" value="{{ rules.days_ahead }}" required></div>
+    <div class="field"><label for="per_slot">Clients per time</label><input id="per_slot" name="per_slot" type="number" min="1" max="10" value="{{ rules.per_slot }}" required></div>
+  </div>
+  <button class="button" type="submit">Save hours and booking rules</button>
+</form>
+
+<section class="card" style="margin-top: 22px">
+  <h2 class="card__title">Email</h2>
+  {% if mail_configured %}
+  <p>Email is connected. Bookings, quote requests and replies are sent through your mail account, and every request is also saved here in the portal.</p>
+  {% else %}
+  <p><strong>Email is not connected yet.</strong> Requests are still saved in the portal, but nothing is sent to clients or to you. Set the mail settings on the host (Vercel → Settings → Environment Variables), then redeploy.</p>
+  {% endif %}
+  <p class="field__hint">Test messages go to {{ agency_email }}.</p>
+  <form method="post" action="{{ url_for('portal.test_email') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button class="button button--quiet button--small" type="submit">Send a test message</button>
+  </form>
+</section>
+{% endblock %}

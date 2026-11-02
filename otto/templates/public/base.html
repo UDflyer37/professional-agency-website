@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en-US" style="{{ site.theme_style }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}{{ agency.name }} Insurance Agency | {{ agency.city }}, Ohio{% endblock %}</title>
+  <meta name="description" content="{% block description %}Family-run independent insurance agency in {{ agency.city }}, Ohio. Home, auto, toys, umbrella and business insurance quoted across eight companies by Glenn and Andi Otto.{% endblock %}">
+  <meta name="theme-color" content="{{ site.theme.primary }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+  <link rel="preload" href="{{ url_for('static', filename='fonts/fraunces-latin-full-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ url_for('static', filename='fonts/figtree-latin-wght-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css', v=asset_version) }}">
+  <script src="{{ url_for('static', filename='js/early.js', v=asset_version) }}"></script>
+  <script src="{{ url_for('static', filename='js/site.js', v=asset_version) }}" defer></script>
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <a class="skip" href="#main">Skip to content</a>
+  <span class="scroll-progress" data-scroll-progress aria-hidden="true"></span>
+
+  {% if site.announcement.enabled and site.announcement.text %}
+  <div class="announce" data-announce>
+    <p>{{ site.announcement.text }}{% if site.announcement.link_url %} <a href="{{ site.announcement.link_url }}">{{ site.announcement.link_label or 'Learn more' }}</a>{% endif %}</p>
+    <button class="announce__close" type="button" aria-label="Dismiss announcement" data-announce-close hidden>&times;</button>
+  </div>
+  {% endif %}
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="{{ url_for('public.home') }}" aria-label="{{ agency.name }} Insurance Agency, home">
+        <img class="brand__mark" src="{{ url_for('static', filename='img/otto-mark.png') }}" width="240" height="149" alt="">
+        <span class="brand__text"><span class="brand__name">{{ agency.name }}</span><span class="brand__sub">Insurance Agency</span></span>
+      </a>
+      <button class="nav__toggle" type="button" aria-controls="site-nav" aria-expanded="false"><span class="nav__burger" aria-hidden="true"></span><span class="nav__toggle-label">Menu</span></button>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <a href="{{ url_for('public.home') }}#coverage">Coverage</a>
+        <a href="{{ url_for('public.home') }}#claims">Claims</a>
+        <a href="{{ url_for('public.home') }}#about">About</a>
+        <a href="{{ url_for('public.contact') }}">Requests</a>
+        <a class="nav__phone" href="tel:{{ agency.phone_dial }}"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><path d="M6.6 2.5 8.4 6c.3.6.1 1.3-.4 1.7l-1 .8a9.6 9.6 0 0 0 4.5 4.5l.8-1c.4-.5 1.1-.7 1.7-.4l3.5 1.8c.6.3.9 1 .7 1.6l-.6 1.9c-.3.8-1 1.3-1.8 1.2C8.6 17.6 2.4 11.4 1.9 4.2c-.1-.8.4-1.5 1.2-1.8L5 1.8c.6-.2 1.3.1 1.6.7z" fill="currentColor"/></svg>{{ agency.phone }}</a>
+        <a class="button button--small" href="{{ url_for('public.home') }}#quote">Get a quote <span class="button__arrow" aria-hidden="true">→</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block main %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <svg class="edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 90V52c150-24 268-34 402-12s268 40 404 14 300-44 634-14v50z"/></svg>
+    <div class="site-footer__cta">
+      <div>
+        <p class="site-footer__big">Your best insurance policy is a <em>good agent.</em></p>
+        <p class="site-footer__small">Talk to Glenn or Andi today. No call centre, no runaround.</p>
+      </div>
+      <div class="site-footer__buttons">
+        <a class="button button--accent" href="{{ url_for('public.appointments') }}">Book a call <span class="button__arrow" aria-hidden="true">→</span></a>
+        <a class="button button--ghost" href="tel:{{ agency.phone_dial }}">Call {{ agency.phone }}</a>
+      </div>
+    </div>
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="{{ url_for('static', filename='img/otto-mark-light.png') }}" width="240" height="149" alt="" class="site-footer__mark">
+        <p class="site-footer__name">{{ agency.name }}</p>
+        <p>Independent insurance agents since 1998.</p>
+      </div>
+      <div class="site-footer__col">
+        <h2 class="site-footer__heading">Find us</h2>
+        <p>{% if agency.show_street %}{{ agency.street }}<br>{% endif %}{{ agency.city }}, {{ agency.region }} {{ agency.postcode }}</p>
+        <p class="site-footer__note">Visits by appointment</p>
+      </div>
+      <div class="site-footer__col">
+        <h2 class="site-footer__heading">Hours</h2>
+        <ul>{% for line in hours_summary %}<li>{{ line }}</li>{% endfor %}</ul>
+      </div>
+      <div class="site-footer__col">
+        <h2 class="site-footer__heading">Contact</h2>
+        <ul>
+          <li>Office <a href="tel:{{ agency.phone_dial }}">{{ agency.phone }}</a></li>
+          {% if agency.phone2 %}<li>Cell <a href="tel:{{ agency.phone2_dial }}">{{ agency.phone2 }}</a></li>{% endif %}
+          <li><a href="mailto:{{ agency.email }}">{{ agency.email }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__legal">
+      <p>&copy; {{ now_year }} {{ agency.name }} Insurance Agency</p>
+      <p><a href="{{ url_for('public.privacy') }}">Privacy policy</a> <a href="{{ url_for('portal.login') }}">Agent login</a></p>
+    </div>
+    <a class="site-footer__top" href="#main">Back to top ↑</a>
+  </footer>
+
+  <nav class="dock" aria-label="Quick actions">
+    <a class="dock__call" href="tel:{{ agency.phone_dial }}">Call</a>
+    <a href="{{ url_for('public.home') }}#quote">Quote</a>
+    <a href="{{ url_for('public.home') }}#claims">Claims</a>
+    <a href="{{ url_for('public.appointments') }}">Book</a>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{% extends "portal/base.html" %}
+{% block title %}Resources{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <p class="crumbs">Office / Resources</p>
+    <h1 class="page-title">Resources and phone numbers</h1>
+    <p class="page-sub">A private shelf for the office. Nothing on this page appears on the public website.</p>
+  </div>
+</header>
+
+<div class="explain">
+  <div class="explain__item">
+    <p class="explain__label">For agents</p>
+    <p>Carrier logins, agent-only forms, billing portals and the numbers you reach for during the day. Only signed-in agents see this list.</p>
+  </div>
+  <div class="explain__item">
+    <p class="explain__label">For clients</p>
+    <p>Links and numbers you send to a client: a change-of-address form, a claims page, a payment portal. Group them by company so they are easy to find while you are on the phone.</p>
+  </div>
+  <div class="explain__item">
+    <p class="explain__label">How it is organised</p>
+    <p>Every entry has a <strong>section</strong> (the company or topic), a <strong>title</strong> and an <strong>address</strong>. Lists sort by section, then title. Press <kbd>C</kbd> on a highlighted row, or use <strong>Copy</strong>, to put the name and address on your clipboard ready to paste into a text or email.</p>
+  </div>
+</div>
+
+{% for audience, label, note in [('agent', 'For agents', 'Carrier logins, agent forms and office numbers.'), ('client', 'For clients', 'Pages and numbers you hand to a client.')] %}
+  {% set group = links|selectattr('audience', 'equalto', audience)|list %}
+  <section class="block">
+    <header class="block__head block__head--row">
+      <div>
+        <h2 class="block__title">{{ label }}</h2>
+        <p class="block__note">{{ note }}</p>
+      </div>
+      <span class="count">{{ group|length }} saved</span>
+    </header>
+    {% if group %}
+    <ul class="link-list">
+      {% for link in group %}
+      {% set copy_text = link.title ~ ' — ' ~ link.section ~ ': ' ~ link.url|replace('tel:', '')|replace('mailto:', '') %}
+      <li class="link-list__item" tabindex="0" data-copy-text="{{ copy_text }}" aria-label="{{ link.title }}. Press C to copy.">
+        <span class="link-list__section">{{ link.section }}</span>
+        <a class="link-list__title" href="{{ link.url }}" rel="noopener noreferrer" target="_blank">{{ link.title }} <span aria-hidden="true">↗</span></a>
+        <span class="link-list__actions">
+          <button class="link-list__copy" type="button" data-copy{% if audience == 'client' %} title="Copy this to paste into a text or email to a client"{% endif %}>Copy</button>
+          <form method="post" action="{{ url_for('portal.delete_link', link_id=link.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button class="link-list__remove" type="submit">Remove</button>
+          </form>
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="link-list__hint">{% if audience == 'client' %}Copy, then paste straight into a text or email. The copied line reads “{{ group[0].title }} — {{ group[0].section }}: {{ group[0].url|replace('tel:', '')|replace('mailto:', '') }}”.{% else %}Copy an agent link into another tab, or your own notes. This list stays behind the portal login.{% endif %}</p>
+    {% else %}
+    <p class="empty">Nothing here yet. Add the first one below{% if audience == 'agent' %} — for example “Progressive / Agent login”{% else %} — for example “Grange / Claims page”{% endif %}.</p>
+    {% endif %}
+  </section>
+{% endfor %}
+
+<section class="block">
+  <header class="block__head">
+    <h2 class="block__title">Add a link or a phone number</h2>
+    <p class="block__note">A phone number is just an address that starts with <code>tel:</code>, so it works as a tap-to-call on your phone.</p>
+  </header>
+  <form method="post" class="editor">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="fields fields--three">
+      <div class="field">
+        <label for="audience">Who is it for</label>
+        <select id="audience" name="audience">
+          <option value="agent">Agents (office only)</option>
+          <option value="client">Clients (to send out)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="section">Section</label>
+        <input id="section" name="section" list="resource-sections" placeholder="Progressive" required>
+        <p class="field__hint">Usually the company name, or a topic like Forms.</p>
+      </div>
+      <div class="field">
+        <label for="title">Title</label>
+        <input id="title" name="title" list="resource-titles" placeholder="Agent login" required>
+        <p class="field__hint">What you will look for later.</p>
+      </div>
+      <div class="field field--wide">
+        <label for="url">Address</label>
+        <input id="url" name="url" placeholder="https://…" required aria-describedby="url-hint">
+        <p class="field__hint" id="url-hint">Starts with <code>https://</code> for a website, <code>tel:+19375456148</code> for a phone number, or <code>mailto:</code> for an email address.</p>
+      </div>
+    </div>
+    <button class="button" type="submit">Add to the shelf</button>
+    <datalist id="resource-sections">
+      <option value="Progressive"></option>
+      <option value="Grange"></option>
+      <option value="Encompass"></option>
+      <option value="MAPFRE"></option>
+      <option value="Foremost"></option>
+      <option value="Trexis"></option>
+      <option value="Commonwealth"></option>
+      <option value="National General"></option>
+      <option value="Forms"></option>
+      <option value="Billing"></option>
+      <option value="Claims"></option>
+    </datalist>
+    <datalist id="resource-titles">
+      <option value="Agent login"></option>
+      <option value="Claims page"></option>
+      <option value="Billing portal"></option>
+      <option value="Change of address form"></option>
+      <option value="ID card request"></option>
+      <option value="Underwriting number"></option>
+      <option value="Client services"></option>
+    </datalist>
+  </form>
+</section>
+{% endblock %}

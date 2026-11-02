@@ -1,0 +1,42 @@
+{% extends "portal/base.html" %}
+{% import "portal/_fields.html" as f %}
+{% block title %}Logins{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <h1 class="page-title">Logins</h1>
+    <p class="page-sub">Everyone who can sign in to this portal. Adding an email that already exists resets its password.</p>
+  </div>
+</header>
+<div class="board">
+  <section class="card">
+    <h2 class="card__title">People with access</h2>
+    <ul class="people-list">
+      {% for agent in agents %}
+      <li>
+        <span class="avatar" aria-hidden="true">{{ agent.name[:1] }}</span>
+        <span><strong>{{ agent.name }}</strong>{{ agent.email }}{% if agent.id == g.agent.id %} · you{% endif %}</span>
+        {% if agent.id != g.agent.id %}
+        <form method="post" action="{{ url_for('portal.delete_user', agent_id=agent.id) }}" data-confirm="Remove the login for {{ agent.name }}?">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="button button--quiet button--small" type="submit">Remove</button>
+        </form>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  <section class="card">
+    <h2 class="card__title">Add a login or reset a password</h2>
+    <form class="form-stack" method="post" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="fields fields--one">
+        {{ f.input('name', 'Name', form.get('name', ''), error=errors.name, required=True) }}
+        {{ f.input('email', 'Email', form.get('email', ''), type='email', error=errors.email, required=True) }}
+        {{ f.input('password', 'Password', '', type='password', error=errors.password, required=True, help='At least 12 characters. Share it with them in person or by phone, not by email.', attrs='autocomplete="new-password"') }}
+      </div>
+      <button class="button" type="submit">Save login</button>
+    </form>
+  </section>
+</div>
+{% endblock %}

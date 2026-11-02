@@ -1,0 +1,120 @@
+{% extends "portal/base.html" %}
+{% block title %}Colours and layout{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <p class="crumbs"><a href="{{ url_for('portal.website') }}">Website</a> / Colours and layout</p>
+    <h1 class="page-title">Colours and layout</h1>
+    <p class="page-sub">Pick the colours, then choose what the home page shows and in what order. Save once and the live site changes.</p>
+  </div>
+</header>
+<form class="editor" method="post">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+  <section class="block">
+    <header class="block__head">
+      <h2 class="block__title">Colour scheme</h2>
+      <p class="block__note">The primary colour is used for headings and the footer. The accent is used for buttons and highlights.</p>
+    </header>
+
+    <p class="block__label">Everyday</p>
+    <div class="themes" role="radiogroup" aria-label="Everyday colour schemes">
+      {% for key, t in themes.items() if key not in ['christmas', 'halloween', 'july4', 'thanksgiving'] %}
+      <label class="theme">
+        <input type="radio" name="preset" value="{{ key }}" {% if theme.preset == key %}checked{% endif %}>
+        <span class="theme__card">
+          <span class="theme__sample" style="background: {{ t.primary }}"><i style="background: {{ t.accent }}"></i><b></b><b></b></span>
+          <strong>{{ t.label }}</strong>
+        </span>
+      </label>
+      {% endfor %}
+    </div>
+
+    <p class="block__label">Seasonal <span>Switch on for a few weeks, then switch back.</span></p>
+    <div class="themes themes--season" role="radiogroup" aria-label="Seasonal colour schemes">
+      {% for key, t in themes.items() if key in ['christmas', 'halloween', 'july4', 'thanksgiving'] %}
+      <label class="theme">
+        <input type="radio" name="preset" value="{{ key }}" {% if theme.preset == key %}checked{% endif %}>
+        <span class="theme__card">
+          <span class="theme__sample" style="background: {{ t.primary }}"><i style="background: {{ t.accent }}"></i><b></b><b></b></span>
+          <strong>{{ t.label }}</strong>
+        </span>
+      </label>
+      {% endfor %}
+    </div>
+
+    <label class="theme theme--custom">
+      <input type="radio" name="preset" value="custom" {% if theme.preset == 'custom' %}checked{% endif %}>
+      <span class="theme__card theme__card--wide">
+        <span class="theme__swatches">
+          <i style="background: {{ theme.custom.primary }}"></i>
+          <i style="background: {{ theme.custom.deep }}"></i>
+          <i style="background: {{ theme.custom.accent }}"></i>
+        </span>
+        <strong>Your own colours</strong>
+        <span class="theme__hint">Mix your own palette below and choose this card to use it.</span>
+      </span>
+    </label>
+    <div class="palette">
+      <div class="palette__field">
+        <label for="custom_primary">Headings</label>
+        <input id="custom_primary" type="color" name="custom_primary" value="{{ theme.custom.primary }}">
+      </div>
+      <div class="palette__field">
+        <label for="custom_deep">Footer and dark bands</label>
+        <input id="custom_deep" type="color" name="custom_deep" value="{{ theme.custom.deep }}">
+      </div>
+      <div class="palette__field">
+        <label for="custom_accent">Buttons and highlights</label>
+        <input id="custom_accent" type="color" name="custom_accent" value="{{ theme.custom.accent }}">
+      </div>
+      <div class="palette__field">
+        <label for="custom_on_accent">Text on the accent</label>
+        <input id="custom_on_accent" type="color" name="custom_on_accent" value="{{ theme.custom.on_accent }}">
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <header class="block__head">
+      <h2 class="block__title">Corner style</h2>
+      <p class="block__note">How round the corners of photos, cards and panels are across the whole site.</p>
+    </header>
+    <div class="themes themes--small" role="radiogroup" aria-label="Corner style">
+      {% for key, (label, big, small) in corners.items() %}
+      <label class="theme">
+        <input type="radio" name="corners" value="{{ key }}" {% if theme.corners == key %}checked{% endif %}>
+        <span class="theme__card"><span class="corner-sample" style="border-radius: {{ big }}"></span><strong>{{ label }}</strong></span>
+      </label>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="block" id="sections">
+    <header class="block__head">
+      <h2 class="block__title">Home page sections</h2>
+      <p class="block__note">The small picture shows how each section looks. Untick one to hide it, or use the arrows to move it up and down. The top banner always comes first.</p>
+    </header>
+    <ol class="order">
+      {% for key in order %}
+      <li class="order__row {{ 'is-hidden' if key in hidden else '' }}">
+        <span class="order__mini order__mini--{{ key }}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="order__text">
+          <label class="check"><input type="checkbox" name="show" value="{{ key }}" {% if key not in hidden %}checked{% endif %}> <span>{{ sections[key] }}</span></label>
+          <span class="order__hint">{{ hints[key] }}</span>
+        </span>
+        <span class="order__buttons">
+          <button class="icon-button" type="submit" name="move" value="{{ key }}:-1" aria-label="Move {{ sections[key] }} up" {% if loop.first %}disabled{% endif %}>↑</button>
+          <button class="icon-button" type="submit" name="move" value="{{ key }}:1" aria-label="Move {{ sections[key] }} down" {% if loop.last %}disabled{% endif %}>↓</button>
+        </span>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <div class="savebar">
+    <a class="button button--quiet" href="{{ url_for('portal.website') }}">Cancel</a>
+    <button class="button" type="submit">Save changes</button>
+  </div>
+</form>
+{% endblock %}

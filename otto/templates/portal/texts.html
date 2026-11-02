@@ -1,0 +1,126 @@
+{% extends "portal/base.html" %}
+{% import "portal/_fields.html" as f %}
+{% block title %}Text reminders{% endblock %}
+{% block main %}
+<header class="page-top">
+  <div>
+    <p class="crumbs"><a href="{{ url_for('portal.settings') }}">Hours and booking</a> / Text reminders</p>
+    <h1 class="page-title">Text reminders</h1>
+    <p class="page-sub">A text on your phone when someone books, when a request comes in, and before each appointment. You choose what each one says and when it goes out.</p>
+  </div>
+</header>
+
+{% if not configured %}
+<div class="alert alert--info" role="status">
+  <strong>Texts are not connected yet.</strong>
+  <p>Add <code>OTTO_TWILIO_ACCOUNT_SID</code>, <code>OTTO_TWILIO_AUTH_TOKEN</code> and <code>OTTO_TWILIO_FROM</code> in your host’s environment variables, then redeploy. Everything else on the site works without them, and the settings below are saved either way.</p>
+</div>
+{% endif %}
+
+{% if errors %}
+<div class="alert" role="alert">
+  <strong>Nothing was saved yet.</strong>
+  {% for field, message in errors.items() %}<p>{{ message }}</p>{% endfor %}
+</div>
+{% endif %}
+
+<form method="post" class="editor">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+  <section class="block">
+    <header class="block__head">
+      <h2 class="block__title">Where the texts go</h2>
+      <p class="block__note">One mobile number, usually yours. Texts are sent from the agency number you set up with Twilio.</p>
+    </header>
+    <div class="fields">
+      <div class="field field--wide">{{ f.switch('sms_enabled', 'Send me text messages', notify.sms_enabled, 'Switch this off at any time. Nothing is sent while it is off.') }}</div>
+      <div class="field">
+        <label for="sms_phone">Mobile number</label>
+        <input id="sms_phone" name="sms_phone" type="tel" autocomplete="tel" value="{{ notify.sms_phone }}" placeholder="(937) 610-0088">
+        {% if errors.sms_phone %}<p class="field-error">{{ errors.sms_phone }}</p>{% endif %}
+        <p class="field__hint">Include the area code. Standard message rates from your carrier apply.</p>
+      </div>
+      <div class="field">
+        <label for="sms_reminder_hours">How far ahead to remind you</label>
+        <select id="sms_reminder_hours" name="sms_reminder_hours">
+          {% for hours in [2, 3, 6, 12, 24, 48] %}
+          <option value="{{ hours }}" {% if notify.sms_reminder_hours == hours %}selected{% endif %}>{% if hours < 24 %}{{ hours }} hours before{% elif hours == 24 %}A day before{% else %}{{ hours // 24 }} days before{% endif %}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <header class="block__head">
+      <h2 class="block__title">What is worth a buzz</h2>
+      <p class="block__note">Bookings and requests are always saved in the portal and emailed to you. These are the things that also go to your phone.</p>
+    </header>
+    <div class="toggles">
+      {{ f.switch('sms_on_booking', 'A new appointment is booked', notify.sms_on_booking, 'Includes the client name, day and time.') }}
+      {{ f.switch('sms_on_request', 'A new website request arrives', notify.sms_on_request, 'A quote request, a document request or a question.') }}
+    </div>
+  </section>
+
+  <section class="block">
+    <header class="block__head">
+      <h2 class="block__title">The words in each text</h2>
+      <p class="block__note">Write these the way you would say them. A text is limited to about 300 characters; anything longer is trimmed.</p>
+    </header>
+    <div class="fields fields--one">
+      <div class="field field--wide">
+        <label for="sms_booking_template">When a new appointment is booked</label>
+        <textarea id="sms_booking_template" name="sms_booking_template" rows="2" maxlength="480">{{ notify.sms_booking_template }}</textarea>
+        {% if errors.sms_booking_template %}<p class="field-error">{{ errors.sms_booking_template }}</p>{% endif %}
+        <p class="field__hint">You can use <code>{name}</code>, <code>{when}</code> and <code>{kind}</code>.</p>
+      </div>
+      <div class="field field--wide">
+        <label for="sms_request_template">When a website request arrives</label>
+        <textarea id="sms_request_template" name="sms_request_template" rows="2" maxlength="480">{{ notify.sms_request_template }}</textarea>
+        {% if errors.sms_request_template %}<p class="field-error">{{ errors.sms_request_template }}</p>{% endif %}
+        <p class="field__hint">You can use <code>{name}</code> and <code>{topic}</code>.</p>
+      </div>
+      <div class="field field--wide">
+        <label for="sms_reminder_template">Before an appointment</label>
+        <textarea id="sms_reminder_template" name="sms_reminder_template" rows="3" maxlength="480">{{ notify.sms_reminder_template }}</textarea>
+        {% if errors.sms_reminder_template %}<p class="field-error">{{ errors.sms_reminder_template }}</p>{% endif %}
+        <p class="field__hint">You can use <code>{name}</code>, <code>{when}</code> and <code>{kind}</code>. Each appointment is reminded about once; changing the time does not send it twice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <header class="block__head">
+      <h2 class="block__title">What the reminder will look like</h2>
+      <p class="block__note">Filled in with a sample appointment, using the wording above. Save, then check your saved version here.</p>
+    </header>
+    <div class="reminder-preview">
+      <p class="reminder-preview__label">On your phone</p>
+      <p class="bubble">{{ preview }}</p>
+      <p class="field__hint">The site checks once a day (8:00 am Eastern) and sends reminders for the window above. Sending by hand is safe: appointments already reminded are skipped.</p>
+    </div>
+  </section>
+
+  <div class="savebar">
+    <a class="button button--quiet" href="{{ url_for('portal.settings') }}">Cancel</a>
+    <button class="button" type="submit">Save text settings</button>
+  </div>
+</form>
+
+<section class="block block--quiet">
+  <header class="block__head">
+    <h2 class="block__title">Try it now</h2>
+    <p class="block__note">Save your settings first. Both buttons use the saved number and wording.</p>
+  </header>
+  <div class="portal__row">
+    <form method="post" action="{{ url_for('portal.test_text') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="button button--quiet button--small" type="submit" {% if not configured or not notify.sms_enabled %}disabled{% endif %}>Send a test text</button>
+    </form>
+    <form method="post" action="{{ url_for('portal.run_reminders') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="button button--quiet button--small" type="submit" {% if not configured or not notify.sms_enabled %}disabled{% endif %}>Send any due reminders now</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
