@@ -1,6 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "flask",
+  "functions": {
+    "app.py": {
+      "includeFiles": "{otto/templates/**,otto/schema.sql}"
+    }
+  },
   "crons": [
     {
       "path": "/tasks/reminders",
