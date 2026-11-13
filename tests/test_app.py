@@ -181,6 +181,19 @@ def test_public_forms_are_rate_limited(client: FlaskClient) -> None:
     assert "few minutes" in blocked.get_data(as_text=True)
 
 
+def test_contact_form_survives_missing_rate_limit_table(client: FlaskClient, app: Flask) -> None:
+    form = {"csrf_token": csrf_from(client, "/contact"), "topic": "proof-card", "name": "Pat Doe", "email": "pat@example.com"}
+    with app.app_context():
+        connection = db.get_db()
+        connection.execute("DROP TABLE request_throttle")
+        connection.commit()
+
+    assert client.post("/contact", data=form).status_code == 302
+    with app.app_context():
+        messages = store.list_messages(db.get_db())
+    assert messages[0]["topic"] == "Proof of insurance card"
+
+
 def test_login_is_rate_limited_per_visitor(client: FlaskClient, app: Flask) -> None:
     with app.app_context():
         store.upsert_agent(db.get_db(), "andi@example.com", "Andi", generate_password_hash("a long test password"))

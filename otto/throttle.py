@@ -82,6 +82,7 @@ def guard() -> None:
     per_visitor, shared = limits
     ident = request.remote_addr or "unknown"
     window_start = _window_start()
+    connection: Connection | None = None
     try:
         connection = get_db()
         allowed = _consume(connection, _bucket(scope, ident), per_visitor, window_start) and _consume(
@@ -89,6 +90,8 @@ def guard() -> None:
         )
         _forget_old_windows(connection)
     except psycopg.Error:
+        if connection is not None:
+            connection.rollback()
         log.exception("Rate limiting is unavailable; letting the request through")
         return
 
