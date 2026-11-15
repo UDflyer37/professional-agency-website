@@ -7,7 +7,7 @@ import io
 import os
 import re
 from collections.abc import Iterator
-from datetime import timedelta
+from datetime import date, datetime, time, timedelta
 from zoneinfo import ZoneInfo
 
 import pytest
@@ -77,6 +77,12 @@ def first_open_slot(client: FlaskClient) -> str:
     raise AssertionError("No open slot found in the next ten days")
 
 
+def next_weekday(day: date) -> date:
+    while day.weekday() >= 5:
+        day += timedelta(days=1)
+    return day
+
+
 def test_public_pages_render(client: FlaskClient) -> None:
     for path in ("/", "/appointments", "/contact", "/contact?topic=proof-card", "/privacy"):
         assert client.get(path).status_code == 200, path
@@ -104,6 +110,61 @@ def test_booking_flow_and_double_booking(client: FlaskClient, mailer: LogMailer)
     second = client.post("/appointments", data={**form, "name": "Sam Roe", "email": "sam@example.com"})
     assert second.status_code == 422
     assert "Choose one of the open times" in second.get_data(as_text=True)
+
+
+def test_booking_rejects_crafted_slot_after_bookable_window(client: FlaskClient, app: Flask) -> None:
+    with app.app_context():
+        connection = db.get_db()
+        connection.execute("UPDATE booking_rules SET days_ahead = 1 WHERE id = 1")
+        tz = app.config["OTTO"].timezone
+        slot_day = next_weekday(store.utc_now().astimezone(tz).date() + timedelta(days=2))
+        slot = datetime.combine(slot_day, time(9, 30), tzinfo=tz).isoformat()
+        connection.commit()
+
+    response = client.post(
+        "/appointments",
+        data={
+            "csrf_token": csrf_from(client, "/appointments"),
+            "slot": slot,
+            "name": "Pat Doe",
+            "email": "pat@example.com",
+            "meeting_kind": "video",
+        },
+    )
+
+    assert response.status_code == 422
+    assert "Choose one of the open times" in response.get_data(as_text=True)
+    with app.app_context():
+        count = db.get_db().execute("SELECT count(*) AS n FROM bookings").fetchone()["n"]
+    assert count == 0
+
+
+def test_booking_rejects_crafted_slot_on_future_time_off_day(client: FlaskClient, app: Flask) -> None:
+    with app.app_context():
+        connection = db.get_db()
+        connection.execute("UPDATE booking_rules SET days_ahead = 1 WHERE id = 1")
+        tz = app.config["OTTO"].timezone
+        slot_day = next_weekday(store.utc_now().astimezone(tz).date() + timedelta(days=2))
+        store.add_time_off(connection, slot_day, slot_day, "Away")
+        slot = datetime.combine(slot_day, time(9, 30), tzinfo=tz).isoformat()
+        connection.commit()
+
+    response = client.post(
+        "/appointments",
+        data={
+            "csrf_token": csrf_from(client, "/appointments"),
+            "slot": slot,
+            "name": "Pat Doe",
+            "email": "pat@example.com",
+            "meeting_kind": "video",
+        },
+    )
+
+    assert response.status_code == 422
+    assert "Choose one of the open times" in response.get_data(as_text=True)
+    with app.app_context():
+        count = db.get_db().execute("SELECT count(*) AS n FROM bookings").fetchone()["n"]
+    assert count == 0
 
 
 def test_contact_request_is_saved(client: FlaskClient, app: Flask) -> None:
