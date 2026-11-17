@@ -153,10 +153,17 @@ def appointments() -> tuple[str, int] | Response:
         valid_slots = []
         if slot is not None:
             slot_day = slot.astimezone(tz).date()
-            valid_slots = open_slots(
-                slot_day, week[slot_day.weekday()], rules, store.taken_slots(connection, slot_day, tz), now, tz, closed
-            )
-            chosen = slot_day
+            if first_day <= slot_day <= last_day:
+                valid_slots = open_slots(
+                    slot_day,
+                    week[slot_day.weekday()],
+                    rules,
+                    store.taken_slots(connection, slot_day, tz),
+                    now,
+                    tz,
+                    store.closed_dates(connection, slot_day, slot_day),
+                )
+                chosen = slot_day
         if slot is None or slot.astimezone(tz) not in valid_slots:
             errors.add("slot", "Choose one of the open times.")
 

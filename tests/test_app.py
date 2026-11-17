@@ -7,7 +7,7 @@ import io
 import os
 import re
 from collections.abc import Iterator
-from datetime import timedelta
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import pytest
@@ -104,6 +104,34 @@ def test_booking_flow_and_double_booking(client: FlaskClient, mailer: LogMailer)
     second = client.post("/appointments", data={**form, "name": "Sam Roe", "email": "sam@example.com"})
     assert second.status_code == 422
     assert "Choose one of the open times" in second.get_data(as_text=True)
+
+
+def test_booking_post_cannot_forge_a_slot_outside_the_booking_window(client: FlaskClient, app: Flask) -> None:
+    with app.app_context():
+        connection = db.get_db()
+        tz = app.config["OTTO"].timezone
+        rules = store.booking_rules(connection)
+        week = store.week_hours(connection)
+        day = store.utc_now().astimezone(tz).date() + timedelta(days=rules.days_ahead + 1)
+        while not week[day.weekday()].is_open:
+            day += timedelta(days=1)
+        forged_slot = datetime.combine(day, week[day.weekday()].opens_at, tzinfo=tz).isoformat()
+
+    response = client.post(
+        "/appointments",
+        data={
+            "csrf_token": csrf_from(client, "/appointments"),
+            "slot": forged_slot,
+            "name": "Pat Doe",
+            "email": "pat@example.com",
+            "meeting_kind": "video",
+        },
+    )
+
+    assert response.status_code == 422
+    assert "Choose one of the open times" in response.get_data(as_text=True)
+    with app.app_context():
+        assert store.bookings_between(db.get_db(), None, None) == []
 
 
 def test_contact_request_is_saved(client: FlaskClient, app: Flask) -> None:
